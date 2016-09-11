@@ -17,5 +17,13 @@ public class ReadCategories {
 
 
 
+    public List<Category> displayMatchinCategories(int n, String catName) {
+        /**
+         * Display n elements that matches the String (string is the name of category)
+         *
+         */
+        //TODO: return the list of categories that matches the string
+        return null;
+    }
 
 }
