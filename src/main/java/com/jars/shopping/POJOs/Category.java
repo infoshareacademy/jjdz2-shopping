@@ -1,4 +1,4 @@
-package com.jars.shopping;
+package com.jars.shopping.POJOs;
 
 /**
  * Created by marcinpankowski on 11.09.16.
@@ -60,8 +60,10 @@ public class Category {
         this.catIsProductCatalogueEnabled = catIsProductCatalogueEnabled;
     }
 
+    @Override
+    public String toString() {
+        return
+                "\ncatId=" + catId + "\ncatName='" + catName + "\ncatParent=" + catParent + "\ncatPosition=" + catPosition + "\ncatIsProductCatalogueEnabled=" + catIsProductCatalogueEnabled + "\n ****************************";
 
-
-
-
+    }
 }

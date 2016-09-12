@@ -1,4 +1,4 @@
-package com.jars.shopping;
+package com.jars.shopping.POJOs;
 
 
 public class Question {
