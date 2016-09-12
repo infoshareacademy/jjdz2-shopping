@@ -29,11 +29,17 @@ public class ReadCategories {
 
     public void printNMatchingCategories(int n, String catName) {
         /** Prints out n matching categories */
+        if (n > categories.size()) {
+            n = categories.size();
+            System.out.println("The desired amount of results, you've given " + n + " is larger than the size of the whole list");
+        }
+        if (n < 1) {
+            throw new IllegalArgumentException("The amount of desired results cannot be less than 1");
+        }
         List<Category> matchingCategories = new ArrayList<Category>();
         matchingCategories = getMatchinCategories(catName);
-        for (int i=0; i<n; i++) System.out.println(matchingCategories.get(i));
+        for (int i = 0; i <= n; i++) System.out.println(matchingCategories.get(i));
     }
-
 
 
     /**
