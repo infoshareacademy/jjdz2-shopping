@@ -6,5 +6,6 @@ package com.jars.shopping;
 public class App {
     public static void main(String[] args) {
         //let's start
+        // TODO : JS 21 - to jest klasa spinająca.
     }
 }
