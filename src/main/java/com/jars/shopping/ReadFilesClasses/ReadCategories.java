@@ -5,10 +5,19 @@ import com.jars.shopping.POJOs.Category;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import java.io.File;
+
 public class ReadCategories {
 
 
-    private List<Category> categories = new ArrayList<Category>();
+    private static List<Category> categories = new ArrayList<Category>();
+
 
     public List<Category> getMatchinCategories(String catName) {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
@@ -45,8 +54,46 @@ public class ReadCategories {
     /**
      * Getter & Setter
      */
-    public List<Category> getCategories() {
-        //TODO: - JS-24 - Return ALL categories from XML file
+    public static List<Category> getCategories() {
+        //Return ALL categories from XML file
+
+        try {
+            File fXmlFile = new File("Allegro_cathegories_2016-02-13.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+
+            //recommended to normalize
+            doc.getDocumentElement().normalize();
+
+            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            NodeList nList = doc.getElementsByTagName("ns1:item");
+            System.out.println("We found " + nList.getLength() + " elements.");
+
+            for (int temp = 0; temp < nList.getLength(); temp++) {
+                Node nNode = nList.item(temp);
+                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
+
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+                    Element eElement = (Element) nNode;
+                    //add elements to Category class, create objects and parse to int
+                    categories.add(new Category(
+                            Integer.parseInt(eElement.getElementsByTagName("ns1:catId").item(0).getTextContent()),
+                            eElement.getElementsByTagName("ns1:catName").item(0).getTextContent(),
+                            Integer.parseInt(eElement.getElementsByTagName("ns1:catParent").item(0).getTextContent()),
+                            Integer.parseInt(eElement.getElementsByTagName("ns1:catPosition").item(0).getTextContent()),
+                            Integer.parseInt(eElement.getElementsByTagName("ns1:catIsProductCatalogueEnabled").item(0).getTextContent())));
+                }
+            }
+            //verify if needed - list all elements:
+            //for( Category ea: categories){
+            //    System.out.println(ea.toString());
+            //}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return categories;
     }
 
