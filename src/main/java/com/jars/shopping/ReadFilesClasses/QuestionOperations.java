@@ -1,5 +1,6 @@
 package com.jars.shopping.ReadFilesClasses;
 
+import com.google.gson.Gson;
 import com.jars.shopping.POJOs.Question;
 
 import java.util.ArrayList;
@@ -13,4 +14,5 @@ public class QuestionOperations {
     //http://stackoverflow.com/questions/2591098/how-to-parse-json-in-java
     // TODO: In this this class we should have all the methods that deal with getting questions from JSON and returning them as strings
     // read json & parse json to Question objects & assign objects to list (above) & return filled List questionList
+    Gson g = new Gson();
 }
