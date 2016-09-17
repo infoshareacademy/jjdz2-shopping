@@ -52,7 +52,7 @@ public class ReadCategories {
 
 
     /**
-     * Getter & Setter
+     * Getter & Setterr
      */
     public static List<Category> getCategories() {
         //Return ALL categories from XML file
