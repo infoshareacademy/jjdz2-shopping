@@ -9,10 +9,10 @@
 					"label": "Aktywność sportową",
 					"categories": {
 						"pl":[
-							"Rowery", "Sprzęt narciarski"
+							"Rowery i akcesoria", "Sprzęt narciarski"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Cycling", "Winter Sports"
 						]
 					}
 				},
@@ -21,10 +21,10 @@
 					"label": "Ogladanie TV",
 					"categories": {
 						"pl":[
-							"Telewizory", "Kanapyi"
+							"TV i Video", "Gry na konsole"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Televisions", "Video Game Consoles"
 						]
 					}
 				},
@@ -33,17 +33,17 @@
 					"label": "Taniec artystyczny",
 					"categories": {
 						"pl":[
-							"Buty", "Muzyka"
+							"Ćwiczenia fizyczne, taniec", "Artystyczne"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Bicycles", "Dancewear"
 						]
 					}
 				}
 			]
 		},
 		{
-			"id": 1,
+			"id": 2,
 			"title": "Gdzie spedzasz wolny czas?",
 			"options": [
 				{
