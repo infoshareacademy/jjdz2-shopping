@@ -16,7 +16,7 @@ import java.io.File;
 public class ReadCategories {
 
 
-    private static List<Category> categories = new ArrayList<Category>();
+    private List<Category> categories = new ArrayList<Category>();
 
 
     public List<Category> getMatchinCategories(String catName) {
@@ -54,7 +54,7 @@ public class ReadCategories {
     /**
      * Getter & Setterr
      */
-    public static List<Category> getCategories() {
+    public List<Category> getCategories() {
         //Return ALL categories from XML file
 
         try {
