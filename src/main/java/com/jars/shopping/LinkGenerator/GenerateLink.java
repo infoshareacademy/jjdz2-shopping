@@ -9,6 +9,7 @@ public class GenerateLink {
 
 
     public List<String> GenerateLinkAllegro(List<Integer> catIds){
+        linkList.clear();
         if(!catIds.isEmpty()){
             for(int idNumber: catIds){
                 linkList.add("http://allegro.pl/some-cat-" + Integer.toString(idNumber));
@@ -18,6 +19,7 @@ public class GenerateLink {
     }
 
     public List<String> GenerateLinkEbay(List<String> catNames){
+        linkList.clear();
         if(!catNames.isEmpty()){
             for(String catName: catNames){
                 catName = catName.replaceAll("\\s+","-");
