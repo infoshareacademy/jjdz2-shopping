@@ -9,10 +9,10 @@
 					"label": "Aktywność sportową",
 					"categories": {
 						"pl":[
-							"Rowery", "Sprzęt narciarski"
+							"Rowery i akcesoria", "Sprzęt narciarski"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Cycling", "Winter Sports"
 						]
 					}
 				},
@@ -21,10 +21,10 @@
 					"label": "Ogladanie TV",
 					"categories": {
 						"pl":[
-							"Telewizory", "Kanapyi"
+							"TV i Video", "Gry na konsole"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Televisions", "Video Game Consoles"
 						]
 					}
 				},
@@ -33,17 +33,17 @@
 					"label": "Taniec artystyczny",
 					"categories": {
 						"pl":[
-							"Buty", "Muzyka"
+							"Ćwiczenia fizyczne, taniec", "Artystyczne"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Dance Shoes", "Dancewear"
 						]
 					}
 				}
 			]
 		},
 		{
-			"id": 1,
+			"id": 2,
 			"title": "Gdzie spedzasz wolny czas?",
 			"options": [
 				{
@@ -51,10 +51,10 @@
 					"label": "Dom",
 					"categories": {
 						"pl":[
-							"Rowery", "Sprzęt narciarski"
+							"Szachy i inne gry planszowe", "Krzyżówki, gry i zabawy logiczne"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Board & Traditional Games", "Puzzles"
 						]
 					}
 				},
@@ -63,10 +63,10 @@
 					"label": "Morze",
 					"categories": {
 						"pl":[
-							"Telewizory", "Kanapyi"
+							"Pływanie", "Osprzęt jachtowy"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Swimming", "Kayaking, Canoeing & Rafting"
 						]
 					}
 				},
@@ -75,10 +75,10 @@
 					"label": "Góry",
 					"categories": {
 						"pl":[
-							"Buty", "Muzyka"
+							"Wspinaczka, alpinizm", "Kampery i przyczepy kempingowe"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Camping & Hiking", "Climbing & Caving"
 						]
 					}
 				}
