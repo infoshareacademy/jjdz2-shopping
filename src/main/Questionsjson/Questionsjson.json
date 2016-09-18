@@ -36,7 +36,7 @@
 							"Ćwiczenia fizyczne, taniec", "Artystyczne"
 						],
 						"en":[
-							"Bicycles", "Dancewear"
+							"Dance Shoes", "Dancewear"
 						]
 					}
 				}
@@ -51,10 +51,10 @@
 					"label": "Dom",
 					"categories": {
 						"pl":[
-							"Rowery", "Sprzęt narciarski"
+							"Szachy i inne gry planszowe", "Krzyżówki, gry i zabawy logiczne"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Board & Traditional Games", "Puzzles"
 						]
 					}
 				},
@@ -63,10 +63,10 @@
 					"label": "Morze",
 					"categories": {
 						"pl":[
-							"Telewizory", "Kanapyi"
+							"Pływanie", "Osprzęt jachtowy"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Swimming", "Kayaking, Canoeing & Rafting"
 						]
 					}
 				},
@@ -75,10 +75,10 @@
 					"label": "Góry",
 					"categories": {
 						"pl":[
-							"Buty", "Muzyka"
+							"Wspinaczka, alpinizm", "Kampery i przyczepy kempingowe"
 						],
 						"en":[
-							"Bicycles", "Ski equpiment"
+							"Camping & Hiking", "Climbing & Caving"
 						]
 					}
 				}
