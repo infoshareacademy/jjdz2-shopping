@@ -11,8 +11,8 @@
  <dependencies>
      <dependency>
          <groupId>com.fasterxml.jackson.core</groupId>
-         <artifactId>jackson-annotations</artifactId>
-         <version>${jackson-annotations-version}</version>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.8.3</version>
      </dependency>
      <dependency>
          <groupId>com.google.code.gson</groupId>
