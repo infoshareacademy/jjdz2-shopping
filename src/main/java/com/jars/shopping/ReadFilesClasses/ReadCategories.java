@@ -2,6 +2,7 @@ package com.jars.shopping.ReadFilesClasses;
 
 import com.jars.shopping.POJOs.Category;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,9 @@ public class ReadCategories {
         //Return ALL categories from XML file
 
         try {
-            File fXmlFile = new File("Allegro_cathegories_2016-02-13.xml");
+            URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
+            File fXmlFile = new File(resource.toURI());
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -87,9 +90,9 @@ public class ReadCategories {
                 }
             }
             //verify if needed - list all elements:
-            //for( Category ea: categories){
-            //    System.out.println(ea.toString());
-            //}
+            for( Category ea: categories){
+                System.out.println(ea.toString());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
