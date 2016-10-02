@@ -1,5 +1,7 @@
 package com.jars.shopping.UserInteractions;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.Scanner;
 
 /**
@@ -7,29 +9,39 @@ import java.util.Scanner;
  */
 public class Menu {
 
+    AskQuestions askQuestions = new AskQuestions();
+
     public void displayWelcomeScreen() {
         System.out.println("\n\n************************************");
         System.out.println("*****  J  A  R  S  *****************");
         System.out.println("************************************\n\n");
-
     }
 
-    private int displayMainOptionsAndReturnSelectedValue() {
+    public void displayMainOptionsAndReturnSelectedValue() {
+        System.out.println("Proszę wybrać opjcę");
         System.out.println(" 1 --> Identyfikowanie kategorii po serii pytań");
         System.out.println(" 2 --> Identyfikowanie produktu po serii pytań na temat potrzeb");
-        return selector(2);
+        int selectedValue = selector(2);
+        if (selectedValue == 1) {identifyCategory();}
+        else if (selectedValue == 2) {identifyProduct();}
     }
 
-    private int selector(int numberOfOptions) {
+
+    public int selector(int numberOfOptions) throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
         int selectedValue = scanner.nextInt();
         if (selectedValue > numberOfOptions || selectedValue <= 0) {
-            return selector(numberOfOptions);
+            throw new IllegalArgumentException("Liczba opcji musi byc pomiedzy 1 a "+numberOfOptions+ " natomiast Ty podałeś "+selectedValue);
         } else return selectedValue;
     }
 
-    private void identifyCategory(){
+    private void identifyCategory() {
+        System.out.println("Tutaj nastepuje seria pytań po ktorych mozemy dobrac kategorie");
 
+    }
+
+    private void identifyProduct() {
+        System.out.println("Tutaj nastepuje seria pytań po ktorych mozemy dobrac produkt");
     }
 
 
