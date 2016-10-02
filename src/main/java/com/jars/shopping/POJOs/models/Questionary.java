@@ -2,30 +2,39 @@ package com.jars.shopping.POJOs.models;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-/**
- * Created by nlisova on 18.09.16.
- */
 public class Questionary  {
-    List<Question> questions;
+
 
     public List<Question> getQuestions() {
 
         ObjectMapper mapper = new ObjectMapper();
+
+
         try {
-            Question obj = mapper.readValue(new File("C:\\Users\\Natalka\\IdeaProjects\\shopping\\jjdz2-shopping\\src\\main\\Questionsjson\\Questionsjson.json"), Question.class);
-            questions.add(obj);
+            URL resource = getClass().getClassLoader().getResource("Questionsjson.json");
+            File src = new File(resource.toURI());
+
+            AllQuestions questions = mapper.readValue(src, AllQuestions.class);
+            return questions.getQuestions();
+
         }
         catch(IOException e){
 
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         }
 
-        return questions;
+       return Collections.emptyList();
     }
 
 
