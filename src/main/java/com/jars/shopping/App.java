@@ -17,6 +17,6 @@ public class App {
         Menu menu = new Menu();
 
         menu.displayWelcomeScreen();
-        menu.displayMainOptionsAndReturnSelectedValue();
+        menu.displayMainOptionsAndGotoProperMethod();
     }
 }
