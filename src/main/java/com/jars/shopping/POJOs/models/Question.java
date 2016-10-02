@@ -1,6 +1,8 @@
 package com.jars.shopping.POJOs.models;
 
-import com.sun.tools.javac.util.List;
+
+
+import java.util.ArrayList;
 
 public class Question {
 
@@ -23,6 +25,6 @@ public class Question {
         return title;
     }
 
-    List<Option> options;
+    ArrayList<Option> options;
 
 }
