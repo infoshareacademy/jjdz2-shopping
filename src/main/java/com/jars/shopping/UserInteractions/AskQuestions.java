@@ -35,9 +35,9 @@ public class AskQuestions {
             if (selecion > options.size())
                 throw new IllegalArgumentException(" Proszę wybrać od 1 do " + options.size());
             else {
-                System.out.println("Wybrano odpowiedz "+ selecion + " , czyli, "+ options.get(selecion-1).toString());
-                System.out.println(options.get(selecion-1).getCategories().toString());
-                answersList.add(options.get(selecion-1).getCategories());
+                System.out.println("Wybrano odpowiedz " + selecion + " , czyli, " + options.get(selecion - 1).toString());
+                System.out.println(options.get(selecion - 1).getCategories().toString());
+                answersList.add(options.get(selecion - 1).getCategories());
             }
         }
         printOutResultsOfAnswers();
@@ -47,31 +47,11 @@ public class AskQuestions {
         System.out.println("************************");
         System.out.println("**** REZULTATY *********");
 
-        for(OfferedCategories o : answersList) {
+        for (OfferedCategories o : answersList) {
             System.out.println(o.getEn());
             System.out.println(o.getPl());
         }
     }
 
-
-
-    private void saveAnswer() {
-
-    }
-
-
-    // FOR TESTING PURPOSES
-    // DUMMY DATA !!!
-
-       /* Question question = new Question();
-        question.setTitle("Jak sie masz");
-        questionList.add(question);*/
-
-    // END OF DUMMY DATA
-
-
-    private void continueAsking() {
-
-    }
 }
 
