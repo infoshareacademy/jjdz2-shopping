@@ -11,6 +11,7 @@ public class Menu {
 
     }
 
+
     public void displayMainOptionsAndGotoProperMethod() {
         System.out.println(" Proszę wybrać jedną opcję : ");
         System.out.println("**************************************");
@@ -19,11 +20,11 @@ public class Menu {
         if (selector(2) == 1) {identifyCategory();}
     }
 
-    private int selector(int numberOfOptions) {
+    private int selector(int numberOfOptions) throws IllegalArgumentException{
         Scanner scanner = new Scanner(System.in);
         int selectedValue = scanner.nextInt();
         if (selectedValue > numberOfOptions || selectedValue <= 0) {
-            return selector(numberOfOptions);
+            throw new IllegalArgumentException(" Niewlasciwy wybor. Proszę wybrać od 1 do "+numberOfOptions);
         } else return selectedValue;
     }
 
@@ -31,4 +32,6 @@ public class Menu {
         AskQuestions askQuestions = new AskQuestions();
         askQuestions.startAsking();
     }
+
+
 }
