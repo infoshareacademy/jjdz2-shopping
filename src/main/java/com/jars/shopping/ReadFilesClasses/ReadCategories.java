@@ -8,17 +8,17 @@ import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 import java.io.File;
 
 public class ReadCategories {
 
-
     private List<Category> categories = new ArrayList<Category>();
-
 
     public List<Category> getMatchinCategories(String catName) {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
@@ -30,8 +30,6 @@ public class ReadCategories {
             if (categories.get(i).getCatName().contains(catName)) {
                 catNames.add(categories.get(i));
                 counter++;
-                System.out.println("Found " + counter + " matching categories, that contains " + catName + "\n" +
-                        "Category " + categories.get(i) + " matches the seaarch criteria");
             }
         }
         return catNames;
@@ -48,9 +46,14 @@ public class ReadCategories {
         }
         List<Category> matchingCategories = new ArrayList<Category>();
         matchingCategories = getMatchinCategories(catName);
-        for (int i = 0; i <= n; i++) System.out.println(matchingCategories.get(i));
+        //for (int i = 0; i < n; i++) System.out.println(matchingCategories.get(i));
+        int counter = 0;
+        for (Category c : matchingCategories) {
+            System.out.println((counter + 1) + " -->  " + c.getCatName());
+            counter++;
+            if (counter == n) break;
+        }
     }
-
 
     /**
      * Getter & Setterr
