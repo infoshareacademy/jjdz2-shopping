@@ -28,7 +28,7 @@ public class OfferedCategories {
     @JsonProperty("en")
     private List<String> en = new ArrayList<String>();
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
 
     @JsonProperty("pl")
     public List<String> getPl() {
@@ -50,22 +50,13 @@ public class OfferedCategories {
         this.en = en;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
 
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
     @Override
     public String toString() {
         return "OfferedCategories{" +
                 "pl=" + pl +
                 ", en=" + en +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }

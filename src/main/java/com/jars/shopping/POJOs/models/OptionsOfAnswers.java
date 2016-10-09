@@ -24,66 +24,37 @@ public class OptionsOfAnswers {
     private String label;
     @JsonProperty("categories")
     private OfferedCategories categories;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    /**
-     * @return The number
-     */
     @JsonProperty("number")
     public Integer getNumber() {
         return number;
     }
 
-    /**
-     * @param number The number
-     */
     @JsonProperty("number")
     public void setNumber(Integer number) {
         this.number = number;
     }
 
-    /**
-     * @return The label
-     */
     @JsonProperty("label")
     public String getLabel() {
         return label;
     }
 
-    /**
-     * @param label The label
-     */
     @JsonProperty("label")
     public void setLabel(String label) {
         this.label = label;
     }
 
-    /**
-     * @return The categories
-     */
     @JsonProperty("categories")
     public OfferedCategories getCategories() {
         return categories;
     }
 
-    /**
-     * @param categories The categories
-     */
     @JsonProperty("categories")
     public void setCategories(OfferedCategories categories) {
         this.categories = categories;
     }
 
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
 
     @Override
     public String toString() {
@@ -91,7 +62,6 @@ public class OptionsOfAnswers {
                 "number=" + number +
                 ", label='" + label + '\'' +
                 ", categories=" + categories +
-                ", additionalProperties=" + additionalProperties +
                 '}';
     }
 }
