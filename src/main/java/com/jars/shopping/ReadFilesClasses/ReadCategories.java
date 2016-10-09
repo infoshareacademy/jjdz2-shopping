@@ -72,9 +72,9 @@ public class ReadCategories {
             //recommended to normalize
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("ns1:item");
-            System.out.println("We found " + nList.getLength() + " elements.");
+            //System.out.println("We found " + nList.getLength() + " elements.");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -92,10 +92,7 @@ public class ReadCategories {
                             Integer.parseInt(eElement.getElementsByTagName("ns1:catIsProductCatalogueEnabled").item(0).getTextContent())));
                 }
             }
-            //verify if needed - list all elements:
-            for( Category ea: categories){
-                System.out.println(ea.toString());
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

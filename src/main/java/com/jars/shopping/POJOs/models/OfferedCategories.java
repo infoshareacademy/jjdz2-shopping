@@ -45,8 +45,6 @@ public class OfferedCategories {
         this.en = en;
     }
 
-
-
     @Override
     public String toString() {
         return "OfferedCategories{" +

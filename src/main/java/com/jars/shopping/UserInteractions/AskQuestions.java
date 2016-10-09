@@ -51,6 +51,17 @@ public class AskQuestions {
             System.out.println(o.getEn());
             System.out.println(o.getPl());
         }
+
+        System.out.println("************************");
+        System.out.println("************************");
+        System.out.println("************************");
+        System.out.println("************************");
+        System.out.println("************************");
+        System.out.println(" Czy chcesz wygenerowac linki do Allegro i eBay?");
+        if (scanner.next().toLowerCase().equals("y")) {
+            Results results = new Results();
+            results.getAllegroLinks(answersList);
+        } else System.exit(0);
     }
 
 }

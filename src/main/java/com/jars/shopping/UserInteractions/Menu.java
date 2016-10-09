@@ -8,9 +8,7 @@ public class Menu {
         System.out.println("\n\n************************************");
         System.out.println("*****  J  A  R  S  ******2016*******");
         System.out.println("************************************\n\n");
-
     }
-
 
     public void displayMainOptionsAndGotoProperMethod() {
         System.out.println(" Proszę wybrać jedną opcję : ");
@@ -32,6 +30,4 @@ public class Menu {
         AskQuestions askQuestions = new AskQuestions();
         askQuestions.startAsking();
     }
-
-
 }
