@@ -32,8 +32,10 @@ public class AskQuestions {
             }
 
             int selecion = scanner.nextInt();
-            if (selecion > options.size())
-                throw new IllegalArgumentException(" Proszę wybrać od 1 do " + options.size());
+            if (selecion > options.size() || selecion < 1) {
+                System.out.println("Prosze wybrac od 1 do 3");
+                startAsking();
+            }
             else {
                 System.out.println("Wybrano odpowiedz " + selecion + " , czyli, " + options.get(selecion - 1).toString());
                 System.out.println(options.get(selecion - 1).getCategories().toString());
@@ -46,21 +48,43 @@ public class AskQuestions {
     private void printOutResultsOfAnswers() {
         System.out.println("************************");
         System.out.println("**** REZULTATY *********");
+        System.out.println("************************");
+
+        List<String> en = new ArrayList<>();
+        List<String> pl = new ArrayList<>();
 
         for (OfferedCategories o : answersList) {
-            System.out.println(o.getEn());
-            System.out.println(o.getPl());
+            //System.out.println("Lista kategorii EN");
+
+            for (String s : o.getEn()) {
+                en.add(s);
+            }
+
+            //System.out.println("Lista kategorii PL:");
+            for (String s : o.getPl()) {
+                pl.add(s);
+            }
         }
+
+        System.out.println("Lista kategorii EN:");
+        for (String s : en) System.out.println(" -->"+s);
+
+        System.out.println("Lista kategorii PL");
+        for (String s : pl) System.out.println(" -->"+s);
+
 
         System.out.println("************************");
         System.out.println("************************");
         System.out.println("************************");
         System.out.println("************************");
         System.out.println("************************");
-        System.out.println(" Czy chcesz wygenerowac linki do Allegro i eBay?");
+        System.out.println(" Czy chcesz wygenerowac linki do Allegro i eBay? (Y/N)");
         if (scanner.next().toLowerCase().equals("y")) {
             Results results = new Results();
-            results.getAllegroLinks(answersList);
+            results.getAllegroLinks(pl, en);
+            results.printAllegroLinks();
+            results.printEbayLinks();
+            System.exit(0);
         } else System.exit(0);
     }
 

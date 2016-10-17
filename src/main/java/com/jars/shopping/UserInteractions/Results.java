@@ -15,33 +15,32 @@ public class Results {
     List<String> eBayCatNames = new ArrayList<>();
     List<Category> allAllegroCategories = new ReadCategories().getCategories();
     GenerateLink generateLink = new GenerateLink();
+    ReadCategories rc = new ReadCategories();
 
-    public void getAllegroLinks(List<OfferedCategories> answersList) {
+    public void getAllegroLinks(List<String> pl, List<String> en) {
 
-        for (OfferedCategories offeredCategories : answersList) {
-
-            allegro.addAll(offeredCategories.getPl());
-            eBayCatNames.addAll(offeredCategories.getEn());
+        List<Integer> idList = new ArrayList<>();
+        for (String s : pl) {
+            List<Category> catList = rc.getMatchinCategories(s);
+            for (Category c : catList) {
+                idList.add(c.getCatId());
+            }
         }
 
-        //System.out.println(answersList.size());
-
-
-
-
+        allegro = generateLink.GenerateLinkAllegro(idList);
+        eBayCatNames = generateLink.GenerateLinkEbay(en);
     }
 
-
-    private void printAllegroStrings() {
-        for (String s : allegro) System.out.println(s);
+    public void printAllegroLinks() {
+        for (int i = 0; i < allegro.size(); i++) {
+            System.out.println("Link  allegro numer " + (i + 1) + " " + allegro.get(i));
+        }
     }
 
-    private void printEbayStrins() {
-        for (String s : eBayCatNames) System.out.println(s);
-    }
-
-    private void printAllCategories() {
-        for (Category s : allAllegroCategories) System.out.println(s.getCatName());
+    public void printEbayLinks() {
+        for (int i = 0; i < eBayCatNames.size(); i++) {
+            System.out.println("Link ebay numer " + (i + 1) + " " + eBayCatNames.get(i));
+        }
 
     }
 }

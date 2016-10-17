@@ -14,19 +14,24 @@ public class Menu {
         System.out.println(" Proszę wybrać jedną opcję : ");
         System.out.println("**************************************");
         System.out.println(" 1 --> Identyfikowanie kategorii po serii pytań");
-        System.out.println(" 2 --> Identyfikowanie produktu po serii pytań na temat potrzeb");
-        if (selector(2) == 1) {identifyCategory();}
+        // System.out.println(" 2 --> <NIE AKTYWNE> Identyfikowanie produktu po serii pytań na temat potrzeb");
+        if (selector(1) == 1) {
+            identifyCategory();
+        }
     }
 
-    private int selector(int numberOfOptions) throws IllegalArgumentException{
+    private int selector(int numberOfOptions) throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
         int selectedValue = scanner.nextInt();
         if (selectedValue > numberOfOptions || selectedValue <= 0) {
-            throw new IllegalArgumentException(" Niewlasciwy wybor. Proszę wybrać od 1 do "+numberOfOptions);
+            System.out.println("\n\nProsze wybrac od 1 do " + numberOfOptions + "\n\n\n");
+            displayMainOptionsAndGotoProperMethod();
+            return Integer.parseInt(null);
+
         } else return selectedValue;
     }
 
-    private void identifyCategory(){
+    private void identifyCategory() {
         AskQuestions askQuestions = new AskQuestions();
         askQuestions.startAsking();
     }
