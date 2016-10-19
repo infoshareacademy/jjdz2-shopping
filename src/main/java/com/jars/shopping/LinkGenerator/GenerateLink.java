@@ -6,16 +6,17 @@ import java.util.List;
 
 public class GenerateLink {
     private List<String> linkList = new ArrayList<String>();
+    private List<String> linkListAllegro = new ArrayList<String>();
 
 
     public List<String> GenerateLinkAllegro(List<Integer> catIds){
-        linkList.clear();
+        linkListAllegro.clear();
         if(!catIds.isEmpty()){
             for(int idNumber: catIds){
-                linkList.add("http://allegro.pl/some-cat-" + Integer.toString(idNumber));
+                linkListAllegro.add("http://allegro.pl/some-cat-" + Integer.toString(idNumber));
             }
         }
-        return linkList;
+        return linkListAllegro;
     }
 
     public List<String> GenerateLinkEbay(List<String> catNames){

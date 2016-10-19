@@ -24,6 +24,7 @@ public class ReadCategories {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
 
         List<Category> catNames = new ArrayList<Category>();
+        categories = this.getCategories();
 
         for (int i = 0; i < categories.size(); i++) {
             int counter = 0;
