@@ -12,11 +12,7 @@ public class QuestionaryTest {
     public void should_load_file(){
         Questionary questionary = new Questionary();
         List<Question> questions = questionary.getQuestions();
-        for (Question question : questions) {
-            System.out.println(question);
-        }
-
-
+        assertNotNull(questions);
     }
 
 }

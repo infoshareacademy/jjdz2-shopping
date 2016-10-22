@@ -6,8 +6,8 @@ import static org.junit.Assert.*;
 
 public class ReadCategoriesTest {
     @Test
-    public void shouldreturn(){
-     ReadCategories somename = new ReadCategories();
-        somename.getCategories();
+    public void should_return_categories(){
+        ReadCategories somename = new ReadCategories();
+        assertNotNull(somename.getCategories());
     }
 }
