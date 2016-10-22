@@ -32,15 +32,15 @@ public class AskQuestions {
             }
 
             int selecion = scanner.nextInt();
-            if (selecion > options.size() || selecion < 1) {
+            while (selecion > options.size() || selecion < 1) {
                 System.out.println("Prosze wybrac od 1 do 3");
-                startAsking();
+                selecion = scanner.nextInt();
             }
-            else {
-                System.out.println("Wybrano odpowiedz " + selecion + " , czyli, " + options.get(selecion - 1).toString());
+
+                //System.out.println("Wybrano odpowiedz " + selecion + " , czyli, " + options.get(selecion - 1).toString());
                 System.out.println(options.get(selecion - 1).getCategories().toString());
                 answersList.add(options.get(selecion - 1).getCategories());
-            }
+
         }
         printOutResultsOfAnswers();
     }
