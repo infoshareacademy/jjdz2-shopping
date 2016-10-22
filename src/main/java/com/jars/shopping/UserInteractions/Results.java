@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Results {
 
-    Set<String> allegro = new TreeSet<>();
+    Set<String> allegro = new LinkedHashSet<>();
     List<String> eBayCatNames = new ArrayList<>();
     List<Category> allAllegroCategories = new ReadCategories().getCategories();
     GenerateLink generateLink = new GenerateLink();
