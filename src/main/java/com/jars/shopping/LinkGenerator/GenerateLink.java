@@ -3,13 +3,15 @@ package com.jars.shopping.LinkGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class GenerateLink {
-    private List<String> linkList = new ArrayList<String>();
-    private List<String> linkListAllegro = new ArrayList<String>();
+    private List<String> linkList = new ArrayList<>();
+    private Set<String> linkListAllegro = new TreeSet<>();
 
 
-    public List<String> GenerateLinkAllegro(List<Integer> catIds){
+    public Set<String> GenerateLinkAllegro(List<Integer> catIds){
         linkListAllegro.clear();
         if(!catIds.isEmpty()){
             for(int idNumber: catIds){

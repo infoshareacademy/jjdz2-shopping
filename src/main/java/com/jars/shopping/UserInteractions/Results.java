@@ -3,15 +3,13 @@ package com.jars.shopping.UserInteractions;
 
 import com.jars.shopping.LinkGenerator.GenerateLink;
 import com.jars.shopping.POJOs.Category;
-import com.jars.shopping.POJOs.models.OfferedCategories;
 import com.jars.shopping.ReadFilesClasses.ReadCategories;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Results {
 
-    List<String> allegro = new ArrayList<>();
+    Set<String> allegro = new TreeSet<>();
     List<String> eBayCatNames = new ArrayList<>();
     List<Category> allAllegroCategories = new ReadCategories().getCategories();
     GenerateLink generateLink = new GenerateLink();
@@ -38,8 +36,11 @@ public class Results {
     }
 
     public void printAllegroLinks() {
-        for (int i = 0; i < allegro.size(); i++) {
-            System.out.println("Link  allegro numer " + (i + 1) + " " + allegro.get(i));
+            int i=0;
+
+        for (String idAllegro : allegro) {
+            i++;
+            System.out.println("Link  allegro numer " + (i) + " " + idAllegro);
         }
     }
 
