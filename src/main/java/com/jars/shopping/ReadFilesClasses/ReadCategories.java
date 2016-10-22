@@ -2,35 +2,35 @@ package com.jars.shopping.ReadFilesClasses;
 
 import com.jars.shopping.POJOs.Category;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+
 import java.io.File;
 
 public class ReadCategories {
 
-
-    private static List<Category> categories = new ArrayList<Category>();
-
+    private List<Category> categories = new ArrayList<Category>();
 
     public List<Category> getMatchinCategories(String catName) {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
 
         List<Category> catNames = new ArrayList<Category>();
+        categories = this.getCategories();
 
         for (int i = 0; i < categories.size(); i++) {
             int counter = 0;
             if (categories.get(i).getCatName().contains(catName)) {
                 catNames.add(categories.get(i));
                 counter++;
-                System.out.println("Found " + counter + " matching categories, that contains " + catName + "\n" +
-                        "Category " + categories.get(i) + " matches the seaarch criteria");
             }
         }
         return catNames;
@@ -47,18 +47,25 @@ public class ReadCategories {
         }
         List<Category> matchingCategories = new ArrayList<Category>();
         matchingCategories = getMatchinCategories(catName);
-        for (int i = 0; i <= n; i++) System.out.println(matchingCategories.get(i));
+        //for (int i = 0; i < n; i++) System.out.println(matchingCategories.get(i));
+        int counter = 0;
+        for (Category c : matchingCategories) {
+            System.out.println((counter + 1) + " -->  " + c.getCatName());
+            counter++;
+            if (counter == n) break;
+        }
     }
-
 
     /**
      * Getter & Setterr
      */
-    public static List<Category> getCategories() {
+    public List<Category> getCategories() {
         //Return ALL categories from XML file
 
         try {
-            File fXmlFile = new File("Allegro_cathegories_2016-02-13.xml");
+            URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
+            File fXmlFile = new File(resource.toURI());
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(fXmlFile);
@@ -66,9 +73,9 @@ public class ReadCategories {
             //recommended to normalize
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
             NodeList nList = doc.getElementsByTagName("ns1:item");
-            System.out.println("We found " + nList.getLength() + " elements.");
+            //System.out.println("We found " + nList.getLength() + " elements.");
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Node nNode = nList.item(temp);
@@ -86,10 +93,7 @@ public class ReadCategories {
                             Integer.parseInt(eElement.getElementsByTagName("ns1:catIsProductCatalogueEnabled").item(0).getTextContent())));
                 }
             }
-            //verify if needed - list all elements:
-            //for( Category ea: categories){
-            //    System.out.println(ea.toString());
-            //}
+
         } catch (Exception e) {
             e.printStackTrace();
         }
