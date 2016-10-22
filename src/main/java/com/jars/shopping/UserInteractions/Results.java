@@ -19,6 +19,9 @@ public class Results {
 
     public void getAllegroLinks(List<String> pl, List<String> en) {
 
+        //System.out.println("Size pl : " + pl.size());
+        //System.out.println("Size en : " + en.size());
+
         List<Integer> idList = new ArrayList<>();
         for (String s : pl) {
             List<Category> catList = rc.getMatchinCategories(s);
@@ -28,7 +31,10 @@ public class Results {
         }
 
         allegro = generateLink.GenerateLinkAllegro(idList);
+        //System.out.println("Size allegro : "+ allegro.size());
+
         eBayCatNames = generateLink.GenerateLinkEbay(en);
+        //System.out.println("Size ebay : "+ eBayCatNames.size());
     }
 
     public void printAllegroLinks() {
