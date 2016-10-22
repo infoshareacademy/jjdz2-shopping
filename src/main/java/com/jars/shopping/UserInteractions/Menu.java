@@ -23,12 +23,11 @@ public class Menu {
     private int selector(int numberOfOptions) throws IllegalArgumentException {
         Scanner scanner = new Scanner(System.in);
         int selectedValue = scanner.nextInt();
-        if (selectedValue > numberOfOptions || selectedValue <= 0) {
+        while (selectedValue > numberOfOptions || selectedValue <= 0) {
             System.out.println("\n\nProsze wybrac od 1 do " + numberOfOptions + "\n\n\n");
-            displayMainOptionsAndGotoProperMethod();
-            return Integer.parseInt(null);
-
-        } else return selectedValue;
+            selectedValue = scanner.nextInt();
+        }
+        return selectedValue;
     }
 
     private void identifyCategory() {
