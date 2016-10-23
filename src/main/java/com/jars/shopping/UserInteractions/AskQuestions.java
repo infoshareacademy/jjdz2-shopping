@@ -38,7 +38,7 @@ public class AskQuestions {
             }
 
                 //System.out.println("Wybrano odpowiedz " + selecion + " , czyli, " + options.get(selecion - 1).toString());
-                System.out.println(options.get(selecion - 1).getCategories().toString());
+                //System.out.println(options.get(selecion - 1).getCategories().toString());
                 answersList.add(options.get(selecion - 1).getCategories());
 
         }
