@@ -14,8 +14,6 @@ import java.util.List;
  */
 
 @WebServlet(urlPatterns = "/login")
-
-
 public class Login extends HttpServlet {
 
     @Override
@@ -23,7 +21,7 @@ public class Login extends HttpServlet {
         String welcome = "Welcome to the login page";
 
         req.setAttribute("welcome", welcome);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/dict.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
         dispatcher.forward(req, resp);
     }
 }

@@ -10,16 +10,25 @@
     <h1> Log in </h1>
 </div>
 
-<div>
-    <div>Jakas tam lista:</div>
+ <div>
     <div>
-        <ul>
-            <c:forEach items="${lista}" var="item">
-                <li> ${item}: </li>
-            </c:forEach>
-        </ul>
+        <p>
+            ${welcome}
+        </p>
     </div>
 </div>
+
+<div>
+    <form method="post" action="translate">
+        login: <input type="text" name="login">
+    </form>
+    <form method="post" action="translate">
+        password: <input type="password" name="password">
+        <input type="submit" value="login">
+    </form>
+</div>
+
+
 </body>
 </html>
 
