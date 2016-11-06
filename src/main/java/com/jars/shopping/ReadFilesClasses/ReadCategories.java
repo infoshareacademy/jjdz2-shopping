@@ -9,6 +9,10 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -17,12 +21,14 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class ReadCategories {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReadCategories.class);
+    private static final Marker READ_CATEGORIES = MarkerFactory.getMarker("READ CATEG");
 
     private List<Category> categories = new ArrayList<Category>();
 
     public List<Category> getMatchinCategories(String catName) {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
-
+        LOGGER.info(READ_CATEGORIES,"Return the list of matching categories that contain catName");
         List<Category> catNames = new ArrayList<Category>();
         categories = this.getCategories();
 
@@ -37,6 +43,7 @@ public class ReadCategories {
     }
 
     public void printNMatchingCategories(int n, String catName) {
+        LOGGER.info(READ_CATEGORIES,"Print matching categories in a list order");
         /** Prints out n matching categories */
         if (n > categories.size()) {
             n = categories.size();
@@ -61,7 +68,7 @@ public class ReadCategories {
      */
     public List<Category> getCategories() {
         //Return ALL categories from XML file
-
+        LOGGER.info(READ_CATEGORIES,"PREPARE list of categories from Allegro's xml file");
         try {
             URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
             File fXmlFile = new File(resource.toURI());
