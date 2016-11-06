@@ -26,6 +26,8 @@
         password: <input type="password" name="password">
         <input type="submit" value="login">
     </form>
+
+    <a href = "/twitter"> TWITTER</a>
 </div>
 
 
