@@ -1,5 +1,8 @@
 package com.jars.shopping.LogowanieDoSystemu;
 
+import facebook4j.Facebook;
+import facebook4j.FacebookFactory;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +22,6 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String welcome = "Welcome to the login page";
-
         req.setAttribute("welcome", welcome);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
         dispatcher.forward(req, resp);
