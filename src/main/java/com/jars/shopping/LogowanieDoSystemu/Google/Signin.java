@@ -1,3 +1,4 @@
+/*
 package com.jars.shopping.LogowanieDoSystemu.Google;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
@@ -11,9 +12,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
+*/
 /**
  * Created by keehoo on 01.11.16.
- */
+ *//*
+
 
 @Stateless
 public class Signin {
@@ -39,3 +42,4 @@ public class Signin {
     public static void connect() throws Exception {
 
     }
+*/

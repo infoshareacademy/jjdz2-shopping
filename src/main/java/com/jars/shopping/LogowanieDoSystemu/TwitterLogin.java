@@ -37,7 +37,7 @@ public class TwitterLogin extends HttpServlet {
         System.out.println("Twitter = doGET");
 
         OAuthService service = createService()
-                .callback("https://localhost:8080/twittercallback")
+                .callback("http://localhost:8080/twittercallback")
                 .build();
         Token requestToken = service.getRequestToken();
         System.out.println(requestToken.toString());
@@ -46,14 +46,10 @@ public class TwitterLogin extends HttpServlet {
 
         req.setAttribute("authURL", authURL);
         System.out.println("req.setAttribute");
-        //Response response = Response.seeOther(URI.create(authURL)).build();
 
-        //response.getLocation();
 
         resp.sendRedirect(authURL);
-//        RequestDispatcher dispatcher = req.getRequestDispatcher("/twittercallback");
-//        dispatcher.forward(req, resp);
-//        System.out.println("Dispatcher forward");
+
     }
 
     private ServiceBuilder createService() {
