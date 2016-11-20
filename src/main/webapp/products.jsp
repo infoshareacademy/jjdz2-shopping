@@ -78,18 +78,16 @@
     <div>
         <div>Produkty:</div>
         <div>
-            <!-- Allegro -->
+            <!-- Ebay -->
             <ul>
-                <c:forEach items="${translatedWords}" var="allegroauction"> <!-- word -->
-                <li> ${word.polishWord}: <b>${word.englishWord}</b>
+                <c:forEach items="${translatedWordsEbay}" var="ebayauction"> <!-- word -->
+                <li><b>${products.product}</b>
                     </c:forEach>
             </ul>
 
-            <!-- Ebay -->
+            <!-- Allegro -->
             <ul>
-                <c:forEach items="${translatedWords}" var="ebayauction"> <!-- word -->
-                <li> ${word.polishWord}: <b>${word.englishWord}</b>
-                    </c:forEach>
+
             </ul>
         </div>
     </div>

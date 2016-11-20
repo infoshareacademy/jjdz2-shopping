@@ -23,13 +23,13 @@ public class ProductsServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        String word = req.getParameter("word");
-        List<Word> translatedWordsAllegro = serviceAllegro.translate(word);
+       // String word = req.getParameter("word");
+       // List<Word> translatedWordsAllegro = serviceAllegro.translate(word);
 
-        String word = req.getParameter("word");
-        List<Word> translatedWordsEbay = serviceEbay.translate(word);
+        String ebayauction = req.getParameter("ebayauction");
+        List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
 
-        req.setAttribute("translatedWords",translatedWords);
+        req.setAttribute("translatedWordsEbay",translatedWordsEbay);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
         dispatcher.forward(req, resp);
