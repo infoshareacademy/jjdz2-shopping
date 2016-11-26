@@ -63,14 +63,22 @@
     </div>
 </div><br>
 
- <%--Question container--%>
-<div class="container-fluid bg-2 text-center">
-    <h3>${Question}</h3>
-    <p>${answer1}</p>
-    <p>${answer2}</p>
-    <a href="#" class="btn btn-default btn-lg">Next</a>
-    <a href="#" class="btn btn-default btn-lg">Previous</a>
-</div>
+ <%--<c:if test="${!empty itemList}">--%>
+ <table class="item-table">
 
+     <c:forEach items="${questionList}" var="item">
+     <tr>
+         <div class="container-fluid bg-2 text-center">
+             <h3>${item.question}</h3>
+             <p>${item.answer1}</p>
+             <p>${item.answer2}</p>
+             <p>${item.answer3}</p>
+         </div>
+     </tr>
+     </c:forEach>
+ </table>
+
+
+ <a href="#" class="btn btn-default btn-lg">Submit</a>
 </body>
 </html>
