@@ -1,7 +1,5 @@
 package com.jars.shopping.LogowanieDoSystemu;
 
-import facebook4j.Facebook;
-import facebook4j.FacebookFactory;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,11 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
-/**
- * Created by keehoo on 30.10.16.
- */
 
 @WebServlet(urlPatterns = "/login")
 public class Login extends HttpServlet {
