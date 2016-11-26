@@ -1,5 +1,7 @@
 package com.jars.shopping.WebForm;
 
+import com.jars.shopping.POJOs.models.Question;
+import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.UserInteractions.AskQuestions;
 
 import javax.ejb.EJB;
@@ -9,24 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class QuestionsReferenceServlet extends HttpServlet{
 
-//    @EJB
-//    QuestionsReference questionsReference;
-
     @EJB
-    AskQuestions askQuestions;
+    Questionary questionary;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-       // String question = questionsReference.referQuestion();
-        // req.setAttribute("hello", question);
+    List <Question> questions = questionary.getQuestions();
 
-        askQuestions.startAsking();
+        req.setAttribute("questionList", questions);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/webForm.jsp");

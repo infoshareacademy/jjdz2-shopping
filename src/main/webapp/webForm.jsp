@@ -69,10 +69,10 @@
      <c:forEach items="${questionList}" var="item">
      <tr>
          <div class="container-fluid bg-2 text-center">
-             <h3>${item.question}</h3>
-             <p>${item.answer1}</p>
-             <p>${item.answer2}</p>
-             <p>${item.answer3}</p>
+             <h3>${item.title}</h3>
+             <p>${item.options.get(0).label}</p>
+             <p>${item.options.get(1).label}</p>
+
          </div>
      </tr>
      </c:forEach>
