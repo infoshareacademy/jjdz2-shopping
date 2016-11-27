@@ -4,6 +4,7 @@ import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuthService;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,6 +43,7 @@ public class TwitterCallback extends HttpServlet {
         service.signRequest(accessToken, request1); // the access token from step 4
         final Response response = request1.send();
         System.out.println(response.getBody());
+        Gson gson = new Gson();
 
     }
 }
