@@ -5,8 +5,10 @@ import com.jars.shopping.POJOs.models.OptionsOfAnswers;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
 
+import javax.ejb.Stateless;
 import java.util.*;
 
+@Stateless
 public class AskQuestions {
 
     List<Question> questionList;
