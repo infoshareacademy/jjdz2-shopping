@@ -4,10 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Shopping</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="Shortcut icon" href="http://1.bp.blogspot.com/_qxNvBPirDY4/S6SogyHzSYI/AAAAAAAAACI/1LaUy9AAilc/s320/shopping.jpg" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
@@ -48,7 +49,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="#">Questionnaire</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -63,22 +64,35 @@
     </div>
 </div><br>
 
- <%--<c:if test="${!empty itemList}">--%>
- <table class="item-table">
 
+
+ <%--<c:if test="${!empty questionList}">--%>
+     <%--<p>not empty</p>--%>
+     <%--${try}--%>
+
+ <%--</c:if>--%>
+
+
+
+ <table class="item-table">
      <c:forEach items="${questionList}" var="item">
      <tr>
          <div class="container-fluid bg-2 text-center">
-             <h3>${item.title}</h3>
-             <p>${item.options.get(0).label}</p>
-             <p>${item.options.get(1).label}</p>
-
+             <div class="col-sm-6">
+             <h3>${item.title}here question1</h3>
+                 <INPUT TYPE="radio" NAME="radios" VALUE="radio1" CHECKED> <p>${item.options.get(0).label}here option 1</p>
+                 <BR>
+                 <INPUT TYPE="radio" NAME="radios" VALUE="radio2"><p>${item.options.get(1).label}here option2</p>
+                 <BR>
+             </div>
          </div>
      </tr>
      </c:forEach>
+     <div class="col-sm-6">
+     <input type="submit" value="Submit">
+     </div>
  </table>
 
 
- <a href="#" class="btn btn-default btn-lg">Submit</a>
 </body>
 </html>
