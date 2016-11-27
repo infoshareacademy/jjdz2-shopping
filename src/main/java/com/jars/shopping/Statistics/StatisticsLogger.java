@@ -15,8 +15,7 @@ public class StatisticsLogger {
     @PersistenceContext
     EntityManager entityManager;
 
-    @Asynchronous
-    public void logNewStatistics(@Observes NewStatisticUpdateEvent event) {
+        public void logNewStatistics(@Observes NewStatisticUpdateEvent event) {
         Statistic stat = new Statistic();
 
         stat.setUsername(event.getUsername());
