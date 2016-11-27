@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
@@ -65,24 +66,17 @@
 </div><br>
 
 
-
- <%--<c:if test="${!empty questionList}">--%>
-     <%--<p>not empty</p>--%>
-     <%--${try}--%>
-
- <%--</c:if>--%>
-
-
-
+ <form method="post" action="/webForm">
  <table class="item-table">
-     <c:forEach items="${questionList}" var="item">
+     <c:forEach items="${questionList}" var="item" varStatus="i">
      <tr>
          <div class="container-fluid bg-2 text-center">
              <div class="col-sm-6">
-             <h3>${item.title}here question1</h3>
-                 <INPUT TYPE="radio" NAME="radios" VALUE="radio1" CHECKED> <p>${item.options.get(0).label}here option 1</p>
+             <h3>${item.title} </h3>
+                 <input type="hidden" name="question-{$i.index}" value="${item.title}" />
+                 <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(0).label}" CHECKED> ${item.options.get(0).label}
                  <BR>
-                 <INPUT TYPE="radio" NAME="radios" VALUE="radio2"><p>${item.options.get(1).label}here option2</p>
+                 <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(1).label}"> ${item.options.get(1).label}
                  <BR>
              </div>
          </div>
@@ -92,7 +86,7 @@
      <input type="submit" value="Submit">
      </div>
  </table>
-
+ </form>
 
 </body>
 </html>
