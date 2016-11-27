@@ -10,10 +10,6 @@ import java.io.Serializable;
 @SessionScoped
 public class SessionData implements Serializable{
 
-    private boolean isLogged = false;
-    private String name;
-    private String loggedFrom;
-
     public String getName() {
         return name;
     }
@@ -30,19 +26,6 @@ public class SessionData implements Serializable{
         isLogged = logged;
     }
 
-    public String getLoggedFrom() {
-        return loggedFrom;
-    }
-
-    public void setLoggedFrom(String loggedFrom) {
-        this.loggedFrom = loggedFrom;
-    }
-
-    public void clearUserInfo() {
-        setLoggedFrom("");
-        setLogged(false);
-        setLoggedFrom("");
-    }
+    private boolean isLogged = false;
+    private String name;
 }
-
-
