@@ -1,18 +1,34 @@
 package com.jars.shopping.Users;
 
+import javax.persistence.*;
+
 /**
  * Created by keehoo on 30.10.16.
  */
-public abstract class User {
+@Entity
+@NamedQueries({
+        @NamedQuery(name= User.GET_ALL_USERS_LIST,
+                query = "select u.login from User u")
+})
+public class User {
 
-    public String login;
-    public String password;
+    final public static String GET_ALL_USERS_LIST = "User.GET_ALL_USERS_LIST";
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    private long id;
+    private String login;
+    private String password;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
+    public User() {
+    }
 
 
     public String getLogin() {
@@ -23,11 +39,11 @@ public abstract class User {
         this.login = login;
     }
 
-    public String getPassword() {
+    private String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    private void setPassword(String password) {
         this.password = password;
     }
 
