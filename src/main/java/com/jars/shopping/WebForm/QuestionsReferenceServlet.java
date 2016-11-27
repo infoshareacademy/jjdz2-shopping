@@ -5,8 +5,11 @@ import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.UserInteractions.AskQuestions;
 
 import javax.ejb.EJB;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@WebServlet(urlPatterns = "/webForm")
 public class QuestionsReferenceServlet extends HttpServlet{
 
     @EJB
@@ -24,13 +27,20 @@ public class QuestionsReferenceServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-    List <Question> questions = questionary.getQuestions();
+
+        List <Question> questions = questionary.getQuestions();
 
         req.setAttribute("questionList", questions);
-
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/webForm.jsp");
         dispatcher.forward(req, resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        // TODO: obsługa formularz
+        // String s = request.getParameter(radios-1)
+        // events.fire("yadayadya");
+    }
 }
