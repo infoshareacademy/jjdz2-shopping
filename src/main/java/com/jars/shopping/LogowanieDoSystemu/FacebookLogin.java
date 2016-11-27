@@ -1,9 +1,11 @@
 package com.jars.shopping.LogowanieDoSystemu;
 
 import com.github.scribejava.apis.FacebookApi;
+
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.oauth.OAuthService;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +31,7 @@ public class FacebookLogin extends HttpServlet {
                 .provider(FacebookApi.class)
                 .apiKey("693169580831907")
                 .apiSecret("33429cb2d1c1fd80842cd1679925d8be")
-                .callback("http://localhost/facebookcallback")
+                .callback("http://localhost:8080/facebookcallback")
                 .build();
 
         String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
