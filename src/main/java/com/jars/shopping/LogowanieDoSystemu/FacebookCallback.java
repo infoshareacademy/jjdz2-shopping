@@ -19,12 +19,16 @@ import java.util.List;
 @WebServlet(urlPatterns = "/facebookcallback")
 public class FacebookCallback extends HttpServlet{
 
+    private String code;
+
+    /*
+    * This requires rerouting port 80 to 8080 details here:
+    * # iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+    * */
 
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String code;
 
         OAuthService service = new ServiceBuilder()
                 .provider(FacebookApi.class)
@@ -57,7 +61,5 @@ public class FacebookCallback extends HttpServlet{
         System.out.println();
         System.out.println(response.getCode());
         System.out.println(response.getBody());
-
-
     }
 }
