@@ -12,31 +12,40 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
+import java.util.List;
 
-
-
-/**
- * Created by keehoo on 27.11.16.
- */
 
 @WebServlet(urlPatterns = "/facebookcallback")
 public class FacebookCallback extends HttpServlet{
 
-    private ServiceBuilder createService() {
-        return new ServiceBuilder()
-                .provider(TwitterApi.class)
-                .apiKey("693169580831907")
-                .apiSecret("33429cb2d1c1fd80842cd1679925d8be");
-    }
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        OAuthService service = createService().build();
-        String code = req.getParameter("code");
-        System.out.println("authorization code: "+code);
+        String code;
 
+        OAuthService service = new ServiceBuilder()
+                .provider(FacebookApi.class)
+                .apiKey("693169580831907")
+                .apiSecret("33429cb2d1c1fd80842cd1679925d8be")
+                .callback("http://localhost/facebookcallback")
+                .build();
+
+        Enumeration<String> parameterNames = req.getParameterNames();
+
+
+        if (parameterNames.hasMoreElements()) {
+            System.out.println(parameterNames.nextElement());
+
+            code = req.getParameter("code");
+            System.out.println("authorization code: " + code);
+        }
+
+        else {code = "brak kodu";}
         Verifier verifier = new Verifier(code);
+
         Token accessToken = service.getAccessToken(FacebookLogin.EMPTY_TOKEN, verifier);
         System.out.println("(if your curious it looks like this: " + accessToken + " )");
 
