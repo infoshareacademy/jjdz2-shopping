@@ -21,11 +21,12 @@ public class UserDao {
 
         if (!getUsers().contains(user.getLogin())) {
             entityManager.persist(user);
+            // TODO: Tutaj trzea dodac loggera a nie sout;a
+            System.out.println("Dodano uzytkownika "+ user.getLogin()+" do bazy danych");
         }
         else System.out.println("Uzytkownik "+user.getLogin() + " juz istnieje");
 
         //List<String> userList = getUsers();
-
     }
 
     public List<String> getUsers() {
