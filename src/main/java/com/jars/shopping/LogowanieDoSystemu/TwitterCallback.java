@@ -5,7 +5,9 @@ import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.*;
 import com.github.scribejava.core.oauth.OAuthService;
 import com.google.gson.Gson;
+import com.jars.shopping.LogowanieDoSystemu.SessionData.UserDao;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +20,8 @@ import static com.jars.shopping.LogowanieDoSystemu.TwitterLogin.consumerSecret;
 
 @WebServlet(urlPatterns = "/twittercallback")
 public class TwitterCallback extends HttpServlet {
+
+
 
     private static final String PROTECTED_RESOURCE_URL = "https://api.twitter.com/1.1/account/verify_credentials.json";
 
@@ -43,7 +47,6 @@ public class TwitterCallback extends HttpServlet {
         service.signRequest(accessToken, request1); // the access token from step 4
         final Response response = request1.send();
         System.out.println(response.getBody());
-        Gson gson = new Gson();
 
     }
 }
