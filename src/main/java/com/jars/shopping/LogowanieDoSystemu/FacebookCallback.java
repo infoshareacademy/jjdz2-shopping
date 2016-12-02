@@ -22,8 +22,8 @@ public class FacebookCallback extends HttpServlet{
     private String code;
 
     /*
-    * This requires rerouting port 80 to 8080 details here:
-    * # iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+    * This requires rerouting port 80 to 8080 for detail on how to quickly do that, call me :) kkubicki2@gmail.com
+    *
     * */
 
 
