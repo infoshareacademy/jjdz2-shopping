@@ -31,7 +31,7 @@ public class FacebookLogin extends HttpServlet {
                 .provider(FacebookApi.class)
                 .apiKey("693169580831907")
                 .apiSecret("33429cb2d1c1fd80842cd1679925d8be")
-                .callback("http://localhost:8080/facebookcallback")
+                .callback("http://localhost/facebookcallback")
                 .build();
 
         String authorizationUrl = service.getAuthorizationUrl(EMPTY_TOKEN);
