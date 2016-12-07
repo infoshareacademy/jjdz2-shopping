@@ -18,6 +18,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static java.util.stream.Collectors.toList;
+
 @Stateless
 public class ProductsEbayService {
 
@@ -27,10 +29,34 @@ public class ProductsEbayService {
 
     public List<Products> translate(String input) {
         //final String urlString = String.format(ebayUrl, input);
-       // final String urlString = String.format("http://www.ebay.com/sch/Puzzles");
+        final String urlString = String.format("http://www.ebay.com/sch/Puzzles");
 
         //https://jsoup.org/
         Document doc = null;
+
+        try {
+            URL url = new URL(urlString);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            final Pattern pat = Pattern
+                    //.compile(".*<a href=\"dict\\?words?=(.*)&lang.*");
+                    .compile("class=\"img\" alt=\'(.*)'");
+
+            List<String> allWords = reader.lines()
+                    .map(s -> pat.matcher(s))   // do matching
+                    .filter(Matcher::find)      // filter matches
+                    .map(m -> m.group(m.groupCount())) // extract word
+                    .collect(Collectors.toList());
+
+            return IntStream.range(0, allWords.size())
+                    //.filter(i -> i%2==0)
+                    .mapToObj(i -> new Products(allWords.get(i)))
+                    .collect(toList());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        /*
         try {
             doc = Jsoup.connect("http://www.ebay.com/sch/Puzzle").get();
             Elements resultLinks = doc.select("li#ListViewInner > li > h3#lvtitle");
@@ -49,27 +75,6 @@ public class ProductsEbayService {
         }
 
 
-       /* try {
-            URL url = new URL(urlString);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            final Pattern pat = Pattern
-                    //.compile(".*<a href=\"dict\\?words?=(.*)&lang.*");
-                    .compile("\" class=\"img\" alt=\'(.*)'");
-
-            List<String> allWords = reader.lines()
-                    .map(s -> pat.matcher(s))   // do matching
-                    .filter(Matcher::find)      // filter matches
-                    .map(m -> m.group(m.groupCount())) // extract word
-                    .collect(Collectors.toList());
-
-            return IntStream.range(0, allWords.size())
-                    //.filter(i -> i%2==0)
-                    .mapToObj(i -> new Products(allWords.get(i)))
-                    .collect(Collectors.toList());
-
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }*/
+        */
     }
 }

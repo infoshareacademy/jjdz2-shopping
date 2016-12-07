@@ -68,7 +68,7 @@
 
     <div>
         <form method="post" action="products">
-            Link do Ebay: <input type="text" name="ebayauction"  value="http://www.ebay.com/sch/Home-Garden">
+            Link do Ebay: <input type="text" name="ebayauction"  value="">
             <br />
             <input type="submit" class="btn btn-default btn-lg" value="GO!">
         </form>
@@ -79,16 +79,28 @@
         <div>Produkty:</div>
         <div>
             <!-- Ebay -->
-            <ul>
-                <c:forEach items="${translatedWordsEbay}" var="ebayauction"> <!-- word -->
-                <li><b>${products.product}</b>
+            <form  method="post" action="products">
+                <ul class="list-group">
+                    <c:forEach items="${translatedWordsEbay}" var="eb">
+                    <li>
+                   <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="${eb.product}" name="listofebayprod">${eb.product}</input>
+                        </label>
+                    </div>
+                    </li>
                     </c:forEach>
-            </ul>
-
-            <!-- Allegro -->
             <ul>
+                <!--
+                                <input type="checkbox" name="fname" value="eb.product"><br>
+                                  word
+                <li><b></b>
 
-            </ul>
+            </ul>-->
+                <input type="submit" class="btn btn-default btn-lg" value="Start >>">
+            </form>
+            <!-- Allegro -->
+
         </div>
     </div>
 

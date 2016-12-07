@@ -28,12 +28,29 @@ public class ProductsServlet extends HttpServlet{
 
         String ebayauction = req.getParameter("ebayauction");
         List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
-
         req.setAttribute("translatedWordsEbay",translatedWordsEbay);
+
+        String[] listofebayprod = req.getParameterValues("listofebayprod");
+
+        if(listofebayprod!=null) {
+            for (String st : listofebayprod) {
+                System.out.println(">> " +
+                        st);
+            }
+        }
+        System.out.println(">> >>");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
         dispatcher.forward(req, resp);
     }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
+        dispatcher.forward(req, resp);
+    }
 
 }
