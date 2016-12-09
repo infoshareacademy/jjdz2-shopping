@@ -16,7 +16,8 @@ public class ProductsEbayServiceTest {
     @Test
     public void testTranslate() throws Exception {
         ProductsEbayService productsEbayService = new ProductsEbayService();
-        List<Products> listOfProducts = productsEbayService.translate("sthg");
+        productsEbayService.ebayUrl = "http://www.ebay.com/sch/%s";
+        List<Products> listOfProducts = productsEbayService.translate("Puzzles");
 //        assertThat(listOfProducts, hasItem(new Products("Tenyo")));
         //assertThat(listOfProducts.size(), is(
                 assertNotNull(listOfProducts.size());

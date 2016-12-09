@@ -18,6 +18,9 @@ public class ProductsServlet extends HttpServlet{
     @EJB
     ProductsEbayService serviceEbay;
 
+    @EJB
+    ProductsAllegroService serviceAllegro;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -26,19 +29,59 @@ public class ProductsServlet extends HttpServlet{
        // String word = req.getParameter("word");
        // List<Word> translatedWordsAllegro = serviceAllegro.translate(word);
 
+        //set category - ebay
         String ebayauction = req.getParameter("ebayauction");
-        List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
-        req.setAttribute("translatedWordsEbay",translatedWordsEbay);
 
+        //set category - allegro
+        String allegroauction = req.getParameter("allegroauction");
+
+        //set list of Ebay products
         String[] listofebayprod = req.getParameterValues("listofebayprod");
 
+        //set list of Allegro products
+        String[] listofallegroprod = req.getParameterValues("listofallegroprod");
+/////////////
         if(listofebayprod!=null) {
+            //pass these values to database
             for (String st : listofebayprod) {
                 System.out.println(">> " +
                         st);
             }
+            //clear list of elements if prev step was to check some elements
+            ebayauction="";
         }
+        if(listofallegroprod!=null) {
+            //pass these values to database
+            for (String st : listofallegroprod) {
+                System.out.println(">> " +
+                        st);
+            }
+            //clear list of elements if prev step was to check some elements
+            allegroauction="";
+        }
+//////////////
         System.out.println(">> >>");
+//////////////
+
+        if(ebayauction!=null){
+
+            System.out.println("OK ebay");
+            //set Ebay category
+            List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
+            req.setAttribute("translatedWordsEbay",translatedWordsEbay);
+
+        }else if(allegroauction!=null){
+
+            System.out.println("NO OK ebay");
+            //set Allegro category
+            List<Products> translatedWordsAllegro = serviceAllegro.translate(allegroauction);
+            req.setAttribute("translatedWordsAllegro",translatedWordsAllegro);
+
+        }
+////////////////
+        //set Ebay category
+        //List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
+        //req.setAttribute("translatedWordsEbay",translatedWordsEbay);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
         dispatcher.forward(req, resp);

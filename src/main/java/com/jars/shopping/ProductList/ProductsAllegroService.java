@@ -1,43 +1,35 @@
 package com.jars.shopping.ProductList;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static java.util.stream.Collectors.toList;
-
 @Stateless
-public class ProductsEbayService {
+public class ProductsAllegroService {
 
     @Inject
-    @Named("ebayUrl")
-    String ebayUrl;
+    @Named("allegroUrl")
+    String allegroUrl;
 
     public List<Products> translate(String input) {
-        final String urlString = String.format(ebayUrl, input);
-        //final String urlString = String.format("http://www.ebay.com/sch/Puzzles");
+
+        String catValue = generateValueForAllegro(input);
+        final String urlString = String.format(allegroUrl, catValue);
 
         try {
             URL url = new URL(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
             final Pattern pat = Pattern
-                    //.compile(".*<a href=\"dict\\?words?=(.*)&lang.*");
-                    .compile("class=\"img\" alt=\'(.*)'");
+            .compile("class=\"offer-title\" href=\".*\">(.*)</a>");
 
             List<String> allWords = reader.lines()
                     .map(s -> pat.matcher(s))   // do matching
@@ -52,5 +44,15 @@ public class ProductsEbayService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String generateValueForAllegro(String input) {
+        //link to allegro can not be empty as not to hit 404 no-page information
+        if(input.equals(null) || input.equals("")){
+          input="325";
+            System.out.println("inside ><> ");
+        }
+        System.out.println("outside <>< ");
+        return input;
     }
 }

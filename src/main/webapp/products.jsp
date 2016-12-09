@@ -60,7 +60,7 @@
 
     <div>
         <form method="post" action="products">
-            Link do Allegro: <input type="text" name="allegroauction"  value="http://allegro.pl/wynajem-pojazdow-kampery-i-przyczepy-kempingowe-253677">
+            Link do Allegro: <input type="text" name="allegroauction"  value="">
             <br />
             <input type="submit" class="btn btn-default btn-lg" value="GO!">
         </form>
@@ -90,16 +90,22 @@
                     </div>
                     </li>
                     </c:forEach>
-            <ul>
-                <!--
-                                <input type="checkbox" name="fname" value="eb.product"><br>
-                                  word
-                <li><b></b>
-
-            </ul>-->
+                <ul>
+                    <!-- Allegro -->
+                    <ul class="list-group">
+                        <c:forEach items="${translatedWordsAllegro}" var="al">
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="${al.product}" name="listofallegroprod">${al.product}</input>
+                                </label>
+                            </div>
+                        </li>
+                        </c:forEach>
+                    <ul>
                 <input type="submit" class="btn btn-default btn-lg" value="Start >>">
             </form>
-            <!-- Allegro -->
+
 
         </div>
     </div>
