@@ -4,6 +4,11 @@ import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.oauth.OAuthService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,31 +27,21 @@ public class TwitterLogin extends HttpServlet {
     public static final String consumerKey = "Tu6Y44peV4dZqhwCKzy93zHMO";
     public static final String consumerSecret = "vg6QkPwxPtjcgjQDEuyPHxqBHfSxthoPqRs6uXKttkFDyjOih8";
     private static final String PROTECTED_RESOURCE_URL = "https://api.twitter.com/1.1/account/verify_credentials.json";
-    //private final AppConfig config;
 
-
-
+    public static final Logger TWITTERLOGGER = LoggerFactory.getLogger(TwitterLogin.class);
+    public static final Marker TWITTERLOGIN = MarkerFactory.getMarker("TWITTER_LOGIN");
 
     @Override
-    //@Produces(MediaType.TEXT_PLAIN)
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println("Twitter = doGET");
 
         OAuthService service = createService()
                 .callback("http://localhost:8080/twittercallback")
                 .build();
         Token requestToken = service.getRequestToken();
-        System.out.println(requestToken.toString());
+        TWITTERLOGGER.info(TWITTERLOGIN," Request token create to be sent to Twitter for Authentication");
         String authURL = service.getAuthorizationUrl(requestToken);
-        System.out.println(authURL);
-
         req.setAttribute("authURL", authURL);
-        System.out.println("req.setAttribute");
-
-
         resp.sendRedirect(authURL);
-
     }
 
     private ServiceBuilder createService() {
