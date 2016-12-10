@@ -33,4 +33,7 @@ public class UserDao {
         return entityManager.createNamedQuery(User.GET_ALL_USERS_LIST).getResultList();
     }
 
+    public List<User> getAllUsers() {
+        return entityManager.createNamedQuery(User.GET_ALL_USERS).getResultList();
+    }
 }
