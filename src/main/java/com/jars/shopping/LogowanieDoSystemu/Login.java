@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,7 @@ public class Login extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(Login.class);
     private static final Marker LOGIN = MarkerFactory.getMarker("LOGIN");
 
+    @Inject
     UserDao userDao;
 
     @Override
