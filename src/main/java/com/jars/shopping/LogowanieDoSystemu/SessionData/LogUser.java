@@ -9,20 +9,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
-@WebServlet(urlPatterns = "/addNewUser")
-public class AddNewUser extends HttpServlet {
+@WebServlet(urlPatterns = "/logUser")
+public class LogUser extends HttpServlet {
 
     @Inject
     UserDao userDao;
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
 
-        userDao.saveUserInDataBase(new User(username, password, "createdInApp", false));
+
+        List<String> usersList = userDao.getUsers();
+        if (usersList.contains(req.getParameter("username")));
+        {
+            List<User> usersFullList = userDao.getAllUsers();
+            for (User u: usersFullList
+                 ) {
+                System.out.println(u.toString());
+            }
+        }
+
+
+
     }
 }

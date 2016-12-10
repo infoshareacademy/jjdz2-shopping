@@ -8,11 +8,18 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name= User.GET_ALL_USERS_LIST,
-                query = "select u.login from User u")
-})
+                query = "select u.login from User u"),
+        @NamedQuery(name= User.GET_ALL_USERS,
+                query = "select u from User u")
+
+
+}
+
+)
 public class User {
 
     final public static String GET_ALL_USERS_LIST = "User.GET_ALL_USERS_LIST";
+    final public static String GET_ALL_USERS = "User.GET_ALL_USERS";
 
 
     @Id
@@ -75,4 +82,8 @@ public class User {
         isAdmin = admin;
     }
 
+    @Override
+    public String toString() {
+        return "LOGIN : "+login +"\n";
+    }
 }

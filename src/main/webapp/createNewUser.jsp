@@ -40,7 +40,7 @@
 
 <div align="center">
 
-<form method="post" action="/AddNewUser">
+<form method="post" action="AddNewUser">
     login   : <input type="text" name="username" value="${param.username}">
     password: <input type="password" name="password" value="${param.password}">
     <div align="center">
