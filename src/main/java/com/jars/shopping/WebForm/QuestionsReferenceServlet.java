@@ -3,6 +3,7 @@ package com.jars.shopping.WebForm;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.Statistics.NewStatisticUpdateEvent;
+import com.jars.shopping.Statistics.StatisticsLogger;
 import com.jars.shopping.UserInteractions.AskQuestions;
 
 import javax.ejb.EJB;
@@ -27,12 +28,14 @@ public class QuestionsReferenceServlet extends HttpServlet{
     @Inject
     Event<NewStatisticUpdateEvent> event;
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
 
         List <Question> questions = questionary.getQuestions();
+
 
         req.setAttribute("questionList", questions);
 
@@ -43,9 +46,11 @@ public class QuestionsReferenceServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       //event.fire(new NewStatisticUpdateEvent("user0",req.getAttribute("question-0"),req.getAttribute("radios-0")));
-        // TODO: obsługa formularz
-        // String s = request.getParameter(radios-1)
-        // event.fire("");
+        Integer i = Integer.parseInt(req.getParameter("size"));
+
+        for (Integer j=0; j<i; j++ ) {
+            event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+        }
+
     }
 }
