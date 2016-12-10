@@ -110,6 +110,25 @@
         </div>
     </div>
 
+
+    <!-- list z bazy danych -->
+    </HR>
+    <div>
+        <c:forEach items="${fullListFromDB}" var="flfDB" varStatus="i">
+            <li>
+                <div>
+                    <label>
+                      <!--  ${i.index} -->
+                        ${flfDB.id} - ${flfDB.product}
+
+                    </label>
+                </div>
+            </li>
+        </c:forEach>
+
+    </div>
+
+
 <!--
     ->Cycling
     ->Winter Sports

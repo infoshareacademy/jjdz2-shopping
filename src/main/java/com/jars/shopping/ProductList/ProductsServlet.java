@@ -2,6 +2,7 @@ package com.jars.shopping.ProductList;
 
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,13 +14,14 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/products")
 public class ProductsServlet extends HttpServlet{
-            //ebayauction
-            //allegroauction
     @EJB
     ProductsEbayService serviceEbay;
 
     @EJB
     ProductsAllegroService serviceAllegro;
+
+    @EJB
+    ProductListDao prodLDao;
 
 
     @Override
@@ -43,19 +45,26 @@ public class ProductsServlet extends HttpServlet{
 /////////////
         if(listofebayprod!=null) {
             //pass these values to database
+            prodLDao.addListProducts(listofebayprod);
+            //del
+            /*
             for (String st : listofebayprod) {
                 System.out.println(">> " +
                         st);
-            }
+            }*/
+            //del
+
             //clear list of elements if prev step was to check some elements
             ebayauction="";
         }
         if(listofallegroprod!=null) {
             //pass these values to database
+            prodLDao.addListProducts(listofebayprod);
+            /*
             for (String st : listofallegroprod) {
                 System.out.println(">> " +
                         st);
-            }
+            }*/
             //clear list of elements if prev step was to check some elements
             allegroauction="";
         }
@@ -78,6 +87,11 @@ public class ProductsServlet extends HttpServlet{
             req.setAttribute("translatedWordsAllegro",translatedWordsAllegro);
 
         }
+
+            List<Products> fullListFromDB = prodLDao.getProducts();
+            req.setAttribute("fullListFromDB",fullListFromDB);
+
+
 ////////////////
         //set Ebay category
         //List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
@@ -87,9 +101,11 @@ public class ProductsServlet extends HttpServlet{
         dispatcher.forward(req, resp);
     }
 
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
