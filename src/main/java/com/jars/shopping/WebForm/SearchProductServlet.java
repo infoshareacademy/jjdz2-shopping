@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.mail.internet.ContentType;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +25,9 @@ public class SearchProductServlet extends HttpServlet{
             throws ServletException, IOException {
 
         resp.setContentType("application/json; charset=UTF-8");
-        resp.getWriter().write("[{\"id\": \"Siema\", \"label\": \"siema_label\", \"value\": \"siema_val\"}," +
-                "{\"id\": \"ola\", \"label\": \"ola_zzz\", \"value\": \"ala_zzzsfas\"}]");
+//        resp.getWriter().write("[{\"id\": \"Siema\", \"label\": \"siema_label\", \"value\": \"siema_val\"}," +
+//                "{\"id\": \"ola\", \"label\": \"ola_zzz\", \"value\": \"ala_zzzsfas\"}]");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/searchProducts.jsp");
+        dispatcher.forward(req, resp);
     }
 }
