@@ -22,12 +22,18 @@ public class User {
     private String login;
     private String password;
     private String cameFrom;
-
-    protected boolean isAdmin;
+    public boolean isAdmin;
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public User(String login, String password, String cameFrom, boolean isAdmin) {
+        this.login = login;
+        this.password = password;
+        this.cameFrom = cameFrom;
+        this.isAdmin = isAdmin;
     }
 
     public User() {
