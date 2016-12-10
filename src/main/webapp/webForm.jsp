@@ -70,12 +70,14 @@
 
  <form method="post" action="/webForm">
  <table class="item-table">
+     <input type="hidden" name="size" value=${questionList.size()} />
      <c:forEach items="${questionList}" var="item" varStatus="i">
      <tr>
          <div class="container-fluid bg-2 text-center">
              <div class="col-sm-6">
              <h3>${item.title} </h3>
-                 <input type="hidden" name="question-{$i.index}" value="${item.title}" />
+                 <input type="hidden" name="question-${i.index}" value="${item.title}" />
+
                  <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(0).label}" CHECKED> ${item.options.get(0).label}
                  <BR>
                  <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(1).label}"> ${item.options.get(1).label}
@@ -85,7 +87,7 @@
      </tr>
      </c:forEach>
      <div class="col-sm-6">
-     <input type="submit" value="Submit">
+     <input type="submit" value="Submit"  onclick="localhost:8080/searchProducts" />
      </div>
  </table>
  </form>
