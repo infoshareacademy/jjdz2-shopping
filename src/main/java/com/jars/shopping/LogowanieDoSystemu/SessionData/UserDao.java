@@ -1,18 +1,22 @@
 package com.jars.shopping.LogowanieDoSystemu.SessionData;
 
 import com.jars.shopping.Users.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Created by keehoo on 27.11.16.
- */
+
 @Stateless
 public class UserDao {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(UserDao.class);
+    public static final Marker USERDAO_MARKER = MarkerFactory.getMarker("USER_DAO");
 
     @PersistenceContext
     EntityManager entityManager;
@@ -21,11 +25,8 @@ public class UserDao {
 
         if (!getUsers().contains(user.getLogin())) {
             entityManager.persist(user);
-            // TODO: Tutaj trzea dodac loggera a nie sout;a
-            System.out.println("Dodano uzytkownika "+ user.getLogin()+" do bazy danych");
-        }
-        else System.out.println("Uzytkownik "+user.getLogin() + " juz istnieje");
-
+            LOGGER.debug(USERDAO_MARKER, " User added to db : " + user.getLogin());
+        } else LOGGER.debug(USERDAO_MARKER, " No need to add user to the database, the user exist");
     }
 
     public List<String> getUsers() {

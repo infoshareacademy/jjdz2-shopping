@@ -25,8 +25,8 @@ public class LoginFilter implements Filter {
         filterChain.doFilter(servletRequest, servletResponse);
 
         if (!sessionData.isLogged()) {
-            //przekierowanie na logowanie
-          //  HttpServletRequest)servletResponse sendRedirect
+
+
 
         }
     }
