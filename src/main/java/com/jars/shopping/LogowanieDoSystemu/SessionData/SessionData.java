@@ -37,4 +37,12 @@ public class SessionData implements Serializable{
     public void setLoggedFrom(String loggedFrom) {
         this.loggedFrom = loggedFrom;
     }
+
+    public void clearUserInfo() {
+        setLoggedFrom("");
+        setLogged(false);
+        setLoggedFrom("");
+    }
 }
+
+
