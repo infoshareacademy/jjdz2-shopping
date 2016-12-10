@@ -21,6 +21,9 @@ public class User {
     private long id;
     private String login;
     private String password;
+    private String cameFrom;
+
+    protected boolean isAdmin;
 
     public User(String login, String password) {
         this.login = login;
@@ -33,7 +36,6 @@ public class User {
     public User(String login) {
         this.login = login;
     }
-
 
     public String getLogin() {
         return login;
@@ -51,5 +53,20 @@ public class User {
         this.password = password;
     }
 
+    public String getCameFrom() {
+        return cameFrom;
+    }
+
+    public void setCameFrom(String cameFrom) {
+        this.cameFrom = cameFrom;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 
 }
