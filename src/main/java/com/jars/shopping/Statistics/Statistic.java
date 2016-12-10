@@ -1,6 +1,8 @@
 package com.jars.shopping.Statistics;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 public class Statistic {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     private String username;
     private String question;
