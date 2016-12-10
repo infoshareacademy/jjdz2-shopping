@@ -37,6 +37,8 @@
 </head>
 
 <body>
+
+<form method="post" action="/searchProducts">
 <div>
     <select id="service_id" name="service_id">
         <option value="1">Ebay</option>
@@ -65,6 +67,7 @@
         });
     });
 </script>
+</form>
 
 </body>
 </html>
