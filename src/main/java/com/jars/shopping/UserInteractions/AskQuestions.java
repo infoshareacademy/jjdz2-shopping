@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import javax.ejb.Stateless;
 import java.util.*;
 
+@Stateless
 public class AskQuestions {
 
     List<Question> questionList;
