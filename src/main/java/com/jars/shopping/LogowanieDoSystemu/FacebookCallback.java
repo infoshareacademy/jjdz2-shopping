@@ -11,6 +11,7 @@ import com.jars.shopping.LogowanieDoSystemu.SessionData.UserDao;
 import com.jars.shopping.Users.User;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,6 +80,10 @@ public class FacebookCallback extends HttpServlet{
         System.out.println("Twoje facebookowe imie to "+name);
 
         userDao.saveUserInDataBase(new User(name));
+
+        req.setAttribute("name", name);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/facebookcallback.jsp");
+        dispatcher.forward(req, resp);
 
     }
 }
