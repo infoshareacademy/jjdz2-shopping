@@ -68,7 +68,7 @@
 </div><br>
 
 
- <form method="post" action="/webForm">
+ <form method="post" action="/searchProducts">
  <table class="item-table">
      <input type="hidden" name="size" value=${questionList.size()} />
      <c:forEach items="${questionList}" var="item" varStatus="i">
@@ -87,7 +87,7 @@
      </tr>
      </c:forEach>
      <div class="col-sm-6">
-     <input type="submit" value="Submit"  onclick="localhost:8080/searchProducts" />
+     <input type="submit" value="Submit" />
      </div>
  </table>
  </form>
