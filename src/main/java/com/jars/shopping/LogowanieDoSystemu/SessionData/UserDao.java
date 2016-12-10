@@ -26,12 +26,10 @@ public class UserDao {
         }
         else System.out.println("Uzytkownik "+user.getLogin() + " juz istnieje");
 
-        //List<String> userList = getUsers();
     }
 
     public List<String> getUsers() {
         return entityManager.createNamedQuery(User.GET_ALL_USERS_LIST).getResultList();
     }
-
 
 }
