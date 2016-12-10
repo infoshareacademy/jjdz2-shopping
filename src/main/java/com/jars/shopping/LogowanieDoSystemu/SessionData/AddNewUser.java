@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/addNewUser")
+@WebServlet(urlPatterns = "/AddNewUser")
 public class AddNewUser extends HttpServlet {
 
     @Inject
