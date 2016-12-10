@@ -1,6 +1,10 @@
 package com.jars.shopping.WebForm;
 
+import com.jars.shopping.Statistics.NewStatisticUpdateEvent;
+
 import javax.ejb.EJB;
+import javax.enterprise.event.Event;
+import javax.inject.Inject;
 import javax.mail.internet.ContentType;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +15,9 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/searchProducts")
 public class SearchProductServlet extends HttpServlet{
+
+    @Inject
+    Event<NewStatisticUpdateEvent> event;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

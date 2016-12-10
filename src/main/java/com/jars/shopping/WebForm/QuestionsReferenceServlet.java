@@ -43,9 +43,9 @@ public class QuestionsReferenceServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       //event.fire(new NewStatisticUpdateEvent("user0",req.getAttribute("question-0"),req.));
+       //event.fire(new NewStatisticUpdateEvent("user0",req.getAttribute("question-0"),req.getAttribute("radios-0")));
         // TODO: obsługa formularz
         // String s = request.getParameter(radios-1)
-        // events.fire("yadayadya");
+        // event.fire("");
     }
 }

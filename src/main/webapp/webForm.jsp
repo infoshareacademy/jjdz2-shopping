@@ -91,34 +91,6 @@
  </form>
 
 
-<div>
-    <select id="service_id" name="service_id">
-        <option value="1">Ebay</option>
-        <option value="2">Allegro</option>
-    </select>
-    <input id="term" name="term" type="text"/>
-</div>
-
- <script>
-     $(function () {
-         $("#term").autocomplete({
-             source: function (request, response) {
-                 $.ajax({
-                     url: "/searchProducts",
-                     data: {
-                         term: request.term,
-                         service_id: $("#service_id").val()
-                     },
-                     success: function( data ) {
-                         response( data );
-                     }
-                 });
-             },
-             minLength: 3
-
-         });
-     });
- </script>
 
 </body>
 </html>
