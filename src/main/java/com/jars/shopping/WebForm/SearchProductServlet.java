@@ -30,4 +30,18 @@ public class SearchProductServlet extends HttpServlet{
         RequestDispatcher dispatcher = req.getRequestDispatcher("/searchProducts.jsp");
         dispatcher.forward(req, resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        Integer i = Integer.parseInt(req.getParameter("size"));
+
+        for (Integer j=0; j<i; j++ ) {
+            event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+        }
+
+        resp.setContentType("application/json; charset=UTF-8");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/searchProducts.jsp");
+        dispatcher.forward(req, resp);
+    }
 }

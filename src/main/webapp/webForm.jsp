@@ -68,7 +68,7 @@
 </div><br>
 
 
- <form method="post" action="/webForm">
+ <form method="post" action="/searchProducts">
  <table class="item-table">
      <input type="hidden" name="size" value=${questionList.size()} />
      <c:forEach items="${questionList}" var="item" varStatus="i">
@@ -77,17 +77,20 @@
              <div class="col-sm-6">
              <h3>${item.title} </h3>
                  <input type="hidden" name="question-${i.index}" value="${item.title}" />
+         <c:forEach items="${item.options}" var="option" varStatus="t">
+                 <input TYPE="radio" NAME="option" VALUE="${option.number}" checked="<#if ${t.index}==0></#if>">
 
-                 <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(0).label}" CHECKED> ${item.options.get(0).label}
-                 <BR>
-                 <INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(1).label}"> ${item.options.get(1).label}
-                 <BR>
+                 <span>${option.label}</span>
+                 <br>
+                 <%--<INPUT TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(1).label}"> ${item.options.get(1).label}--%>
+                 <%--<BR>--%>
+         </c:forEach>
              </div>
          </div>
      </tr>
      </c:forEach>
      <div class="col-sm-6">
-     <input type="submit" value="Submit"  onclick="localhost:8080/searchProducts" />
+     <input type="submit" value="Submit" />
      </div>
  </table>
  </form>
