@@ -9,8 +9,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Created by marcinpankowski on 10.12.16.
@@ -23,9 +21,9 @@ public class ProductListDao {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void addListProducts(String[] listofprod) {
+    public void addListProducts(String[] listofprod, String user) {
         for (String st : listofprod) {
-            Products pr = new Products(st);
+            Products pr = new Products(st, user);
 
             if (!getProducts().contains(pr.getProduct())){
                 entityManager.persist(pr);
@@ -41,14 +39,6 @@ public class ProductListDao {
         LOGGER.info(PRODUCTLISTDAO,"Sprawdzamy listę produktów");
         List<Products> someName = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
 
-  /*      List<Products> sN = IntStream.range(0, someName.size())
-                .mapToObj(i -> new Products(someName.get(i)))
-                .collect(Collectors.toList());
-
-        for(Products p:sN){
-            LOGGER.info(PRODUCTLISTDAO,"id: " + p.getId());
-        }
-*/
         return someName;
     }
 

@@ -1,6 +1,11 @@
 package com.jars.shopping.ProductList;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,6 +20,8 @@ import java.util.stream.IntStream;
 
 @Stateless
 public class ProductsEbayService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsEbayService.class);
+    private static final Marker PRODEBAYSERVICE = MarkerFactory.getMarker("PRODUCTS_EBAY_SERVICE");
 
     @Inject
     @Named("ebayUrl")
@@ -22,14 +29,15 @@ public class ProductsEbayService {
 
     public List<Products> translate(String input) {
         final String urlString = String.format(ebayUrl, input);
-        //final String urlString = String.format("http://www.ebay.com/sch/Puzzles");
+        //ex. http://www.ebay.com/sch/Puzzles
+
+        LOGGER.info(PRODEBAYSERVICE,"Parsuj Ebay dla kategorii : " + input.toString());
 
         try {
             URL url = new URL(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
             final Pattern pat = Pattern
-                    //.compile(".*<a href=\"dict\\?words?=(.*)&lang.*");
                     .compile("class=\"img\" alt=\'(.*)'");
 
             List<String> allWords = reader.lines()

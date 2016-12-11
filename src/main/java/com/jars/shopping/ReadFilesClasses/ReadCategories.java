@@ -1,30 +1,40 @@
 package com.jars.shopping.ReadFilesClasses;
 
 import com.jars.shopping.POJOs.Category;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadCategories {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReadCategories.class);
     private static final Marker READ_CATEGORIES = MarkerFactory.getMarker("READ CATEG");
 
     private List<Category> categories = new ArrayList<Category>();
+
+    public String getMachingCategory(String catName){
+        LOGGER.info(READ_CATEGORIES,"Return matching category that contain catName");
+        categories = this.getCategories();
+        String categoryId ="325"; //default value
+        for (int i = 0; i < categories.size(); i++) {
+            if (categories.get(i).getCatName().contains(catName)) {
+                categoryId = String.valueOf(categories.get(i));
+            }
+        }
+        return categoryId;
+
+    }
 
     public List<Category> getMatchinCategories(String catName) {
         /** JS - 25 - return the list of categories that contain a specific string @param catName*/
@@ -63,7 +73,14 @@ public class ReadCategories {
         }
     }
 
+
     /**
+     *
+     * public String readResource(final String fileName, Charset charset) throws IOException {
+     return Resources.toString(Resources.getResource(fileName), charset);
+     }
+
+     String fixture = this.readResource("filename.txt", Charsets.UTF_8)
      * Getter & Setterr
      */
     public List<Category> getCategories() {
@@ -71,7 +88,10 @@ public class ReadCategories {
         LOGGER.info(READ_CATEGORIES,"PREPARE list of categories from Allegro's xml file");
         try {
             URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
-            File fXmlFile = new File(resource.toURI());
+            //File fXmlFile = new File(URI.create("Allegro_cathegories_2016-02-13.xml"));
+            File fXmlFile = new File("/Allegro_cathegories_2016-02-13.xml");
+            // no file:
+            // /content/ROOT.war/WEB-INF/classes/Allegro_cathegories_2016-02-13.xml (No such file or directory)
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

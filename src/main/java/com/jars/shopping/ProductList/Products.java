@@ -20,8 +20,14 @@ public class Products {
     private Long id;
 
     private String product;
+    private String user;
 
     public Products() {
+    }
+
+    public Products(String product, String user) {
+        this.product = product;
+        this.user = user;
     }
 
     @Override
