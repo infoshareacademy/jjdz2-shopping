@@ -17,6 +17,14 @@
         <wildfly.adminUsername>admin</wildfly.adminUsername>
         <wildfly.adminPassword>admin123</wildfly.adminPassword>
         <wildfly.add-user>${wildfly.adminUsername}:${wildfly.adminPassword}:group:ManagementRealm:false</wildfly.add-user>
+
+        <!-- mysql -->
+        <version.mysql>5.1.37</version.mysql>
+        <jdbc.datasource>java:jboss/datasources/MySQLDS</jdbc.datasource>
+        <mysql.connection.url>jdbc:mysql://localhost:3306/test??useUnicode=yes&amp;characterE
+            ncoding=UTF-8</mysql.connection.url>
+        <mysql.username>root</mysql.username>
+        <mysql.password>root</mysql.password>
     </properties>
 
     <build>
@@ -29,30 +37,61 @@
                 <configuration>
                     <username>${wildfly.adminUsername}</username>
                     <password>${wildfly.adminPassword}</password>
+                    <beforeDeployment>
+                        <commands>
+                            <command>
+                                module add
+                                --name=com.mysql
+                                --resources=${settings.localRepository}/mysql/mysql-connector-java/${version.mysql}/mysql-connector-java-${version.mysql}.jar
+                                --dependencies=javax.api,javax.transaction.api
+                            </command>
+                            <command>
+                                /subsystem=datasources/jdbc-driver=mysql:add(
+                                driver-name=mysql,
+                                driver-module-name=com.mysql,
+                                driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+                                )
+                            </command>
+                            <command>
+                                data-source add
+                                --jndi-name=${jdbc.datasource}
+                                --name=MySQLPool
+                                --connection-url=${mysql.connection.url}
+                                --driver-name=mysql
+                                --user-name=${mysql.username}
+                                --password=${mysql.password}
+                            </command>
+                        </commands>
+                    </beforeDeployment>
                 </configuration>
             </plugin>
-
         </plugins>
-
     </build>
+
+
 
     <dependencies>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.8.3</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${version.mysql}</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.7</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-        </dependency>
+     <dependency>
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-databind</artifactId>
+         <version>2.8.3</version>
+     </dependency>
+     <dependency>
+         <groupId>com.google.code.gson</groupId>
+         <artifactId>gson</artifactId>
+         <version>2.7</version>
+     </dependency>
+     <!-- https://mvnrepository.com/artifact/junit/junit -->
+     <dependency>
+         <groupId>junit</groupId>
+         <artifactId>junit</artifactId>
+         <version>4.12</version>
+     </dependency>
         <dependency>
             <groupId>org.easytesting</groupId>
             <artifactId>fest-assert-core</artifactId>
@@ -84,43 +123,6 @@
             <version>2.0</version>
         </dependency>
 
-
-        <!-- TESTOWE -->
-
-        <dependency>
-            <groupId>com.google.oauth-client</groupId>
-            <artifactId>google-oauth-client</artifactId>
-            <version>1.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.api-client</groupId>
-            <artifactId>google-api-client</artifactId>
-            <version>1.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.http-client</groupId>
-            <artifactId>google-http-client</artifactId>
-            <version>1.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>2.5</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.google.http-client</groupId>
-            <artifactId>google-http-client-jackson</artifactId>
-            <version>1.20.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.apis</groupId>
-            <artifactId>google-api-services-plus</artifactId>
-            <version>v1-rev217-1.20.0</version>
-        </dependency>
-
-
         <!-- Log4j -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -144,5 +146,6 @@
         </dependency>
 
 
-    </dependencies>
+
+ </dependencies>
 </project>

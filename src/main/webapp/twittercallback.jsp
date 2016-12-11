@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Log in</title>
+    <title>Twitter callback</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,28 +41,15 @@
 </head>
 <body>
 
-<div>
-    <h1> Log in </h1>
+<div align="center">
+    <h1> Hey, ${name}</h1>
+    <p> You've been successfully logged in with Twitter</p>
+    <p> Rock 'n' Roll !</p>
 </div>
 
-<div>
-    <div>
-        <p>
-            ${welcome}
-        </p>
-    </div>
-</div>
+<div><a href="/"> Go to Main Page </a></div>
 
-<div>
-    <form method="post" action="logUser">
-        login : <input type="text" name="username">
-        password: <input type="password" name="password">
-    <input type="submit" value="logUser">
-    </form>
 
-    <a href="/addNewUser"> CREATE NEW USER </a>
-    <a href="/twitter"> TWITTER</a>
-    <a href="/facebook">FACEBOOK</a>
 </div>
 
 
