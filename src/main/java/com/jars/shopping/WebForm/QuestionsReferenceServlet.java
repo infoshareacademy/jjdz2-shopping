@@ -3,8 +3,6 @@ package com.jars.shopping.WebForm;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.Statistics.NewStatisticUpdateEvent;
-import com.jars.shopping.Statistics.StatisticsLogger;
-import com.jars.shopping.UserInteractions.AskQuestions;
 
 import javax.ejb.EJB;
 import javax.enterprise.event.Event;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/webForm")

@@ -6,9 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.servlet.RequestDispatcher;
 import java.util.List;
 
 
@@ -35,5 +38,30 @@ public class UserDao {
 
     public List<User> getAllUsers() {
         return entityManager.createNamedQuery(User.GET_ALL_USERS).getResultList();
+    }
+
+    public boolean passwordOK(String username, String password) {
+        LOGGER.trace(USERDAO_MARKER, "Checking for correct password for user " + username);
+        if (null != username && null != password) {
+            LOGGER.trace(USERDAO_MARKER, "username and passwords are not null - so that's good :) ");
+
+            try {
+                User user = entityManager
+                        .createNamedQuery(User.GET_USER_FROM_USERNAME, User.class)
+                        .setParameter("username", username)
+                        .getSingleResult();
+                if (password.equals(user.getPassword())) return true;
+            } catch (EJBException e) {
+                LOGGER.warn(USERDAO_MARKER, "No user found in database");
+            }
+            catch (NoResultException y) {
+                LOGGER.warn(USERDAO_MARKER, "No user found in database");
+            }
+            catch (IllegalStateException d) {
+                LOGGER.warn(USERDAO_MARKER, "No user found in database");
+            }
+        }
+        LOGGER.warn(USERDAO_MARKER, "Password or UserName is null or invalid");
+        return false;
     }
 }
