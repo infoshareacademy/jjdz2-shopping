@@ -32,7 +32,7 @@ public class ProductsAllegroService {
         String catValue = generateValueForAllegro(input);
         List<Products> allWordsAllegro = new ArrayList<>();
 
-        if(!catValue.equals(null) || !catValue.equals("")){
+        if(!catValue.isEmpty() && !catValue.equals("") && (catValue!=null)){
 
         LOGGER.info(PRODALLEGROSERVICE,"Parsuj Allegro dla kategorii : " + catValue.toString());
         final String urlString = String.format(allegroUrl, catValue);
@@ -68,7 +68,7 @@ public class ProductsAllegroService {
 
     private String generateValueForAllegro(String input) {
         LOGGER.info(PRODALLEGROSERVICE,"Pobierz nazwę kategorii dla Allegro, z nr: " + input.toString());
-        String output_id = null;
+        String output_id = "";
 
         if(input.equals(null) || input.equals("")){
 
