@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/products")
-public class ProductsServlet extends HttpServlet{
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsServlet.class);
+public class ProductsListServlet extends HttpServlet{
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductsListServlet.class);
     private static final Marker PRODUCTSSERVLET = MarkerFactory.getMarker("PRODUCTS_SERVLET");
 
 
@@ -43,10 +43,10 @@ public class ProductsServlet extends HttpServlet{
         String allegroauction = req.getParameter("allegroauction");
 
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Ebay");
-        String[] listofebayprod = req.getParameterValues("listofebayprod");
+        String[] listofebayprod = req.getParameterValues("listofebayprod[]");
 
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Allegro");
-        String[] listofallegroprod = req.getParameterValues("listofallegroprod");
+        String[] listofallegroprod = req.getParameterValues("listofallegroprod[]");
 
 
         if(listofebayprod!=null) {

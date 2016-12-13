@@ -85,7 +85,7 @@
                     <li>
                    <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="${eb.product}" name="listofebayprod">${eb.product}</input>
+                            <input type="checkbox" value="${eb.product}" name="listofebayprod[]">${eb.product}</input>
                         </label>
                     </div>
                     </li>
@@ -97,7 +97,7 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="${al.product}" name="listofallegroprod">${al.product}</input>
+                                    <input type="checkbox" value="${al.product}" name="listofallegroprod[]">${al.product}</input>
                                 </label>
                             </div>
                         </li>

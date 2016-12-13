@@ -18,9 +18,9 @@ public class ProductsEbayServiceTest {
         ProductsEbayService productsEbayService = new ProductsEbayService();
         productsEbayService.ebayUrl = "http://www.ebay.com/sch/%s";
         List<Products> listOfProducts = productsEbayService.translate("Puzzles");
-//        assertThat(listOfProducts, hasItem(new Products("Tenyo")));
-        //assertThat(listOfProducts.size(), is(
-                assertNotNull(listOfProducts.size());
+        // assertThat(listOfProducts, hasItem(new Products("Tenyo")));
+        // assertThat(listOfProducts.size(), notNullValue());
+        assertNotNull(listOfProducts.size());
     }
 
 

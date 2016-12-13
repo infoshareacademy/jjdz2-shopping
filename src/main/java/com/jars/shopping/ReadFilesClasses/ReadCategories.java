@@ -26,12 +26,16 @@ public class ReadCategories {
     public String getMachingCategory(String catName){
         LOGGER.info(READ_CATEGORIES,"Return matching category that contain catName");
         categories = this.getCategories();
-        String categoryId ="325"; //default value
+
+        String categoryId ="";
+
         for (int i = 0; i < categories.size(); i++) {
             if (categories.get(i).getCatName().contains(catName)) {
                 categoryId = String.valueOf(categories.get(i));
             }
         }
+
+        categoryId = categoryId.substring(categoryId.indexOf("catId=")+6, categoryId.indexOf("catName"));
         return categoryId;
 
     }
@@ -89,13 +93,15 @@ public class ReadCategories {
         try {
             URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
             //File fXmlFile = new File(URI.create("Allegro_cathegories_2016-02-13.xml"));
-            File fXmlFile = new File("/Allegro_cathegories_2016-02-13.xml");
+            File fXmlFile = new File("Allegro_cathegories_2016-02-13.xml");
             // no file:
             // /content/ROOT.war/WEB-INF/classes/Allegro_cathegories_2016-02-13.xml (No such file or directory)
-
+           //resource.toExternalForm());
+            //
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
+            //Document doc = dBuilder.parse(fXmlFile);
+            Document doc = dBuilder.parse(resource.toExternalForm());
 
             //recommended to normalize
             doc.getDocumentElement().normalize();

@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Stateless
 public class ProductsEbayService {
@@ -40,15 +39,14 @@ public class ProductsEbayService {
             final Pattern pat = Pattern
                     .compile("class=\"img\" alt=\'(.*)'");
 
-            List<String> allWords = reader.lines()
+            List<Products> allWordsEbay = reader.lines()
                     .map(s -> pat.matcher(s))   // do matching
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
+                    .map(Products::new)
                     .collect(Collectors.toList());
 
-            return IntStream.range(0, allWords.size())
-                    .mapToObj(i -> new Products(allWords.get(i)))
-                    .collect(Collectors.toList());
+            return allWordsEbay;
 
         } catch (Exception e) {
             throw new RuntimeException(e);
