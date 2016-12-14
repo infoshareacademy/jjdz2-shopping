@@ -119,7 +119,7 @@
                 <div>
                     <label>
                       <!--  ${i.index} -->
-                        ${flfDB.id} - ${flfDB.product}
+                        ${flfDB.id} - ${flfDB.product} - ${flfDB.user}
 
                     </label>
                 </div>

@@ -1,12 +1,14 @@
 package com.jars.shopping.ProductList;
 
 
+import com.jars.shopping.LogowanieDoSystemu.SessionData.SessionData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,6 +33,8 @@ public class ProductsListServlet extends HttpServlet{
     @EJB
     ProductListDao prodLDao;
 
+    @Inject
+    SessionData sessionData;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -48,17 +52,22 @@ public class ProductsListServlet extends HttpServlet{
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Allegro");
         String[] listofallegroprod = req.getParameterValues("listofallegroprod[]");
 
-
+        String userName = "";
+        userName = sessionData.getName();
         if(listofebayprod!=null) {
             LOGGER.info(PRODUCTSSERVLET,"Przkaż wybrane produkty z Ebay do bazy danych");
-            prodLDao.addListProducts(listofebayprod, "user");
+            prodLDao.addListProducts(listofebayprod, userName);
 
             LOGGER.info(PRODUCTSSERVLET,"Wyczyść listę wszystkich produktów z Ebay");
             ebayauction="";
         }
         if(listofallegroprod!=null) {
             LOGGER.info(PRODUCTSSERVLET,"Przkaż wybrane produkty z Allegro do bazy danych");
+<<<<<<< Updated upstream
             prodLDao.addListProducts(listofallegroprod, "user");
+=======
+            prodLDao.addListProducts(listofallegroprod, userName);
+>>>>>>> Stashed changes
 
             LOGGER.info(PRODUCTSSERVLET,"Wyczyść listę wszystkich produktów z Allegro");
             allegroauction="";
