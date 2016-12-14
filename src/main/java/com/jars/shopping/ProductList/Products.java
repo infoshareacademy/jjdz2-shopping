@@ -32,7 +32,7 @@ public class Products {
 
     @Override
     public String toString() {
-        return "Products{" + "product='" + product + '}' + '\'';
+        return "Products{" + "product='" + product + "'" + " user='" + user + '}' + '\'';
     }
 
     public String getProduct() {
@@ -41,6 +41,14 @@ public class Products {
 
     public void setProduct(String product) {
         this.product = product;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public Products(String product) {

@@ -52,8 +52,11 @@ public class ProductsListServlet extends HttpServlet{
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Allegro");
         String[] listofallegroprod = req.getParameterValues("listofallegroprod[]");
 
-        String userName = "";
-        userName = sessionData.getName();
+        String userName = sessionData.getName();
+        if((userName==null)){
+            userName = "default_user";
+        }
+
         if(listofebayprod!=null) {
             LOGGER.info(PRODUCTSSERVLET,"Przkaż wybrane produkty z Ebay do bazy danych");
             prodLDao.addListProducts(listofebayprod, userName);
@@ -63,11 +66,8 @@ public class ProductsListServlet extends HttpServlet{
         }
         if(listofallegroprod!=null) {
             LOGGER.info(PRODUCTSSERVLET,"Przkaż wybrane produkty z Allegro do bazy danych");
-<<<<<<< Updated upstream
-            prodLDao.addListProducts(listofallegroprod, "user");
-=======
             prodLDao.addListProducts(listofallegroprod, userName);
->>>>>>> Stashed changes
+
 
             LOGGER.info(PRODUCTSSERVLET,"Wyczyść listę wszystkich produktów z Allegro");
             allegroauction="";

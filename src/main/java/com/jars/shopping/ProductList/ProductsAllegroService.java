@@ -35,7 +35,7 @@ public class ProductsAllegroService {
 
         LOGGER.info(PRODALLEGROSERVICE,"Parsuj Allegro dla kategorii : " + catValue.toString());
         final String urlString = String.format(allegroUrl, catValue);
-
+            System.out.println(">> URL: " + urlString);
         try {
             URL url = new URL(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));

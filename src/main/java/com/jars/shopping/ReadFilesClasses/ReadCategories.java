@@ -36,9 +36,10 @@ public class ReadCategories {
         }
 
         LOGGER.info(READ_CATEGORIES,"Przygotuj numer kategorii, jeżeli istnienie w spisie");
-        if(!categoryId.isEmpty() && categoryId.equals("") && categoryId!=null) {
+        if(!categoryId.isEmpty() && !categoryId.equals("") && categoryId!=null) {
             System.out.println(" >> " + categoryId);
             categoryId = categoryId.substring(categoryId.indexOf("catId=") + 6, categoryId.indexOf("catName"));
+            System.out.println(" >> " + categoryId);
         }
 
         return categoryId;

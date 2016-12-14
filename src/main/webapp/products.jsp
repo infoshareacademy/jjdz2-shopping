@@ -65,7 +65,7 @@
             <input type="submit" class="btn btn-default btn-lg" value="GO!">
         </form>
     </div>
-
+    </br> </br>
     <div>
         <form method="post" action="products">
             Link do Ebay: <input type="text" name="ebayauction"  value="">
@@ -73,7 +73,7 @@
             <input type="submit" class="btn btn-default btn-lg" value="GO!">
         </form>
     </div>
-
+    </br> </br> </br>
     <!-- lista wygenerowanych produktów -->
     <div>
         <div>Produkty:</div>
@@ -90,7 +90,8 @@
                     </div>
                     </li>
                     </c:forEach>
-                <ul>
+                </ul>
+
                     <!-- Allegro -->
                     <ul class="list-group">
                         <c:forEach items="${translatedWordsAllegro}" var="al">
@@ -102,8 +103,8 @@
                             </div>
                         </li>
                         </c:forEach>
-                    <ul>
-                <input type="submit" class="btn btn-default btn-lg" value="Start >>">
+                    </ul>
+                <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
             </form>
 
 
