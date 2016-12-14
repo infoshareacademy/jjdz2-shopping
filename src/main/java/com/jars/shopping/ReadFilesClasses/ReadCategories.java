@@ -35,7 +35,12 @@ public class ReadCategories {
             }
         }
 
-        categoryId = categoryId.substring(categoryId.indexOf("catId=")+6, categoryId.indexOf("catName"));
+        LOGGER.info(READ_CATEGORIES,"Przygotuj numer kategorii, jeżeli istnienie w spisie");
+        if(!categoryId.isEmpty() && categoryId.equals("") && categoryId!=null) {
+            System.out.println(" >> " + categoryId);
+            categoryId = categoryId.substring(categoryId.indexOf("catId=") + 6, categoryId.indexOf("catName"));
+        }
+
         return categoryId;
 
     }

@@ -70,7 +70,7 @@ public class ProductsListServlet extends HttpServlet{
             List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
             req.setAttribute("translatedWordsEbay",translatedWordsEbay);
         }else if(allegroauction!=null){
-            LOGGER.info(PRODUCTSSERVLET,"Jeżeli istnieje kategoria dla Ebay - pobierz listę produktów");
+            LOGGER.info(PRODUCTSSERVLET,"Jeżeli istnieje kategoria dla Allegro - pobierz listę produktów");
 
             List<Products> translatedWordsAllegro = serviceAllegro.translate(allegroauction);
             req.setAttribute("translatedWordsAllegro",translatedWordsAllegro);

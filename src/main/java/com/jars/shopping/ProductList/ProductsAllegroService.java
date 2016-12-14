@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Stateless
 public class ProductsAllegroService {
@@ -77,7 +76,6 @@ public class ProductsAllegroService {
             output_id = rc.getMachingCategory(input);
         }
 
-//        System.out.println("<><> " + input.toString() + " ><>< " + output_id.toString());
-        return output_id;
+       return output_id;
     }
 }
