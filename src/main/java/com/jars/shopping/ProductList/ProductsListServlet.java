@@ -85,7 +85,7 @@ public class ProductsListServlet extends HttpServlet{
             req.setAttribute("translatedWordsAllegro",translatedWordsAllegro);
         }
 
-        LOGGER.info(PRODUCTSSERVLET,"Pobierz listę elementów z bazy dancych");
+        LOGGER.info(PRODUCTSSERVLET,"Pobierz listę elementów z bazy danych");
         List<Products> fullListFromDB = prodLDao.getProducts();
         req.setAttribute("fullListFromDB",fullListFromDB);
 

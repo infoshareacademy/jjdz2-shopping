@@ -35,7 +35,9 @@ public class ProductsAllegroService {
 
         LOGGER.info(PRODALLEGROSERVICE,"Parsuj Allegro dla kategorii : " + catValue.toString());
         final String urlString = String.format(allegroUrl, catValue);
-            System.out.println(">> URL: " + urlString);
+
+        LOGGER.info(PRODALLEGROSERVICE,"URL: " + urlString);
+
         try {
             URL url = new URL(urlString);
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -49,8 +51,6 @@ public class ProductsAllegroService {
                     .map(m -> m.group(m.groupCount())) // extract word
                     .map(Products::new)
                     .collect(Collectors.toList());
-
-            //System.out.println(Arrays.asList(allWords));
 
             return allWordsAllegro;
 
@@ -69,9 +69,7 @@ public class ProductsAllegroService {
         LOGGER.info(PRODALLEGROSERVICE,"Pobierz nazwę kategorii dla Allegro, z nr: " + input.toString());
         String output_id = "";
 
-        if(input.equals(null) || input.equals("")){
-
-        }else {
+        if(!input.equals(null) && !input.equals("")){
             ReadCategories rc = new ReadCategories();
             output_id = rc.getMachingCategory(input);
         }

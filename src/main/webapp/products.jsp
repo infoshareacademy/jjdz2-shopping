@@ -119,7 +119,6 @@
             <li>
                 <div>
                     <label>
-                      <!--  ${i.index} -->
                         ${flfDB.id} - ${flfDB.product} - ${flfDB.user}
 
                     </label>

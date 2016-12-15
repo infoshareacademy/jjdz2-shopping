@@ -37,9 +37,7 @@ public class ReadCategories {
 
         LOGGER.info(READ_CATEGORIES,"Przygotuj numer kategorii, jeżeli istnienie w spisie");
         if(!categoryId.isEmpty() && !categoryId.equals("") && categoryId!=null) {
-            System.out.println(" >> " + categoryId);
             categoryId = categoryId.substring(categoryId.indexOf("catId=") + 6, categoryId.indexOf("catName"));
-            System.out.println(" >> " + categoryId);
         }
 
         return categoryId;
@@ -100,10 +98,7 @@ public class ReadCategories {
             URL resource = getClass().getClassLoader().getResource("Allegro_cathegories_2016-02-13.xml");
             //File fXmlFile = new File(URI.create("Allegro_cathegories_2016-02-13.xml"));
             File fXmlFile = new File("Allegro_cathegories_2016-02-13.xml");
-            // no file:
-            // /content/ROOT.war/WEB-INF/classes/Allegro_cathegories_2016-02-13.xml (No such file or directory)
-           //resource.toExternalForm());
-            //
+
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             //Document doc = dBuilder.parse(fXmlFile);

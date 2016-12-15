@@ -26,11 +26,13 @@ public class ProductsEbayService {
     @Named("ebayUrl")
     String ebayUrl;
 
+
     public List<Products> translate(String input) {
         final String urlString = String.format(ebayUrl, input);
         //ex. http://www.ebay.com/sch/Puzzles
 
         LOGGER.info(PRODEBAYSERVICE,"Parsuj Ebay dla kategorii : " + input.toString());
+        LOGGER.info(PRODEBAYSERVICE,"URL dla Ebay : " + urlString);
 
         try {
             URL url = new URL(urlString);
@@ -52,4 +54,5 @@ public class ProductsEbayService {
             throw new RuntimeException(e);
         }
     }
+
 }

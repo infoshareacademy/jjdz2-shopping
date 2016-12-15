@@ -21,8 +21,8 @@ public class ProductListDao {
     @PersistenceContext
     EntityManager entityManager;
 
-    public void addListProducts(String[] listofprod, String user) {
-        for (String st : listofprod) {
+    public void addListProducts(String[] listOfProd, String user) {
+        for (String st : listOfProd) {
             Products pr = new Products(st, user);
 
             if (!getProducts().contains(pr.getProduct())){
