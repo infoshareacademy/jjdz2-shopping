@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<fmt:setBundle basename="messages" var="msg" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,18 +53,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Home</a>
-            <a class="navbar-brand" href="#">Products</a>
-            <a class="navbar-brand" href="#">Favourite</a>
+            <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="home" /></a>
+            <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="products" /></a>
+            <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="fav" /></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Questionnaire</a></li>
+                <li class="active"><a href="#"><fmt:message bundle="${msg}" key="quest" /></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="?locale=pl">Polish</a></li>
-                <li><a href="?locale=en">English</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span><fmt:message bundle="${msg}" key="logout" /></a></li>
             </ul>
         </div>
     </div>
@@ -71,7 +72,7 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Please answer following questions</h3><br>
+    <h3><fmt:message bundle="${msg}" key="pls" /></h3><br>
 </div>
 </div><br>
 
@@ -99,11 +100,10 @@
             </tr>
         </c:forEach>
         <div class="col-sm-6">
-            <input type="submit" value="Submit"/>
+            <input type="submit" value=<fmt:message bundle="${msg}" key="sub" /> />
         </div>
     </table>
 </form>
-
 
 </body>
 </html>
