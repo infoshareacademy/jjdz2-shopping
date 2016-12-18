@@ -33,7 +33,7 @@ public class CreateUser extends HttpServlet {
     UserDao userDao;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String username = req.getParameter("username");
         LOGGER.info(CREATEUSER," Previously typed login "+ username);

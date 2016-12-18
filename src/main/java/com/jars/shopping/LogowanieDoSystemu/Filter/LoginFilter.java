@@ -33,18 +33,32 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        System.out.println(((HttpServletRequest) servletRequest).getRequestURI());
-        if (!((HttpServletRequest) servletRequest).getRequestURI().contains("/login")) {
+
+        String req = ((HttpServletRequest) servletRequest).getRequestURI().toLowerCase();
+
+        System.out.println("Request from " + req);
+
+        if (!req.contains("/login") &&
+                (!req.contains("/addnewuser")) &&
+                (!req.contains("/createuser")) &&
+                (!req.contains("/loguser")) &&
+                (!req.contains("/facebook")) &&
+                (!req.contains("/twitter")) &&
+                (!req.contains("/twittercallback")) &&
+                (!req.contains("/facebookcallback"))
+
+
+                ) {
             if (!sessionData.isLogged()) {
 
                 ((HttpServletResponse) servletResponse).sendRedirect("/login");
-                return;
+
+            } else {
+                filterChain.doFilter(servletRequest, servletResponse);
             }
+        } else {
             filterChain.doFilter(servletRequest, servletResponse);
-        }
-        else {
-            filterChain.doFilter(servletRequest, servletResponse);
-        return;
+
         }
     }
 

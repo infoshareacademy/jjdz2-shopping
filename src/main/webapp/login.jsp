@@ -60,7 +60,7 @@
     <input type="submit" value="logUser">
     </form>
 
-    <a href="createNewUser.jsp"> CREATE NEW USER </a>
+    <a href="/createUser"> CREATE NEW USER </a>
     <a href="/twitter"> TWITTER</a>
     <a href="/facebook">FACEBOOK</a>
 </div>
