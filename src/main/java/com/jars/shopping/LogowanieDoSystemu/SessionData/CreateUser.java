@@ -35,13 +35,6 @@ public class CreateUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        LOGGER.info(CREATEUSER," Previously typed login "+ username);
-        String password = req.getParameter("password");
-        LOGGER.info(CREATEUSER," Previously typed password "+ password);
-        req.setAttribute("username", username);
-        req.setAttribute("password", password);
-        //req.setAttribute("pass1234", password);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/createNewUser.jsp");
         LOGGER.info(CREATEUSER," Display login screen");

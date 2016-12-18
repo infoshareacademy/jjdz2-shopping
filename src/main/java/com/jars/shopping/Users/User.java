@@ -1,11 +1,8 @@
 package com.jars.shopping.Users;
 
-import javax.inject.Named;
 import javax.persistence.*;
 
-/**
- * Created by keehoo on 30.10.16.
- */
+
 @Entity
 @NamedQueries({
         @NamedQuery(name= User.GET_ALL_USERS_LIST,
@@ -14,7 +11,6 @@ import javax.persistence.*;
                 query = "select u from User u"),
         @NamedQuery(name = User.GET_USER_FROM_USERNAME, query = "select u from User u where u.login = :username")
 }
-
 )
 public class User {
 
@@ -22,14 +18,13 @@ public class User {
     final public static String GET_ALL_USERS = "User.GET_ALL_USERS";
     final public static String GET_USER_FROM_USERNAME = "User.GET_USER_FROM_USERNAME";
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String login;
     private String password;
     private String cameFrom;
-    public boolean isAdmin;
+    public boolean admin;
 
     public User(String login, String password) {
         this.login = login;
@@ -40,7 +35,7 @@ public class User {
         this.login = login;
         this.password = password;
         this.cameFrom = cameFrom;
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     public User() {
@@ -75,11 +70,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     @Override

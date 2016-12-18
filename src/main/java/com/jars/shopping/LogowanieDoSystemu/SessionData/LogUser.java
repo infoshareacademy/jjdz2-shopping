@@ -37,16 +37,18 @@ public class LogUser extends HttpServlet {
         LOGGER.info(USERLOGIN, " Attempting to log the user in: " + req.getParameter("username"));
 
         if (userDao.passwordOK(req.getParameter("username"), req.getParameter("password"))) {
-
+            LOGGER.info(USERLOGIN, " Password seems to be fine for " + req.getParameter("username"));
             sessionData.setName(req.getParameter("username"));
             sessionData.setLogged(true);
-            sessionData.setLoggedFrom("???"); //TODO: dodac informacje skad uzytkownik sie zalogowal
+            sessionData.setLoggedFrom(req.getRequestURI());
 
-
-            //req.setAttribute("translatedWords",translatedWords);
-
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/inAppUserLoggedInCallback.jsp");
-            dispatcher.forward(req, resp);
+            if (userDao.getSingleUser(req.getParameter("username")).isAdmin()) {
+                LOGGER.info(USERLOGIN, " User seems to be an ADMIN, redirecting to Admin Panel");
+                resp.sendRedirect("/adminPanel");
+            } else {
+                RequestDispatcher dispatcher = req.getRequestDispatcher("/inAppUserLoggedInCallback.jsp");
+                dispatcher.forward(req, resp);
+            }
         } else {
             LOGGER.warn(USERLOGIN, " Login failed for user : " + req.getParameter("username"));
             sessionData.clearUserInfo();
