@@ -12,10 +12,12 @@ import javax.inject.Named;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Stateless
 public class ProductsEbayService {
@@ -27,7 +29,7 @@ public class ProductsEbayService {
     String ebayUrl;
 
 
-    public List<Products> translate(String input) {
+    public List<Products> getProductEbayListFromUrl(String input) {
         final String urlString = String.format(ebayUrl, input);
         //ex. http://www.ebay.com/sch/Puzzles
 
@@ -36,7 +38,8 @@ public class ProductsEbayService {
 
         try {
             URL url = new URL(urlString);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            List<Products> allWordsEbay;
+         /*   BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
             final Pattern pat = Pattern
                     .compile("class=\"img\" alt=\'(.*)'");
@@ -46,7 +49,43 @@ public class ProductsEbayService {
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
                     .map(Products::new)
+                    .collect(Collectors.toList());*/
+
+            BufferedReader reader1 = new BufferedReader(new InputStreamReader(url.openStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+
+
+            final Pattern pat1 = Pattern
+                    .compile("class=\"img\" alt=\'(.*)'");
+
+            final Pattern pat = Pattern
+                    .compile("<h3 class=\"lvtitle\"><a href=\"(.*)\"");
+
+
+
+            //allWordsAllegro
+            List<String> allWords1 = reader1.lines()
+                    .map(s -> pat1.matcher(s))   // do matching
+                    .filter(Matcher::find)      // filter matches
+                    .map(m -> m.group(m.groupCount())) // extract word
+                    //.map(Products::new)
                     .collect(Collectors.toList());
+
+            List<String> allWords = reader.lines()
+                    .map(s -> pat.matcher(s))   // do matching
+                    .filter(Matcher::find)      // filter matches
+                    .map(m -> m.group(m.groupCount())) // extract word
+                    //.map(Products::new)
+                    .collect(Collectors.toList());
+
+
+
+            allWordsEbay = Collections.unmodifiableList(
+                    IntStream.range(0, allWords.size())
+                            // .filter(i -> i%2==0)
+                            .mapToObj(i -> new Products(allWords1.get(i), allWords.get(i)))
+                            .collect(Collectors.toList()));
+
 
             return allWordsEbay;
 
