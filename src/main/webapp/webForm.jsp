@@ -74,7 +74,7 @@
 
 <form method="post" action="/searchProducts">
     <table class="item-table">
-        <input type="hidden" name="size" value=${questionList.size()}/>
+        <input type="hidden" name="size" value="${questionList.size()}" />
         <c:forEach items="${questionList}" var="item" varStatus="i">
             <tr>
                 <div class="container-fluid bg-2 text-center">
