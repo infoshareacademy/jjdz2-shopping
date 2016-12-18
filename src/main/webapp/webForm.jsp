@@ -61,6 +61,8 @@
                 <li class="active"><a href="#">Questionnaire</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl">Polish</a></li>
+                <li><a href="?locale=en">English</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
