@@ -41,31 +41,29 @@
 </head>
 <body>
 
-<div>
-    <h1> Log in </h1>
+<div class="container" align="center">
+    <h1 class="lead"> Log in </h1>
 </div>
 
-<div>
-    <div>
-        <p>
-            ${welcome}
-        </p>
-    </div>
-</div>
 
-<div>
+
+<div class="container" align="center" >
     <form method="post" action="logUser">
         login : <input type="text" name="username">
-        password: <input type="password" name="password">
-    <input type="submit" value="logUser">
+        password: <input type="password" name="password"><br>
+        <input type="submit" value="logUser" class="btn btn-primary btn-lg">
     </form>
+    <div class="container">
+        <a href="/createUser"><img height="250" width="250" class="img-rounded"
+                                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/New_user_icon-01.svg/2000px-New_user_icon-01.svg.png"></a>
+        <a href="/twitter"> <img src="https://g.twimg.com/about/feature-corporate/image/twitterbird_RGB.png"
+                                 height="150" width="150" class="img-circle"></a>
+        <a href="/facebook"><img src="https://www.facebook.com/images/fb_icon_325x325.png" height="150" width="150"
+                                 class="img-circle"></a>
 
-    <a href="/createUser"> CREATE NEW USER </a>
-    <a href="/twitter"> TWITTER</a>
-    <a href="/facebook">FACEBOOK</a>
+    </div>
+
 </div>
-
-
 </body>
 </html>
 

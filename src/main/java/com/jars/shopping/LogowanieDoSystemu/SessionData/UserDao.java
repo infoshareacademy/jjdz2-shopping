@@ -32,6 +32,22 @@ public class UserDao {
         } else LOGGER.debug(USERDAO_MARKER, " No need to add user to the database, the user exist");
     }
 
+    public void makeAdmins(String[] newAdmins) {
+
+        for (int i=0; i<newAdmins.length; i++) {
+
+            getSingleUser(newAdmins[i]).setAdmin(true);
+            LOGGER.debug(USERDAO_MARKER, "User "+newAdmins[i]+ " is now Admin!! ");
+        }
+    }
+
+    public void removeAdmins(String[] newAdmins) {
+        for (int i=0; i<newAdmins.length; i++) {
+            getSingleUser(newAdmins[i]).setAdmin(false);
+            LOGGER.debug(USERDAO_MARKER, "User "+newAdmins[i]+ " is NOT Admin any longer!! ");
+        }
+    }
+
     public List<String> getUsers() {
         return entityManager.createNamedQuery(User.GET_ALL_USERS_LIST).getResultList();
     }

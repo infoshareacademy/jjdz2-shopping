@@ -1,6 +1,5 @@
 package com.jars.shopping.Users;
 
-import javax.inject.Named;
 import javax.persistence.*;
 
 
@@ -25,7 +24,7 @@ public class User {
     private String login;
     private String password;
     private String cameFrom;
-    public boolean isAdmin;
+    public boolean admin;
 
     public User(String login, String password) {
         this.login = login;
@@ -36,7 +35,7 @@ public class User {
         this.login = login;
         this.password = password;
         this.cameFrom = cameFrom;
-        this.isAdmin = isAdmin;
+        this.admin = isAdmin;
     }
 
     public User() {
@@ -71,11 +70,11 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return isAdmin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        isAdmin = admin;
+        this.admin = admin;
     }
 
     @Override

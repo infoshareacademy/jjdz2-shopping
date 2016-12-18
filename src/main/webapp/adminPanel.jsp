@@ -40,9 +40,19 @@
     </style>
 </head>
 <body>
-
+<img src="http://imgc.allpostersimages.com/images/P-473-488-90/30/3058/ZK6DF00Z/posters/lantern-press-howdy-podner-smoking-cowboy-greetings.jpg"
+     align="right">
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="/">Home</a></li>
+    <li role="presentation"><form action="/adminPanel" method="post">
+        <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+    </form></li>
+    <li role="presentation"><a href="#">Remove Admins privileges </a></li>
+</ul>
 <div>
-    <h1> Admin Panel </h1>
+    <h1> Hiya! ${login}</h1>
+    <h2> I guess you're an admin so here's the list of all users with their password and all</h2>
+    <h3> How cool is that?! </h3>
 </div>
 
 <div>
@@ -53,27 +63,35 @@
     </div>
 </div>
 
-<div>
+<div class="alert alert-danger">
     <!-- Ebay -->
-    <form action="users">
-        <ul class="list-group">
+    <form action="/adminPanel" method="POST">
+        <ul class="list-group" a>
             <c:forEach items="${userlist}" var="users">
-                <li>
+                <li class="list-group-item">
+                    <c:if test="${users.admin}">
+                        <span class="badge">Admin</span>
+                    </c:if>
                     <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="${users.login}" name="listofebayprod[]">${users.login} </input>
-
-                        </label>
+                        <input type="checkbox" value="${users.login}" name="newAdmins">${users.login}</input>
+                    </div>
+                    <div>
+                        <p type="text" value="${users.password}" name="passwdlist"> ${users.password}</p>
+                    </div>
+                    <div>
+                        <p type="text" value="${users.cameFrom}" name="cameFrom"> ${users.cameFrom}</p>
                     </div>
                 </li>
             </c:forEach>
         </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
+        <input class="btn btn-primary btn-lg" type="submit" name="action" value="addPrivileges">
+
+        <input class="btn btn-danger btn-lg" type="submit" name="action" value="removePrivileges">
+
     </form>
 
 
 </div>
-
 
 
 </body>

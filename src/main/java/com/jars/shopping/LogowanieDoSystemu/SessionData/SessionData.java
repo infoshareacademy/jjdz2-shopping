@@ -1,14 +1,20 @@
 package com.jars.shopping.LogowanieDoSystemu.SessionData;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
-/**
- * Created by keehoo on 26.11.16.
- */
+
 
 @SessionScoped
 public class SessionData implements Serializable {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(UserDao.class);
+    public static final Marker SESSION_DATA = MarkerFactory.getMarker("SESSION_DATA");
 
     private boolean isLogged = false;
     private String name;
@@ -39,6 +45,8 @@ public class SessionData implements Serializable {
     }
 
     public void clearUserInfo() {
+        LOGGER.warn(SESSION_DATA, "\n\n ---> LOGGIN USER OUT!\n ");
+
         setLoggedFrom("");
         setLogged(false);
         setName(null);
