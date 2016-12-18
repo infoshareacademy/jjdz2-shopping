@@ -1,5 +1,6 @@
 package com.jars.shopping.Users;
 
+import javax.inject.Named;
 import javax.persistence.*;
 
 /**
@@ -10,9 +11,8 @@ import javax.persistence.*;
         @NamedQuery(name= User.GET_ALL_USERS_LIST,
                 query = "select u.login from User u"),
         @NamedQuery(name= User.GET_ALL_USERS,
-                query = "select u from User u")
-
-
+                query = "select u from User u"),
+        @NamedQuery(name = User.GET_USER_FROM_USERNAME, query = "select u from User u where u.login = :username")
 }
 
 )
@@ -20,11 +20,11 @@ public class User {
 
     final public static String GET_ALL_USERS_LIST = "User.GET_ALL_USERS_LIST";
     final public static String GET_ALL_USERS = "User.GET_ALL_USERS";
+    final public static String GET_USER_FROM_USERNAME = "User.GET_USER_FROM_USERNAME";
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
     private String login;
     private String password;
@@ -58,7 +58,7 @@ public class User {
         this.login = login;
     }
 
-    private String getPassword() {
+    public String getPassword() {
         return password;
     }
 

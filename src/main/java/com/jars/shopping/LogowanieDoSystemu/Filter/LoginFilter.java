@@ -7,6 +7,8 @@ import com.jars.shopping.Users.User;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
@@ -16,7 +18,6 @@ public class LoginFilter implements Filter {
     SessionData sessionData;
     @Inject
     UserDao userDao;
-
 
 
     @Override
@@ -32,12 +33,31 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        System.out.println("Filter !!!!");
-        filterChain.doFilter(servletRequest, servletResponse);
 
-        if (!sessionData.isLogged()) {
+        String req = ((HttpServletRequest) servletRequest).getRequestURI().toLowerCase();
+
+        System.out.println("Request from " + req);
+
+        if (!req.contains("/login") &&
+                (!req.contains("/addnewuser")) &&
+                (!req.contains("/createuser")) &&
+                (!req.contains("/loguser")) &&
+                (!req.contains("/facebook")) &&
+                (!req.contains("/twitter")) &&
+                (!req.contains("/twittercallback")) &&
+                (!req.contains("/facebookcallback"))
 
 
+                ) {
+            if (!sessionData.isLogged()) {
+
+                ((HttpServletResponse) servletResponse).sendRedirect("/login");
+
+            } else {
+                filterChain.doFilter(servletRequest, servletResponse);
+            }
+        } else {
+            filterChain.doFilter(servletRequest, servletResponse);
 
         }
     }
