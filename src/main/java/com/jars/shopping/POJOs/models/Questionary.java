@@ -6,10 +6,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import javax.ejb.Stateless;
 
+@Stateless
 public class Questionary  {
 
 
@@ -20,15 +23,11 @@ public class Questionary  {
 
         try {
             URL resource = getClass().getClassLoader().getResource("Questionsjson.json");
-            File src = new File(resource.toURI());
 
-            AllQuestions questions = mapper.readValue(src, AllQuestions.class);
+            AllQuestions questions = mapper.readValue(resource, AllQuestions.class);
             return questions.getQuestions();
 
-        }
-        catch(IOException e){
-
-        } catch (URISyntaxException e) {
+        } catch(IOException e){
             e.printStackTrace();
         }
 
