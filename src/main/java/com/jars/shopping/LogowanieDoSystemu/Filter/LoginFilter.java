@@ -7,6 +7,8 @@ import com.jars.shopping.Users.User;
 import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
@@ -16,7 +18,6 @@ public class LoginFilter implements Filter {
     SessionData sessionData;
     @Inject
     UserDao userDao;
-
 
 
     @Override
@@ -32,13 +33,18 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        System.out.println("Filter !!!!");
-        filterChain.doFilter(servletRequest, servletResponse);
+        System.out.println(((HttpServletRequest) servletRequest).getRequestURI());
+        if (!((HttpServletRequest) servletRequest).getRequestURI().contains("/login")) {
+            if (!sessionData.isLogged()) {
 
-        if (!sessionData.isLogged()) {
-
-
-
+                ((HttpServletResponse) servletResponse).sendRedirect("/login");
+                return;
+            }
+            filterChain.doFilter(servletRequest, servletResponse);
+        }
+        else {
+            filterChain.doFilter(servletRequest, servletResponse);
+        return;
         }
     }
 
