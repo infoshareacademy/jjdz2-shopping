@@ -11,18 +11,27 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@WebServlet(urlPatterns = "/addNewUser")
+@WebServlet(urlPatterns = "/AddNewUser")
 public class AddNewUser extends HttpServlet {
 
     @Inject
     UserDao userDao;
 
+    @Inject
+    SessionData sessionData;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String cameFrom = "InAppCreated";
+        boolean isAdmin = false;
 
-        userDao.saveUserInDataBase(new User(username, password, "createdInApp", false));
+        userDao.saveUserInDataBase(new User(username, password, cameFrom, isAdmin));
+
+        sessionData.clearUserInfo();
+        resp.sendRedirect("/login");
     }
 }

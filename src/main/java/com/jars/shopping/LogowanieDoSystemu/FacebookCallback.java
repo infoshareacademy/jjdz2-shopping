@@ -83,7 +83,5 @@ public class FacebookCallback extends HttpServlet{
         req.setAttribute("name", name);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/facebookcallback.jsp");
         dispatcher.forward(req, resp);
-
-
     }
 }

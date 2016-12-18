@@ -3,9 +3,6 @@ package com.jars.shopping.WebForm;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.Statistics.NewStatisticUpdateEvent;
-import com.jars.shopping.Statistics.StatisticsLogger;
-import com.jars.shopping.UserInteractions.AskQuestions;
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import javax.ejb.EJB;
 import javax.enterprise.event.Event;
@@ -17,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/webForm")
@@ -46,6 +42,12 @@ public class QuestionsReferenceServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        Integer i = Integer.parseInt(req.getParameter("size"));
+
+        for (Integer j=0; j<i; j++ ) {
+            event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+        }
 
     }
 }
