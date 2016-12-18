@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="Shortcut icon" href="http://1.bp.blogspot.com/_qxNvBPirDY4/S6SogyHzSYI/AAAAAAAAACI/1LaUy9AAilc/s320/shopping.jpg" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
@@ -67,22 +68,23 @@
         <div class="container-fluid bg-2 text-center">
         <div class="col-sm-6">
     <div>
-    <select id="service_id" name="service_id">
+    <select id="serviceId" name="serviceId">
         <option value="1">Ebay</option>
         <option value="2">Allegro</option>
     </select>
-    <input id="term" name="term" type="text"/>
+    <input id="list" name="list" type="text"/>
+
     </div>
 
 <script>
     $(function () {
-        $("#term").autocomplete({
+        $("#list").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/searchProducts",
+                    url: "/productList",
                     data: {
                         term: request.term,
-                        service_id: $("#service_id").val()
+                        serviceId: $("#serviceId").val()
                     },
                     success: function( data ) {
                         response( data );
