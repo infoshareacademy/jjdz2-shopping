@@ -6,10 +6,9 @@ import com.jars.shopping.Users.User;
 
 import javax.inject.Inject;
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class LoginFilter implements Filter {
 
     @Inject
