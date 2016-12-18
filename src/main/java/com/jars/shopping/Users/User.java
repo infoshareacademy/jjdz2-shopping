@@ -3,9 +3,7 @@ package com.jars.shopping.Users;
 import javax.inject.Named;
 import javax.persistence.*;
 
-/**
- * Created by keehoo on 30.10.16.
- */
+
 @Entity
 @NamedQueries({
         @NamedQuery(name= User.GET_ALL_USERS_LIST,
@@ -14,14 +12,12 @@ import javax.persistence.*;
                 query = "select u from User u"),
         @NamedQuery(name = User.GET_USER_FROM_USERNAME, query = "select u from User u where u.login = :username")
 }
-
 )
 public class User {
 
     final public static String GET_ALL_USERS_LIST = "User.GET_ALL_USERS_LIST";
     final public static String GET_ALL_USERS = "User.GET_ALL_USERS";
     final public static String GET_USER_FROM_USERNAME = "User.GET_USER_FROM_USERNAME";
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

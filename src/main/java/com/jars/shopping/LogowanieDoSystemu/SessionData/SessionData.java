@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 @SessionScoped
-public class SessionData implements Serializable{
+public class SessionData implements Serializable {
 
     private boolean isLogged = false;
     private String name;
@@ -41,7 +41,8 @@ public class SessionData implements Serializable{
     public void clearUserInfo() {
         setLoggedFrom("");
         setLogged(false);
-        setLoggedFrom("");
+        setName(null);
+
     }
 }
 

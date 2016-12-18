@@ -40,6 +40,25 @@ public class UserDao {
         return entityManager.createNamedQuery(User.GET_ALL_USERS).getResultList();
     }
 
+    public User getSingleUser(String userName) {
+        try {
+            return entityManager
+                    .createNamedQuery(User.GET_USER_FROM_USERNAME, User.class)
+                    .setParameter("username", userName)
+                    .getSingleResult();
+
+        } catch (EJBException e) {
+            LOGGER.warn(USERDAO_MARKER, " - EJB Exception - No user found in database");
+        }
+        catch (NoResultException y) {
+            LOGGER.warn(USERDAO_MARKER, "No results - No user found in database");
+        }
+        catch (IllegalStateException d) {
+            LOGGER.warn(USERDAO_MARKER, "No user found in database");
+        }
+        return null;
+    }
+
     public boolean passwordOK(String username, String password) {
         LOGGER.trace(USERDAO_MARKER, "Checking for correct password for user " + username);
         if (null != username && null != password) {
