@@ -72,8 +72,8 @@
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="${flfDB.product}" name="listofebayprod">${flfDB.id}
-                                - ${flfDB.product} - ${flfDB.user}</input>
+                                <input type="checkbox" value="${flfDB.product}" name="listofebayprod">${flfDB.id}</br>
+                                - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}</input>
                             </label>
                         </div>
 

@@ -59,8 +59,9 @@ public class ProductsEbayService {
                     .compile("class=\"img\" alt=\'(.*)'");
 
             final Pattern pat = Pattern
-                    .compile("class=\"img\" alt=\'(.*)'");
-                   // .compile("<h3 class=\"lvtitle\"><a href=\"(.*)\" class=\"vip\" ");
+                  //  .compile("class=\"img\" alt=\'(.*)'");
+                    //.compile("<h3 class=\"lvtitle\"><a href=\"(.*)\" class=\"vip\" ");
+            .compile("<a href=\"(.*)\" class=\"img imgWr2\">");
 
 
 

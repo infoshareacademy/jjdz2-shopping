@@ -26,11 +26,13 @@ public class ProductListDao {
 
             String stProductName = st.substring(0,st.indexOf("+"));
             String stUrl = st.substring(st.indexOf("+")+1,st.length());
+            System.out.println(stProductName.toString());
+            System.out.println(stUrl.toString());
 
            // Products pr = new Products(st, user);
-            Products pr = new Products(stProductName,stUrl , user);
+            Products pr = new Products(stProductName.toString(), stUrl.toString() , user);
 
-            if(chackIfUnique(st)){
+            if(chackIfUnique(stProductName)){
                 entityManager.persist(pr);
                 LOGGER.info(PRODUCTLISTDAO,"Dodano nowy produkt do zapisanych elementów: " + st.toString());
             }else{
@@ -39,10 +41,10 @@ public class ProductListDao {
         }
     }
 
-    private boolean chackIfUnique(String st) {
+    private boolean chackIfUnique(String stProductName) {
         List<Products> allProductsList = getProducts();
         for(Products prod:allProductsList){
-            if(prod.getProduct().equals(st)){
+            if(prod.getProduct().equals(stProductName)){
                 return false;
             }
         }
@@ -54,10 +56,6 @@ public class ProductListDao {
 
             LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
             someName = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
-//
-//        for(Products sn : someName){
-//            System.out.println(sn.getId() + sn.getProduct() + sn.getUser());
-//        }
 
         return someName;
     }
