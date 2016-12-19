@@ -23,21 +23,41 @@ public class ProductListDao {
 
     public void addListProducts(String[] listOfProd, String user) {
         for (String st : listOfProd) {
-            Products pr = new Products(st, user);
 
-            if (!getProducts().contains(pr.getProduct())){
+            String stProductName = st.substring(0,st.indexOf("+"));
+            String stUrl = st.substring(st.indexOf("+")+1,st.length());
+
+           // Products pr = new Products(st, user);
+            Products pr = new Products(stProductName,stUrl , user);
+
+            if(chackIfUnique(st)){
                 entityManager.persist(pr);
                 LOGGER.info(PRODUCTLISTDAO,"Dodano nowy produkt do zapisanych elementów: " + st.toString());
             }else{
-                LOGGER.info(PRODUCTLISTDAO,"Podany produkt już istniejie: " + st.toString());
+                LOGGER.info(PRODUCTLISTDAO, "Podany produkt już istniejie: " + st.toString());
             }
-
         }
     }
 
+    private boolean chackIfUnique(String st) {
+        List<Products> allProductsList = getProducts();
+        for(Products prod:allProductsList){
+            if(prod.getProduct().equals(st)){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public List<Products> getProducts(){
-        LOGGER.info(PRODUCTLISTDAO,"Sprawdzamy listę produktów");
-        List<Products> someName = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
+        List<Products> someName=null;
+
+            LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
+            someName = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
+//
+//        for(Products sn : someName){
+//            System.out.println(sn.getId() + sn.getProduct() + sn.getUser());
+//        }
 
         return someName;
     }

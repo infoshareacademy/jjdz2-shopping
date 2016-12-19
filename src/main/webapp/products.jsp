@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Lista Produktów</title>
+    <title>Szukaj ulubione produkty</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -46,6 +46,7 @@
             <ul class="nav navbar-nav">
                 <li> <a href="#">Home</a></li>
                 <li class="active"><a href="#">Products</a></li>
+                <li><a href="favourites">Favourites</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -56,27 +57,43 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Wygeneruj listę produktów</h3><br>
+    <h3>Znajdź produkty: </h3><br>
 
     <div>
         <form method="post" action="products">
-            Link do Allegro: <input type="text" name="allegroauction"  value="">
+            Kategorie dla Allegro: <input type="text" name="allegroauction"  value="">
             <br />
-            <input type="submit" class="btn btn-default btn-lg" value="GO!">
+            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
         </form>
     </div>
     </br> </br>
     <div>
         <form method="post" action="products">
-            Link do Ebay: <input type="text" name="ebayauction"  value="">
+            Kategorie dla Ebay: <input type="text" name="ebayauction"  value="">
             <br />
-            <input type="submit" class="btn btn-default btn-lg" value="GO!">
+            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
         </form>
     </div>
     </br> </br> </br>
+
+    <!-- list z bazy danych -->
+    </HR>
+    <div>
+        <c:forEach items="${fullListFromDB}" var="flfDB" varStatus="i">
+            <li>
+                <div>
+                    <label>
+                            ${flfDB.id} - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}
+
+                    </label>
+                </div>
+            </li>
+        </c:forEach>
+
+    </div>
     <!-- lista wygenerowanych produktów -->
     <div>
-        <div>Produkty:</div>
+        <div>Ulubione produkty :</div>
         <div>
             <!-- Ebay -->
             <form  method="post" action="products">
@@ -85,7 +102,8 @@
                     <li>
                    <div class="checkbox">
                         <label>
-                            <input type="checkbox" value="${eb.product}" name="listofebayprod[]">${eb.product}</input>
+                            <input type="checkbox" value="${eb.product}+${eb.url}" name="listofebayprod">${eb.product}
+                            </br>${eb.url} </input>
                         </label>
                     </div>
                     </li>
@@ -98,7 +116,8 @@
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="${al.product}" name="listofallegroprod[]">${al.product}</input>
+                                    <input type="checkbox" value="${al.product}+${al.url}" name="listofallegroprod">${al.product}
+                                     </br>${al.url} </input>
                                 </label>
                             </div>
                         </li>
@@ -112,44 +131,6 @@
     </div>
 
 
-    <!-- list z bazy danych -->
-    </HR>
-    <div>
-        <c:forEach items="${fullListFromDB}" var="flfDB" varStatus="i">
-            <li>
-                <div>
-                    <label>
-                        ${flfDB.id} - ${flfDB.product} - ${flfDB.user}
-
-                    </label>
-                </div>
-            </li>
-        </c:forEach>
-
-    </div>
-
-
-<!--
-    ->Cycling
-    ->Winter Sports
-    ->Board & Traditional Games
-    ->Puzzles
-    Lista kategorii PL
-    ->Rowery i akcesoria
-    ->Sprzęt narciarski
-    ->Szachy i inne gry planszowe
-    ->Krzyżówki, gry i zabawy logiczne
-
-    Link  allegro numer 1 http://allegro.pl/some-cat-16414
-    Link  allegro numer 2 http://allegro.pl/some-cat-250626
-    Link  allegro numer 3 http://allegro.pl/some-cat-91102
-    Link  allegro numer 4 http://allegro.pl/some-cat-91103
-
-    Link ebay numer 1 http://www.ebay.com/sch/Cycling
-    Link ebay numer 2 http://www.ebay.com/sch/Winter-Sports
-    Link ebay numer 3 http://www.ebay.com/sch/Board-&-Traditional-Games
-    Link ebay numer 4 http://www.ebay.com/sch/Puzzles
--->
 </div>
 
 

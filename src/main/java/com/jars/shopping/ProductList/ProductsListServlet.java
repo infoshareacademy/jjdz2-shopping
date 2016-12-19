@@ -47,10 +47,10 @@ public class ProductsListServlet extends HttpServlet{
         String allegroauction = req.getParameter("allegroauction");
 
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Ebay");
-        String[] listofebayprod = req.getParameterValues("listofebayprod[]");
+        String[] listofebayprod = req.getParameterValues("listofebayprod");
 
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę wybranych produktów dla Allegro");
-        String[] listofallegroprod = req.getParameterValues("listofallegroprod[]");
+        String[] listofallegroprod = req.getParameterValues("listofallegroprod");
 
         String userName = sessionData.getName();
         if((userName==null)){
@@ -76,12 +76,12 @@ public class ProductsListServlet extends HttpServlet{
         if(ebayauction!=null){
             LOGGER.info(PRODUCTSSERVLET,"Jeżeli istnieje kategoria dla Ebay - pobierz listę produktów");
 
-            List<Products> translatedWordsEbay = serviceEbay.translate(ebayauction);
+            List<Products> translatedWordsEbay = serviceEbay.getProductEbayListFromUrl(ebayauction);
             req.setAttribute("translatedWordsEbay",translatedWordsEbay);
         }else if(allegroauction!=null){
             LOGGER.info(PRODUCTSSERVLET,"Jeżeli istnieje kategoria dla Allegro - pobierz listę produktów");
 
-            List<Products> translatedWordsAllegro = serviceAllegro.translate(allegroauction);
+            List<Products> translatedWordsAllegro = serviceAllegro.getProductAllegroListFromUrl(allegroauction);
             req.setAttribute("translatedWordsAllegro",translatedWordsAllegro);
         }
 
