@@ -34,6 +34,7 @@ public class Products {
 
     public Products(String product, String url, String user) {
         this.product = product;
+        this.url = url;
         this.user = user;
     }
 

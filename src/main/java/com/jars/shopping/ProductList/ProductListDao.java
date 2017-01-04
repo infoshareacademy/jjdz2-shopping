@@ -35,7 +35,7 @@ public class ProductListDao {
                 entityManager.persist(pr);
                 LOGGER.info(PRODUCTLISTDAO,"Dodano nowy produkt do zapisanych elementów: " + st.toString());
             }else{
-                LOGGER.info(PRODUCTLISTDAO, "Podany produkt już istniejie: " + st.toString());
+                LOGGER.info(PRODUCTLISTDAO, "Podany produkt już istnieje: " + st.toString());
             }
         }
     }

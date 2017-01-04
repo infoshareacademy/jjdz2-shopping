@@ -82,7 +82,7 @@
 
             </div>
         </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
+        <input type="submit" class="btn btn-default btn-lg" value="Zmiana >>">
     </form>
 
 
