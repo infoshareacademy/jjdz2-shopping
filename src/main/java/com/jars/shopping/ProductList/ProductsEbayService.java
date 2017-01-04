@@ -39,17 +39,6 @@ public class ProductsEbayService {
         try {
             URL url = new URL(urlString);
             List<Products> allWordsEbay;
-         /*   BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            final Pattern pat = Pattern
-                    .compile("class=\"img\" alt=\'(.*)'");
-
-            List<Products> allWordsEbay = reader.lines()
-                    .map(s -> pat.matcher(s))   // do matching
-                    .filter(Matcher::find)      // filter matches
-                    .map(m -> m.group(m.groupCount())) // extract word
-                    .map(Products::new)
-                    .collect(Collectors.toList());*/
 
             BufferedReader reader1 = new BufferedReader(new InputStreamReader(url.openStream()));
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -59,9 +48,7 @@ public class ProductsEbayService {
                     .compile("class=\"img\" alt=\'(.*)'");
 
             final Pattern pat = Pattern
-                  //  .compile("class=\"img\" alt=\'(.*)'");
-                    //.compile("<h3 class=\"lvtitle\"><a href=\"(.*)\" class=\"vip\" ");
-            .compile("<a href=\"(.*)\" class=\"img imgWr2\">");
+                    .compile("<a href=\"(.*)\" class=\"img imgWr2\">");
 
 
 
@@ -70,21 +57,18 @@ public class ProductsEbayService {
                     .map(s -> pat1.matcher(s))   // do matching
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
-                    //.map(Products::new)
                     .collect(Collectors.toList());
 
             List<String> allWords = reader.lines()
                     .map(s -> pat.matcher(s))   // do matching
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
-                    //.map(Products::new)
                     .collect(Collectors.toList());
 
 
 
             allWordsEbay = Collections.unmodifiableList(
                     IntStream.range(0, allWords.size())
-                            // .filter(i -> i%2==0)
                             .mapToObj(i -> new Products(allWords1.get(i), allWords.get(i)))
                             .collect(Collectors.toList()));
 

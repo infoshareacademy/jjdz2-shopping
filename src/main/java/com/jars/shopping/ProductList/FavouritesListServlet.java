@@ -28,10 +28,10 @@ public class FavouritesListServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-      /*  LOGGER.info(FAVSERVLET,"Pobierz elementy z bazy danych");
+        LOGGER.info(FAVSERVLET,"Pobierz elementy z bazy danych");
 
         List<Products> fullListFromDB = prodLDao.getProducts();
-        req.setAttribute("fullListFromDB",fullListFromDB);*/
+        req.setAttribute("fullListFromDB",fullListFromDB);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/favourites.jsp");

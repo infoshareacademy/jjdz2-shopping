@@ -26,10 +26,9 @@ public class ProductListDao {
 
             String stProductName = st.substring(0,st.indexOf("+"));
             String stUrl = st.substring(st.indexOf("+")+1,st.length());
-            System.out.println(stProductName.toString());
-            System.out.println(stUrl.toString());
+            LOGGER.info(PRODUCTLISTDAO,"Nowy ProductName " + stProductName.toString());
+            LOGGER.info(PRODUCTLISTDAO,"Nowy Url " + stUrl.toString());
 
-           // Products pr = new Products(st, user);
             Products pr = new Products(stProductName.toString(), stUrl.toString() , user);
 
             if(chackIfUnique(stProductName)){

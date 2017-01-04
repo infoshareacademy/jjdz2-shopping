@@ -68,7 +68,6 @@ public class ProductsListServlet extends HttpServlet{
             LOGGER.info(PRODUCTSSERVLET,"Przkaż wybrane produkty z Allegro do bazy danych");
             prodLDao.addListProducts(listofallegroprod, userName);
 
-
             LOGGER.info(PRODUCTSSERVLET,"Wyczyść listę wszystkich produktów z Allegro");
             allegroauction="";
         }
@@ -89,11 +88,9 @@ public class ProductsListServlet extends HttpServlet{
         List<Products> fullListFromDB = prodLDao.getProducts();
         req.setAttribute("fullListFromDB",fullListFromDB);
 
-
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");
         dispatcher.forward(req, resp);
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

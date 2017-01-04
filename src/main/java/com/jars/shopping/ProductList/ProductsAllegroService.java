@@ -1,5 +1,6 @@
 package com.jars.shopping.ProductList;
 
+
 import com.jars.shopping.ReadFilesClasses.ReadCategories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,7 @@ public class ProductsAllegroService {
     @Named("allegroUrl")
     String allegroUrl;
 
+
     public List<Products> getProductAllegroListFromUrl(String input) {
         String catValue = generateValueForAllegro(input);
         List<Products> allWordsAllegro = new ArrayList<>();
@@ -39,22 +41,7 @@ public class ProductsAllegroService {
         final String urlString = String.format(allegroUrl, catValue);
 
         LOGGER.info(PRODALLEGROSERVICE,"URL: " + urlString);
-/*
-*            .compile(".*<a href=\"dict\\?words?=(.*)&lang.*");
 
-            List<String> allWords = reader.lines()
-                    .map(s -> pat.matcher(s))   // do matching
-                    .filter(Matcher::find)      // filter matches
-                    .map(m -> m.group(m.groupCount())) // extract word
-                    .collect(Collectors.toList());
-
-            this.defaults = Collections.unmodifiableList(
-                IntStream.range(0, allWords.size())
-                    .filter(i -> i%2==0)
-                    .mapToObj(i -> new Word(allWords.get(i), allWords.get(i+1)))
-                    .collect(Collectors.toList()));
-
-* */
         try {
             URL url = new URL(urlString);
             BufferedReader reader1 = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -72,21 +59,16 @@ public class ProductsAllegroService {
                     .map(s -> pat1.matcher(s))   // do matching
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
-                    //.map(Products::new)
                     .collect(Collectors.toList());
 
             List<String> allWords = reader.lines()
                     .map(s -> pat.matcher(s))   // do matching
                     .filter(Matcher::find)      // filter matches
                     .map(m -> m.group(m.groupCount())) // extract word
-                    //.map(Products::new)
                     .collect(Collectors.toList());
-
-
 
             allWordsAllegro = Collections.unmodifiableList(
                     IntStream.range(0, allWords.size())
-                           // .filter(i -> i%2==0)
                             .mapToObj(i -> new Products(allWords1.get(i), allWords.get(i)))
                             .collect(Collectors.toList()));
 
