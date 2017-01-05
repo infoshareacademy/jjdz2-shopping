@@ -81,16 +81,6 @@ public class ReadCategories {
         }
     }
 
-
-    /**
-     *
-     * public String readResource(final String fileName, Charset charset) throws IOException {
-     return Resources.toString(Resources.getResource(fileName), charset);
-     }
-
-     String fixture = this.readResource("filename.txt", Charsets.UTF_8)
-     * Getter & Setterr
-     */
     public List<Category> getCategories() {
         //Return ALL categories from XML file
         LOGGER.info(READ_CATEGORIES,"PREPARE list of categories from Allegro's xml file");

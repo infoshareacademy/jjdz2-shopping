@@ -17,7 +17,7 @@ public class ProductsEbayServiceTest {
     public void testTranslate() throws Exception {
         ProductsEbayService productsEbayService = new ProductsEbayService();
         productsEbayService.ebayUrl = "http://www.ebay.com/sch/%s";
-        List<Products> listOfProducts = productsEbayService.translate("Puzzles");
+        List<Products> listOfProducts = productsEbayService.getProductEbayListFromUrl("Puzzles");
 
         assertNotNull(listOfProducts.size());
     }
