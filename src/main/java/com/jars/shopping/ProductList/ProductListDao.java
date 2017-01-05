@@ -51,12 +51,12 @@ public class ProductListDao {
     }
 
     public List<Products> getProducts(){
-        List<Products> someName=null;
+        List<Products> productListFromDB=null;
 
             LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
-            someName = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
+            productListFromDB = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
 
-        return someName;
+        return productListFromDB;
     }
 
 }
