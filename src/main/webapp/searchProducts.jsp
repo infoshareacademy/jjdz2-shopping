@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="Shortcut icon" href="http://1.bp.blogspot.com/_qxNvBPirDY4/S6SogyHzSYI/AAAAAAAAACI/1LaUy9AAilc/s320/shopping.jpg" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
@@ -38,24 +39,52 @@
 
 <body>
 
+<%--Navbar--%>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Home</a>
+            <a class="navbar-brand" href="#">Products</a>
+            <a class="navbar-brand" href="#">Favourite</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Questionnaire</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <form method="post" action="/searchProducts">
-<div>
-    <select id="service_id" name="service_id">
+    <table class="item-table">
+        <div class="container-fluid bg-2 text-center">
+        <div class="col-sm-6">
+    <div>
+    <select id="serviceId" name="serviceId">
         <option value="1">Ebay</option>
         <option value="2">Allegro</option>
     </select>
-    <input id="term" name="term" type="text"/>
-</div>
+    <input id="list" name="list" type="text"/>
+
+    </div>
 
 <script>
     $(function () {
-        $("#term").autocomplete({
+        $("#list").autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/searchProducts",
+                    url: "/productList",
                     data: {
                         term: request.term,
-                        service_id: $("#service_id").val()
+                        serviceId: $("#serviceId").val()
                     },
                     success: function( data ) {
                         response( data );
@@ -67,6 +96,9 @@
         });
     });
 </script>
+        </div>
+        </div>
+    </table>
 </form>
 
 </body>

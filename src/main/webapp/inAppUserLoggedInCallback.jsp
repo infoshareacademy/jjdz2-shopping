@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Facebook callback</title>
+    <title>In app logged in callback</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -39,11 +39,14 @@
 
 <div align="center">
     <h1> Hey,  ${name}</h1>
-    <p> You've been successfully logged in with Facebook</p>
-    <p> Rock 'n' Roll !</p>
+    <p> You've been successfully logged in</p>
+    <p> You created your profile using in-app funcionality</p>
+    <p> You rock! ! ! </p>
 </div>
 
-<div align="center"><a href="/" class="btn btn-success btn-lg btn-block"> Go to Main Page </a></div>
+
+<div align="center"><a class="carousel-caption"  href="/"> Go to Main Page </a></div>
+
 
 </body>
 </html>

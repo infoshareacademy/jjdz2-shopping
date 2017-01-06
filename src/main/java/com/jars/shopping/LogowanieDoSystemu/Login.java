@@ -30,7 +30,6 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        userDao.saveUserInDataBase(new User("krzysiek", "password", "InAppCreate", true));
         String welcome = "Welcome to the login page";
         req.setAttribute("welcome", welcome);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/login.jsp");
