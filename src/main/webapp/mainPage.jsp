@@ -43,25 +43,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
-
                 <li class="active"><a href="/favourites">Favourites</a></li>
-
-                <li> <a href="/searchProducts">Search Products</a></li>
-                <li> <a href="/webForm"> Web Form</a></li>
+                <li><a href="/searchProducts">Search Products</a></li>
+                <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
-
         </div>
     </div>
+    <%--
+        <div align="center">
+            <img src="team.jpg">
+        </div>--%>
+
 </nav>
+
 
 </body>
 
