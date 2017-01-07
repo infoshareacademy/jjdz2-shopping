@@ -34,6 +34,10 @@ public class ProductListServlet extends HttpServlet {
 
         ArrayList<String> catList = new ArrayList<String>();
         ArrayList<String> dropList = new ArrayList<String>();
+//        catList.add("stro");
+//        catList.add("stri");
+//        catList.add("strn");
+//        catList.add("strom");
 
         for (String s:catList
              ) {

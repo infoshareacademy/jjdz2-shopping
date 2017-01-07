@@ -96,6 +96,13 @@
         });
     });
 </script>
+            <script>
+                $(document).ready(function () {
+                    $('#list').on('autocompletechange change', function () {
+                        $('#list').html('You selected: ' + this.value);
+                    }).change();
+                });
+            </script>
         </div>
         </div>
     </table>
