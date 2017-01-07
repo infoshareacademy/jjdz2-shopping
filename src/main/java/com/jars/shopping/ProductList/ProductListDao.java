@@ -24,17 +24,17 @@ public class ProductListDao {
     public void addListProducts(String[] listOfProd, String user) {
         for (String st : listOfProd) {
 
-            String stProductName = st.substring(0,st.indexOf("+"));
-            String stUrl = st.substring(st.indexOf("+")+1,st.length());
-            LOGGER.info(PRODUCTLISTDAO,"Nowy ProductName " + stProductName.toString());
-            LOGGER.info(PRODUCTLISTDAO,"Nowy Url " + stUrl.toString());
+            String stProductName = st.substring(0, st.indexOf("+"));
+            String stUrl = st.substring(st.indexOf("+") + 1, st.length());
+            LOGGER.info(PRODUCTLISTDAO, "Nowy ProductName " + stProductName.toString());
+            LOGGER.info(PRODUCTLISTDAO, "Nowy Url " + stUrl.toString());
 
-            Products pr = new Products(stProductName.toString(), stUrl.toString() , user);
+            Products pr = new Products(stProductName.toString(), stUrl.toString(), user);
 
-            if(chackIfUnique(stProductName)){
+            if (chackIfUnique(stProductName)) {
                 entityManager.persist(pr);
-                LOGGER.info(PRODUCTLISTDAO,"Dodano nowy produkt do zapisanych elementów: " + st.toString());
-            }else{
+                LOGGER.info(PRODUCTLISTDAO, "Dodano nowy produkt do zapisanych elementów: " + st.toString());
+            } else {
                 LOGGER.info(PRODUCTLISTDAO, "Podany produkt już istnieje: " + st.toString());
             }
         }
@@ -42,24 +42,23 @@ public class ProductListDao {
 
     private boolean chackIfUnique(String stProductName) {
         List<Products> allProductsList = getProducts();
-        for(Products prod:allProductsList){
-            if(prod.getProduct().equals(stProductName)){
+        for (Products prod : allProductsList) {
+            if (prod.getProduct().equals(stProductName)) {
                 return false;
             }
         }
         return true;
     }
 
-    public void delProductByUrl(String url){
-
-        int cos = entityManager.createNamedQuery(Products.DEL_PRODUCT_BY_URL).setParameter("urlToDel", url).executeUpdate();
+    public void delProductByUrl(String url) {
+        entityManager.createNamedQuery(Products.DEL_PRODUCT_BY_URL).setParameter("urlToDel", url).executeUpdate();
     }
 
-    public List<Products> getProducts(){
-        List<Products> productListFromDB=null;
+    public List<Products> getProducts() {
+        List<Products> productListFromDB = null;
 
-            LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
-            productListFromDB = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
+        LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
+        productListFromDB = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();
 
         return productListFromDB;
     }

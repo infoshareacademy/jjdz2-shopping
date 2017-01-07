@@ -29,9 +29,9 @@ public class FavouritesListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         LOGGER.info(FAVSERVLET, "Pobierz wybrane urle do usuniecia");
-        String[] listofurls = req.getParameterValues("listofurls");
-        if(listofurls!=null) {
-            for (String lUrls : listofurls) {
+        String[] listOfUrls = req.getParameterValues("listofurls");
+        if(listOfUrls!=null) {
+            for (String lUrls : listOfUrls) {
                 LOGGER.info(FAVSERVLET, "Url do usuniecia " + lUrls);
                 prodLDao.delProductByUrl(lUrls);
             }
