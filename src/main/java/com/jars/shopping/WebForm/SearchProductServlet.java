@@ -1,6 +1,13 @@
 package com.jars.shopping.WebForm;
 
+import com.jars.shopping.POJOs.models.OptionsOfAnswers;
+import com.jars.shopping.POJOs.models.Question;
+import com.jars.shopping.POJOs.models.Questionary;
 import com.jars.shopping.Statistics.NewStatisticUpdateEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 import javax.ejb.EJB;
 import javax.enterprise.event.Event;
@@ -19,6 +26,9 @@ import java.util.List;
 @WebServlet(urlPatterns = "/searchProducts")
 public class SearchProductServlet extends HttpServlet{
 
+    @EJB
+    Questionary questionary;
+
     @Inject
     Event<NewStatisticUpdateEvent> event;
 
@@ -27,6 +37,9 @@ public class SearchProductServlet extends HttpServlet{
 
     private List<String> allegro = new ArrayList<String>();
     private List<String> ebay = new ArrayList<String>();
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchProductServlet.class);
+    private static final Marker PARAMETERS = MarkerFactory.getMarker("PARAMETERS");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -40,12 +53,27 @@ public class SearchProductServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Integer i = Integer.parseInt(req.getParameter("size"));
+        List <Question> questions = questionary.getQuestions();
 
-        for (Integer j=0; j<i; j++ ) {
-            event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
-            //allegro.add(req.getParameter(""))
+        for (Integer j=0; j<i; j++) {
+
+            for (OptionsOfAnswers opt:questions.get(j).getOptions()
+                 ) {
+                if (opt.getLabel().equals(req.getParameter("radios-"+j.toString()))){
+                    for (String c: opt.getCategories().getPl()
+                         ) {
+                        allegro.add(c);
+                    }
+                    for (String c: opt.getCategories().getEn()
+                            ) {
+                        ebay.add(c);
+                    }
+                }
+
+            }
+           event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+            chosenCategoriesEvent.fire(new ChosenCategories(allegro, ebay));
         }
-
 
         resp.setContentType("application/json; charset=UTF-8");
         RequestDispatcher dispatcher = req.getRequestDispatcher("/searchProducts.jsp");
