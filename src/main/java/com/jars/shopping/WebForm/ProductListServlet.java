@@ -1,5 +1,7 @@
 package com.jars.shopping.WebForm;
 
+import com.google.gson.Gson;
+import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -11,6 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import org.json.simple.JSONObject;
+
 
 @WebServlet(urlPatterns = "/productList")
 public class ProductListServlet extends HttpServlet {
@@ -25,9 +31,20 @@ public class ProductListServlet extends HttpServlet {
         String id = req.getParameter("serviceId");
         LOGGER.info(PARAMETERS, term + " " + id);
         resp.setContentType("application/json; charset=UTF-8");
-        resp.getWriter().write("[{\"id\": \"Siema\", \"label\": \"siema_label\", \"value\": \"siema_val\"}," +
-                "{\"id\": \"ola\", \"label\": \"ola_label\", \"value\": \"ola_value\"}]");
 
+        ArrayList<String> catList = new ArrayList<String>();
+        ArrayList<String> dropList = new ArrayList<String>();
+
+        for (String s:catList
+             ) {
+            if (s.startsWith(term)){
+                dropList.add(s);
+            }
+        }
+
+        String json = new Gson().toJson(dropList);
+
+        resp.getWriter().write(json);
 
     }
 }
