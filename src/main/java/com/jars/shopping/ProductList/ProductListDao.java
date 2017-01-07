@@ -50,6 +50,11 @@ public class ProductListDao {
         return true;
     }
 
+    public void delProductByUrl(String url){
+
+        int cos = entityManager.createNamedQuery(Products.DEL_PRODUCT_BY_URL).setParameter("urlToDel", url).executeUpdate();
+    }
+
     public List<Products> getProducts(){
         List<Products> productListFromDB=null;
 

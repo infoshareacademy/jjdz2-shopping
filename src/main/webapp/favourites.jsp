@@ -72,7 +72,7 @@
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="${flfDB.product}" name="listofebayprod">${flfDB.id}</br>
+                                <input type="checkbox" value="${flfDB.url}" name="listofurls">${flfDB.id}</br>
                                 - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}</input>
                             </label>
                         </div>
@@ -82,9 +82,9 @@
 
             </div>
         </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Zmiana >>">
+        <input type="submit" class="btn btn-default btn-lg" value="Usun >>">
     </form>
-
+</div>
 
 </body>
 
