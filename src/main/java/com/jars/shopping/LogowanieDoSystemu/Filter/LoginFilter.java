@@ -45,6 +45,7 @@ public class LoginFilter implements Filter {
                 (!req.contains("/facebook")) &&
                 (!req.contains("/twitter")) &&
                 (!req.contains("/twittercallback")) &&
+                (!req.contains("/")) &&
                 (!req.contains("/facebookcallback"))
 
 
