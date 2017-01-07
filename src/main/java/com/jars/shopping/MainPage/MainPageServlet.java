@@ -10,7 +10,7 @@ import java.io.IOException;
 
 
 @WebServlet(urlPatterns = "/")
-public class MainPage extends HttpServlet {
+public class MainPageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
