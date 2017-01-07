@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +30,10 @@ public class CategoryToListOfProducts {
        /// categoriesEN.add("CAT"); categoriesEN.add("DOG");
 
 
-       List<Products> newAllProductsList = null;
+       List<Products> newAllProductsList = new ArrayList<>();
 
         for(String nameCatE : event.getEbay()){
-            newAllProductsList.addAll(serviceEbay.getProductEbayListFromUrl(nameCatE.toString()));
+//            newAllProductsList.addAll(serviceEbay.getProductEbayListFromUrl(nameCatE.toString()));
         }
 
         for(String nameCatA : event.getAllegro()) {
