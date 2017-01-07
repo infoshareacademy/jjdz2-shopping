@@ -20,9 +20,9 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/adminPanel")
-public class AdminPanel extends HttpServlet {
+public class AdminPanelServlet extends HttpServlet {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(AdminPanel.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(AdminPanelServlet.class);
     public static final Marker ADMINPANEL = MarkerFactory.getMarker("ADMIN_PANEL ");
 
     @Inject
