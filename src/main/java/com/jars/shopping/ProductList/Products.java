@@ -19,20 +19,28 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String product;
+    private String url;
     private String user;
 
     public Products() {
     }
 
-    public Products(String product, String user) {
+    public Products(String product, String url){
         this.product = product;
+        this.url = url;
+    }
+
+    public Products(String product, String url, String user) {
+        this.product = product;
+        this.url = url;
         this.user = user;
     }
 
     @Override
     public String toString() {
-        return "Products{" + "product='" + product + "'" + " user='" + user + '}' + '\'';
+        return "Products{" + "product='" + product + "'" + " url='" + url + "'" + " user='" + user + '}' + '\'';
     }
 
     public String getProduct() {
@@ -62,5 +70,13 @@ public class Products {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

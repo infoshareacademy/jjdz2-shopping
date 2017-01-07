@@ -86,15 +86,15 @@
                     <div class="col-sm-6">
                         <h3>${item.title} </h3>
                         <input type="hidden" name="question-${i.index}" value="${item.title}"/>
-                        <input TYPE="radio" NAME="radios-${i.index}" VALUE="${item.options.get(0).label}"
-                               CHECKED> ${item.options.get(0).label}
-                        <BR>
-                        <input TYPE="radio" NAME="radios-${i.index}"
-                               VALUE="${item.options.get(1).label}"> ${item.options.get(1).label}
-                        <BR>
-                        <input TYPE="radio" NAME="radios-${i.index}"
-                               VALUE="${item.options.get(2).label}"> ${item.options.get(2).label}
-                        <BR>
+                        <input type="radio" name="radios-${i.index}" value="${item.options.get(0).label}"
+                               checked> ${item.options.get(0).label}
+                        <br>
+                        <input type="radio" name="radios-${i.index}"
+                               value="${item.options.get(1).label}"> ${item.options.get(1).label}
+                        <br>
+                        <input type="radio" name="radios-${i.index}"
+                               value="${item.options.get(2).label}"> ${item.options.get(2).label}
+                        <br>
                     </div>
                 </div>
             </tr>

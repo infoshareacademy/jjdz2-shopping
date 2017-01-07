@@ -43,9 +43,7 @@
     <p> Rock 'n' Roll !</p>
 </div>
 
-
-<div align="center"><a class="carousel-caption"  href="/"> Go to Main Page </a></div>
-
+<div align="center"><a href="/" class="btn btn-success btn-lg btn-block"> Go to Main Page </a></div>
 
 </body>
 </html>
