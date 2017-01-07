@@ -44,12 +44,12 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li> <a href="#">Home</a></li>
-                <li class="active"><a href="#">Products</a></li>
-                <li><a href="favourites">Favourites</a></li>
+                <li> <a href="/">Home</a></li>
+                <li class="active"><a href="/products">Products</a></li>
+                <li><a href="/favourites">Favourites</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
             </ul>
         </div>
     </div>
