@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/favourites")
-public class FavouritesListServlet extends HttpServlet{
+public class FavouritesListServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(FavouritesListServlet.class);
     private static final Marker FAVSERVLET = MarkerFactory.getMarker("FAVOURITES_SERVLET");
 
@@ -28,10 +28,18 @@ public class FavouritesListServlet extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        LOGGER.info(FAVSERVLET,"Pobierz elementy z bazy danych");
+        LOGGER.info(FAVSERVLET, "Pobierz wybrane urle do usuniecia");
+        String[] listOfUrls = req.getParameterValues("listofurls");
+        if(listOfUrls!=null) {
+            for (String lUrls : listOfUrls) {
+                LOGGER.info(FAVSERVLET, "Url do usuniecia " + lUrls);
+                prodLDao.delProductByUrl(lUrls);
+            }
+        }
+        LOGGER.info(FAVSERVLET, "Pobierz elementy z bazy danych");
 
         List<Products> fullListFromDB = prodLDao.getProducts();
-        req.setAttribute("fullListFromDB",fullListFromDB);
+        req.setAttribute("fullListFromDB", fullListFromDB);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/favourites.jsp");
@@ -43,10 +51,10 @@ public class FavouritesListServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-        LOGGER.info(FAVSERVLET,"Pobierz elementy z bazy danych");
+        LOGGER.info(FAVSERVLET, "Pobierz elementy z bazy danych");
 
         List<Products> fullListFromDB = prodLDao.getProducts();
-        req.setAttribute("fullListFromDB",fullListFromDB);
+        req.setAttribute("fullListFromDB", fullListFromDB);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/favourites.jsp");
         dispatcher.forward(req, resp);

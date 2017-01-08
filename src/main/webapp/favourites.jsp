@@ -47,12 +47,16 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="products.jsp">Products</a></li>
-                <li class="active"><a href="favourites.jsp">Favourites</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li class="active"><a href="/favourites">Favourites</a></li>
+                <li><a href="/searchProducts">Search Products</a></li>
+                <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                </form></li>
             </ul>
         </div>
     </div>
@@ -72,7 +76,7 @@
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="${flfDB.product}" name="listofebayprod">${flfDB.id}</br>
+                                <input type="checkbox" value="${flfDB.url}" name="listofurls">${flfDB.id}</br>
                                 - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}</input>
                             </label>
                         </div>
@@ -82,9 +86,9 @@
 
             </div>
         </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Zmiana >>">
+        <input type="submit" class="btn btn-default btn-lg" value="Usun >>">
     </form>
-
+</div>
 
 </body>
 

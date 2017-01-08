@@ -44,12 +44,16 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li> <a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li class="active"><a href="/products">Products</a></li>
                 <li><a href="/favourites">Favourites</a></li>
+                <li><a href="/searchProducts">Search Products</a></li>
+                <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                </form></li>
             </ul>
         </div>
     </div>
