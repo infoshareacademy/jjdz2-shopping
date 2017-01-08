@@ -41,14 +41,11 @@ public class ProductListServlet extends HttpServlet {
         String term = req.getParameter("term");
         String id = req.getParameter("serviceId");
         LOGGER.info(PARAMETERS, term + " " + id);
-        resp.setContentType("application/json; charset=UTF-8");
-
-//        ProperProducts properProducts = new ProperProducts();
 
         Map<String, String> productList= properProducts.getProductList();
         Map<String, String> productSubList = new HashMap<>();
 
-        System.out.println("pusty?" + properProducts.getProductList());
+        LOGGER.info("pusty?" + properProducts.getProductList());
 
 
         for (Map.Entry<String, String> s:productList.entrySet()) {
@@ -59,6 +56,7 @@ public class ProductListServlet extends HttpServlet {
 
         String json = new Gson().toJson(productSubList);
 
+        resp.setContentType("application/json; charset=UTF-8");
         resp.getWriter().write(json);
 
     }

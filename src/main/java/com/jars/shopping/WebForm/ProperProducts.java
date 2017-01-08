@@ -15,7 +15,7 @@ public class ProperProducts {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProperProducts.class);
 
 
-    public Map<String, String> productList = new HashMap<>();
+    private Map<String, String> productList = new HashMap<>();
 
     public Map<String, String> getProductList() {
         return productList;

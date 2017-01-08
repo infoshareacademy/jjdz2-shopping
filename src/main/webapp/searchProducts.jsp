@@ -82,13 +82,14 @@
 
 <script>
     $(function () {
+        var serviceSelect = $("#serviceId");
         $("#list").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/productList",
                     data: {
                         term: request.term,
-                        serviceId: $("#serviceId").val()
+                        serviceId: serviceSelect.val()
                     },
                     success: function( data ) {
                         response( data );
@@ -96,8 +97,15 @@
                 });
             },
             select: function(e, ui) {
+                $.ajax({
+                    url: '/nowyServlet',
+                    data: {
+                        key: ui.item.value
+                    }
+
+                });
                 console.log(e);
-                console.log(ui);
+                console.log(ui.value);
             },
             minLength: 3
 
@@ -105,13 +113,6 @@
     });
 </script>
 
-            <%--<script>--%>
-                <%--$(document).ready(function () {--%>
-                    <%--$('#list').on('autocompletechange change', function () {--%>
-                        <%--$('#list').html('You selected: ' + this.value);--%>
-                    <%--}).change();--%>
-                <%--});--%>
-            <%--</script>--%>
         </div>
         </div>
     </table>
