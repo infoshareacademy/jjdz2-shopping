@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-<%--Navbar--%>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -47,24 +47,58 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/">Home</a></li>
                 <li><a href="/products">Products</a></li>
-                <li class="active"><a href="/favourites">Favourites</a></li>
+                <li><a href="/favourites">Favourites</a></li>
                 <li><a href="/searchProducts">Search Products</a></li>
                 <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-            </ul>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                </form></li>  </ul>
         </div>
     </div>
-    <%--
-        <div align="center">
-            <img src="team.jpg">
-        </div>--%>
+</nav>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Hello web app :) </h1>
+        <p> JARS Inc. presents :)</p>
+        <p> Please log in to gain access to full power of this wonderful app. Only for limited time, this app is available absolutely for free,
+        don't let others take your spot on this extremely proffessionally written app</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 JARS Inc.</p>
+      </footer>
+    </div> <!-- /container -->
 
 </nav>
-
 
 </body>
 

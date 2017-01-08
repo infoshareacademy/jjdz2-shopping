@@ -48,16 +48,20 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Home</a>
-            <a class="navbar-brand" href="/products">Products</a>
-            <a class="navbar-brand" href="/favourites">Favourite</a>
+            <a class="navbar-brand" href="#">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/webForm">Questionnaire</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/favourites">Favourites</a></li>
+                <li class="active"><a href="/searchProducts">Search Products</a></li>
+                <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                </form></li>
             </ul>
         </div>
     </div>
