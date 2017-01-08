@@ -43,48 +43,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="products.jsp">Products</a></li>
-                <li class="active"><a href="favourites.jsp">Favourites</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li class="active"><a href="/favourites">Favourites</a></li>
+                <li><a href="/searchProducts">Search Products</a></li>
+                <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </div>
+    <%--
+        <div align="center">
+            <img src="team.jpg">
+        </div>--%>
+
 </nav>
 
-<%--Just text container--%>
-<div class="container text-center">
-    <h3>Ulubione produkty </h3><br>
-
-    <!-- list z bazy danych -->
-    </HR>
-    <form method="post" action="favourites">
-        <ul class="list-group">
-            <div>
-                <c:forEach items="${fullListFromDB}" var="flfDB" varStatus="i">
-                    <li>
-
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="${flfDB.url}" name="listofurls">${flfDB.id}</br>
-                                - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}</input>
-                            </label>
-                        </div>
-
-                    </li>
-                </c:forEach>
-
-            </div>
-        </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Usun >>">
-    </form>
-</div>
 
 </body>
 

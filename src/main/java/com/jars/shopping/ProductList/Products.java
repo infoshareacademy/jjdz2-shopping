@@ -8,12 +8,18 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name= Products.GET_PRODUCTS_LIST,
+        @NamedQuery(name = Products.GET_PRODUCTS_LIST,
                 query = "select p " +
-                        "from Products p")
+                        "from Products p"),
+        @NamedQuery(name = Products.DEL_PRODUCT_BY_URL,
+                query = "delete " +
+                        "from Products AS p " +
+                        "where p.url=:urlToDel")
 })
+
 public class Products {
     final public static String GET_PRODUCTS_LIST = "Products.GET_PRODUCTS_LIST";
+    final public static String DEL_PRODUCT_BY_URL = "Products.DEL_PRODUCT_BY_URL";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +33,7 @@ public class Products {
     public Products() {
     }
 
-    public Products(String product, String url){
+    public Products(String product, String url) {
         this.product = product;
         this.url = url;
     }

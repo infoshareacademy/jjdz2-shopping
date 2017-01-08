@@ -45,9 +45,9 @@ public class LoginFilter implements Filter {
                 (!req.contains("/facebook")) &&
                 (!req.contains("/twitter")) &&
                 (!req.contains("/twittercallback")) &&
+                (!req.equals("/")) &&
+                (!req.equals("/team.jpg")) &&
                 (!req.contains("/facebookcallback"))
-
-
                 ) {
             if (!sessionData.isLogged()) {
 
