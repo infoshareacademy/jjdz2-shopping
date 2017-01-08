@@ -29,8 +29,8 @@ import org.json.simple.JSONObject;
 @WebServlet(urlPatterns = "/productList")
 public class ProductListServlet extends HttpServlet {
 
-//    @EJB
-//    ProperProducts properProducts;
+    @EJB
+    ProperProducts properProducts;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductListServlet.class);
     private static final Marker PARAMETERS = MarkerFactory.getMarker("PARAMETERS");
@@ -43,7 +43,7 @@ public class ProductListServlet extends HttpServlet {
         LOGGER.info(PARAMETERS, term + " " + id);
         resp.setContentType("application/json; charset=UTF-8");
 
-        ProperProducts properProducts = new ProperProducts();
+//        ProperProducts properProducts = new ProperProducts();
 
         Map<String, String> productList= properProducts.getProductList();
         Map<String, String> productSubList = new HashMap<>();
