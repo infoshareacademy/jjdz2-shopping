@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Log in</title>
+    <title>Twitter callback</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -41,29 +41,18 @@
 </head>
 <body>
 
-<div class="container" align="center">
-    <h1 class="lead"> Log in </h1>
+<div align="center">
+    <h1> Hey, ${name}</h1>
+    <p> You've been successfully logged in with Twitter</p>
+    <p> Rock 'n' Roll !</p>
+</div>
+
+<div align="center"><a href="/" class="btn btn-success btn-lg btn-block"> Go to Main Page </a></div>
+
+
 </div>
 
 
-
-<div class="container" align="center" >
-    <form method="post" action="logUser">
-        login : <input type="text" name="username">
-        password: <input type="password" name="password"><br>
-        <input type="submit" value="logUser" class="btn btn-primary btn-lg">
-    </form>
-    <div class="container">
-        <a href="/createUser"><img height="250" width="250" class="img-rounded"
-                                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/New_user_icon-01.svg/2000px-New_user_icon-01.svg.png"></a>
-        <a href="/twitter"> <img src="https://g.twimg.com/about/feature-corporate/image/twitterbird_RGB.png"
-                                 height="150" width="150" class="img-circle"></a>
-        <a href="/facebook"><img src="https://www.facebook.com/images/fb_icon_325x325.png" height="150" width="150"
-                                 class="img-circle"></a>
-
-    </div>
-
-</div>
 </body>
 </html>
 

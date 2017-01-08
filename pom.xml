@@ -13,22 +13,69 @@
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <wildfly.adminUsername>admin</wildfly.adminUsername>
+        <wildfly.adminPassword>admin123</wildfly.adminPassword>
+        <wildfly.add-user>${wildfly.adminUsername}:${wildfly.adminPassword}:group:ManagementRealm:false</wildfly.add-user>
+
+        <!-- mysql -->
+        <version.mysql>5.1.37</version.mysql>
+        <jdbc.datasource>java:jboss/datasources/MySQLDS</jdbc.datasource>
+        <mysql.connection.url>jdbc:mysql://localhost:3306/test??useUnicode=yes&amp;characterE
+            ncoding=UTF-8</mysql.connection.url>
+        <mysql.username>root</mysql.username>
+        <mysql.password>root</mysql.password>
     </properties>
 
     <build>
         <finalName>ROOT</finalName>
         <plugins>
             <plugin>
-                    <groupId>org.wildfly.plugins</groupId>
-                    <artifactId>wildfly-maven-plugin</artifactId>
-                    <version>1.1.0.Alpha11</version>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>1.1.0.Alpha11</version>
+                <configuration>
+                    <username>${wildfly.adminUsername}</username>
+                    <password>${wildfly.adminPassword}</password>
+                    <beforeDeployment>
+                        <commands>
+                            <command>
+                                module add
+                                --name=com.mysql
+                                --resources=${settings.localRepository}/mysql/mysql-connector-java/${version.mysql}/mysql-connector-java-${version.mysql}.jar
+                                --dependencies=javax.api,javax.transaction.api
+                            </command>
+                            <command>
+                                /subsystem=datasources/jdbc-driver=mysql:add(
+                                driver-name=mysql,
+                                driver-module-name=com.mysql,
+                                driver-xa-datasource-class-name=com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+                                )
+                            </command>
+                            <command>
+                                data-source add
+                                --jndi-name=${jdbc.datasource}
+                                --name=MySQLPool
+                                --connection-url=${mysql.connection.url}
+                                --driver-name=mysql
+                                --user-name=${mysql.username}
+                                --password=${mysql.password}
+                            </command>
+                        </commands>
+                    </beforeDeployment>
+                </configuration>
             </plugin>
-
         </plugins>
-
     </build>
 
+
+
     <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${version.mysql}</version>
+        </dependency>
      <dependency>
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-databind</artifactId>
@@ -56,5 +103,53 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-core</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-apis</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <!-- Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+
  </dependencies>
 </project>

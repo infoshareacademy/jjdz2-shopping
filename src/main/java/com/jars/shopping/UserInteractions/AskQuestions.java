@@ -4,23 +4,37 @@ import com.jars.shopping.POJOs.models.OfferedCategories;
 import com.jars.shopping.POJOs.models.OptionsOfAnswers;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
+import javax.ejb.Stateless;
 import java.util.*;
 
+@Stateless
 public class AskQuestions {
 
     List<Question> questionList;
     List<OptionsOfAnswers> optionsList;
     List<OfferedCategories> answersList;
     Scanner scanner = new Scanner(System.in);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AskQuestions.class);
+    private static final Marker ASK_QUESTIONS = MarkerFactory.getMarker("ASK QUESTIONS");
 
     public void startAsking() {
-
+        LOGGER.info(ASK_QUESTIONS,"Start asking questions!");
         Questionary questionary = new Questionary();
+
+        LOGGER.info(ASK_QUESTIONS,"Prepare question list");
         questionList = new ArrayList<>();
+        LOGGER.info(ASK_QUESTIONS,"Prepare options list");
         optionsList = new ArrayList<>();
+        LOGGER.info(ASK_QUESTIONS,"Prepare answers list");
         answersList = new ArrayList<>();
         questionList = questionary.getQuestions();
+
+        LOGGER.info(ASK_QUESTIONS,"Print possible options");
         for (Question q : questionList) {
 
             System.out.println(q.getTitle());
@@ -46,6 +60,7 @@ public class AskQuestions {
     }
 
     private void printOutResultsOfAnswers() {
+        LOGGER.info(ASK_QUESTIONS,"Print results");
         System.out.println("************************");
         System.out.println("**** REZULTATY *********");
         System.out.println("************************");

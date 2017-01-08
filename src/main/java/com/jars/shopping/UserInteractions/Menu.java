@@ -1,10 +1,20 @@
 package com.jars.shopping.UserInteractions;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
+
 import java.util.Scanner;
 
 public class Menu {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Menu.class);
+    private static final Marker MENU_MARKER = MarkerFactory.getMarker("MENU");
+
+
     public void displayWelcomeScreen() {
+        LOGGER.info(MENU_MARKER,"Display welcome Screen");
         System.out.println("\n\n************************************");
         System.out.println("*****  J  A  R  S  ******2016*******");
         System.out.println("************************************\n\n");
