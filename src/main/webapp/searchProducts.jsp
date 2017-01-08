@@ -95,18 +95,23 @@
                     }
                 });
             },
+            select: function(e, ui) {
+                console.log(e);
+                console.log(ui);
+            },
             minLength: 3
 
         });
     });
 </script>
-            <script>
-                $(document).ready(function () {
-                    $('#list').on('autocompletechange change', function () {
-                        $('#list').html('You selected: ' + this.value);
-                    }).change();
-                });
-            </script>
+
+            <%--<script>--%>
+                <%--$(document).ready(function () {--%>
+                    <%--$('#list').on('autocompletechange change', function () {--%>
+                        <%--$('#list').html('You selected: ' + this.value);--%>
+                    <%--}).change();--%>
+                <%--});--%>
+            <%--</script>--%>
         </div>
         </div>
     </table>

@@ -1,5 +1,6 @@
 package com.jars.shopping.WebForm;
 
+import com.jars.shopping.LogowanieDoSystemu.SessionData.SessionData;
 import com.jars.shopping.POJOs.models.OptionsOfAnswers;
 import com.jars.shopping.POJOs.models.Question;
 import com.jars.shopping.POJOs.models.Questionary;
@@ -34,6 +35,9 @@ public class SearchProductServlet extends HttpServlet{
 
     @Inject
     Event<ChosenCategories> chosenCategoriesEvent;
+
+    @Inject
+    SessionData sessionData;
 
     private List<String> allegro = new ArrayList<String>();
     private List<String> ebay = new ArrayList<String>();
@@ -71,7 +75,7 @@ public class SearchProductServlet extends HttpServlet{
                 }
 
             }
-           event.fire(new NewStatisticUpdateEvent("user",req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+           event.fire(new NewStatisticUpdateEvent(sessionData.getName(), req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
             chosenCategoriesEvent.fire(new ChosenCategories(allegro, ebay));
         }
 
