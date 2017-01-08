@@ -53,6 +53,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+<<<<<<< HEAD
             <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="home" /></a>
             <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="products" /></a>
             <a class="navbar-brand" href="#"><fmt:message bundle="${msg}" key="fav" /></a>
@@ -65,6 +66,22 @@
                 <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
                 <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span><fmt:message bundle="${msg}" key="logout" /></a></li>
+=======
+            <a class="navbar-brand" href="#">Logo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/favourites">Favourites</a></li>
+                <li><a href="/searchProducts">Search Products</a></li>
+                <li class="active"><a href="/webForm"> Web Form</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                </form></li>
+>>>>>>> b5604b7249a02cc10382f72918c02f74bc82b7bf
             </ul>
         </div>
     </div>
