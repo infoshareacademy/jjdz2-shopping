@@ -34,7 +34,7 @@
     </style>
 </head>
 <body>
-<%--Navbar--%>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -58,13 +58,9 @@
             </ul>
         </div>
     </div>
-    <%--
-        <div align="center">
-            <img src="team.jpg">
-        </div>--%>
+
 
 </nav>
-
 
 </body>
 
