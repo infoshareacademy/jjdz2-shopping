@@ -2,13 +2,16 @@ package com.jars.shopping.WebForm;
 
 import com.google.gson.Gson;
 import com.jars.shopping.ProductList.ProductListEvent;
+import com.jars.shopping.ProductList.Products;
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import javax.ejb.EJB;
 import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +29,9 @@ import org.json.simple.JSONObject;
 @WebServlet(urlPatterns = "/productList")
 public class ProductListServlet extends HttpServlet {
 
+//    @EJB
+//    ProperProducts properProducts;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductListServlet.class);
     private static final Marker PARAMETERS = MarkerFactory.getMarker("PARAMETERS");
 
@@ -37,25 +43,30 @@ public class ProductListServlet extends HttpServlet {
         LOGGER.info(PARAMETERS, term + " " + id);
         resp.setContentType("application/json; charset=UTF-8");
 
+        ProperProducts properProducts = new ProperProducts();
+
+        Map<String, String> productList= properProducts.getProductList();
+        Map<String, String> productSubList = new HashMap<>();
+
+        System.out.println("pusty?" + properProducts.getProductList());
 
 
-        Map<String, String> catList = new HashMap<>();
-        Map<String, String> dropList = new HashMap<>();
-
-        catList.put("URL1", "stro");
-        catList.put("URL2", "stra");
-        catList.put("URL3","stron");
-        catList.put("URL4","strong");
-
-        for (Map.Entry<String, String> s:catList.entrySet()) {
+        for (Map.Entry<String, String> s:productList.entrySet()) {
             if (s.getValue().startsWith(term)){
-                dropList.put(s.getKey(), s.getValue());
+                productSubList.put(s.getKey(), s.getValue());
             }
         }
 
-        String json = new Gson().toJson(dropList);
+        String json = new Gson().toJson(productSubList);
 
         resp.getWriter().write(json);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+
 
     }
 }
