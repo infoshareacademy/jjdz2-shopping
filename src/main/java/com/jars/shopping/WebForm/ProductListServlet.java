@@ -29,7 +29,7 @@ import org.json.simple.JSONObject;
 @WebServlet(urlPatterns = "/productList")
 public class ProductListServlet extends HttpServlet {
 
-    @EJB
+    @Inject
     ProperProducts properProducts;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductListServlet.class);
