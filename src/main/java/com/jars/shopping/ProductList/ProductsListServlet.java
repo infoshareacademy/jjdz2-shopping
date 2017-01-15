@@ -85,7 +85,7 @@ public class ProductsListServlet extends HttpServlet{
         }
 
         LOGGER.info(PRODUCTSSERVLET,"Pobierz listę elementów z bazy danych");
-        List<Products> fullListFromDB = prodLDao.getProducts();
+        List<Products> fullListFromDB = prodLDao.getProductsbyUser(userName);
         req.setAttribute("fullListFromDB",fullListFromDB);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/products.jsp");

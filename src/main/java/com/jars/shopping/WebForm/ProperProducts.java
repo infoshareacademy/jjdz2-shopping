@@ -24,7 +24,7 @@ public class ProperProducts {
 
     public void getNewProducts(@Observes ProductListEvent event) {
 
-        for (Products product : event.getAllProductsList()) {
+        for (Products product : event.getAllProductsListAllegro()) {
             productList.put(product.getUrl(),product.getProduct());
             LOGGER.info("added " + productList.get(product.getUrl()));
         }
