@@ -30,17 +30,20 @@ public class CategoryToListOfProducts {
        /// categoriesEN.add("CAT"); categoriesEN.add("DOG");
 
 
-       List<Products> newAllProductsList = new ArrayList<>();
+       List<Products> newAllProductsListEbay = new ArrayList<>();
+       List<Products> newAllProductsListAllegro = new ArrayList<>();
+
 
         for(String nameCatE : event.getEbay()){
-//            newAllProductsList.addAll(serviceEbay.getProductEbayListFromUrl(nameCatE.toString()));
+            nameCatE = nameCatE.replaceAll("\\s","");
+            newAllProductsListEbay.addAll(serviceEbay.getProductEbayListFromUrl(nameCatE.toString()));
         }
 
         for(String nameCatA : event.getAllegro()) {
-            newAllProductsList.addAll(serviceAllegro.getProductAllegroListFromUrl(nameCatA.toString()));
+            newAllProductsListAllegro.addAll(serviceAllegro.getProductAllegroListFromUrl(nameCatA.toString()));
         }
 
-        eventList.fire(new ProductListEvent(newAllProductsList));
+        eventList.fire(new ProductListEvent(newAllProductsListEbay, newAllProductsListAllegro));
 
     }
 }

@@ -31,7 +31,7 @@ public class ProductListDao {
 
             Products pr = new Products(stProductName.toString(), stUrl.toString(), user);
 
-            if (chackIfUnique(stProductName)) {
+            if (chackIfUnique(stProductName,stUrl,user)) {
                 entityManager.persist(pr);
                 LOGGER.info(PRODUCTLISTDAO, "Dodano nowy produkt do zapisanych elementów: " + st.toString());
             } else {
@@ -40,10 +40,10 @@ public class ProductListDao {
         }
     }
 
-    private boolean chackIfUnique(String stProductName) {
+    private boolean chackIfUnique(String stProductName, String stUrl, String user) {
         List<Products> allProductsList = getProducts();
         for (Products prod : allProductsList) {
-            if (prod.getProduct().equals(stProductName)) {
+            if (prod.getProduct().equals(stProductName) && prod.getUrl().equals(stUrl) && prod.getUser().equals(user)) {
                 return false;
             }
         }
