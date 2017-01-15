@@ -67,6 +67,10 @@
     </div>
 </nav>
 
+<div class="container text-center">
+    <h3>Step 1/2 </h3><br>
+</div>
+
 <form method="post" action="/searchProducts">
     <table class="item-table">
         <div class="container-fluid bg-2 text-center">
@@ -82,13 +86,14 @@
 
 <script>
     $(function () {
+        var serviceSelect = $("#serviceId");
         $("#list").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "/productList",
                     data: {
                         term: request.term,
-                        serviceId: $("#serviceId").val()
+                        serviceId: serviceSelect.val()
                     },
                     success: function( data ) {
                         response( data );
@@ -96,8 +101,16 @@
                 });
             },
             select: function(e, ui) {
+                $.ajax({
+                    url: '/nowyServlet',
+                    data: {
+                        key: ui.item.value,
+                        serviceId: serviceSelect.val()
+                    }
+
+                });
                 console.log(e);
-                console.log(ui);
+                console.log(ui.value);
             },
             minLength: 3
 
@@ -105,13 +118,6 @@
     });
 </script>
 
-            <%--<script>--%>
-                <%--$(document).ready(function () {--%>
-                    <%--$('#list').on('autocompletechange change', function () {--%>
-                        <%--$('#list').html('You selected: ' + this.value);--%>
-                    <%--}).change();--%>
-                <%--});--%>
-            <%--</script>--%>
         </div>
         </div>
     </table>

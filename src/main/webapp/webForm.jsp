@@ -73,6 +73,7 @@
 
 <%--Just text container--%>
 <div class="container text-center">
+    <h3>Step 1/2 </h3><br>
     <h3>Please answer following questions</h3><br>
 </div>
 </div><br>

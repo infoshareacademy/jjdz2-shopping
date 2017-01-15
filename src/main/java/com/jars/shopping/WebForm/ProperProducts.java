@@ -5,17 +5,18 @@ import com.jars.shopping.ProductList.Products;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 import javax.enterprise.event.Observes;
 import java.util.HashMap;
 import java.util.Map;
 
-@Stateless
+@Singleton
 public class ProperProducts {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(ProperProducts.class);
 
 
-    public Map<String, String> productList = new HashMap<>();
+    private Map<String, String> productList = new HashMap<>();
 
     public Map<String, String> getProductList() {
         return productList;
