@@ -67,6 +67,10 @@
     </div>
 </nav>
 
+<div class="container text-center">
+    <h3>Step 1/2 </h3><br>
+</div>
+
 <form method="post" action="/searchProducts">
     <table class="item-table">
         <div class="container-fluid bg-2 text-center">
@@ -100,7 +104,8 @@
                 $.ajax({
                     url: '/nowyServlet',
                     data: {
-                        key: ui.item.value
+                        key: ui.item.value,
+                        serviceId: serviceSelect.val()
                     }
 
                 });

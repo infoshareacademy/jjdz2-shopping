@@ -45,8 +45,6 @@ public class ProductListServlet extends HttpServlet {
         Map<String, String> productList= properProducts.getProductList();
         Map<String, String> productSubList = new HashMap<>();
 
-        LOGGER.info("pusty?" + properProducts.getProductList());
-
 
         for (Map.Entry<String, String> s:productList.entrySet()) {
             if (s.getValue().startsWith(term)){

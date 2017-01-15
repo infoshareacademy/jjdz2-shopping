@@ -75,7 +75,7 @@ public class SearchProductServlet extends HttpServlet{
                 }
 
             }
-           event.fire(new NewStatisticUpdateEvent(sessionData.getName(), req.getParameter("question-"+j.toString()),req.getParameter("radios-"+j.toString())));
+
             chosenCategoriesEvent.fire(new ChosenCategories(allegro, ebay));
         }
 

@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.ejb.Singleton;
-import javax.ejb.Stateless;
-import javax.enterprise.context.SessionScoped;
 import javax.enterprise.event.Observes;
 import java.util.HashMap;
 import java.util.Map;
