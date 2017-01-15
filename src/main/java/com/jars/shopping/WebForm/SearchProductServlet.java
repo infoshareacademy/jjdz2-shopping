@@ -56,27 +56,29 @@ public class SearchProductServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Integer i = Integer.parseInt(req.getParameter("size"));
+        Integer size = Integer.parseInt(req.getParameter("size"));
         List <Question> questions = questionary.getQuestions();
 
-        for (Integer j=0; j<i; j++) {
+        if (size!=null) {
+            for (Integer j = 0; j < size; j++) {
 
-            for (OptionsOfAnswers opt:questions.get(j).getOptions()
-                 ) {
-                if (opt.getLabel().equals(req.getParameter("radios-"+j.toString()))){
-                    for (String c: opt.getCategories().getPl()
-                         ) {
-                        allegro.add(c);
+                for (OptionsOfAnswers opt : questions.get(j).getOptions()
+                        ) {
+                    if (opt.getLabel().equals(req.getParameter("radios-" + j.toString()))) {
+                        for (String c : opt.getCategories().getPl()
+                                ) {
+                            allegro.add(c);
+                        }
+                        for (String c : opt.getCategories().getEn()
+                                ) {
+                            ebay.add(c);
+                        }
                     }
-                    for (String c: opt.getCategories().getEn()
-                            ) {
-                        ebay.add(c);
-                    }
+
                 }
 
+                chosenCategoriesEvent.fire(new ChosenCategories(allegro, ebay));
             }
-
-            chosenCategoriesEvent.fire(new ChosenCategories(allegro, ebay));
         }
 
         resp.setContentType("application/json; charset=UTF-8");
