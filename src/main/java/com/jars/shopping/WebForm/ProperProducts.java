@@ -16,17 +16,24 @@ public class ProperProducts {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProperProducts.class);
 
 
-    private Map<String, String> productList = new HashMap<>();
+    private Map<String, String> productListallegro = new HashMap<>();
+    private Map<String, String> productListeBay = new HashMap<>();
 
-    public Map<String, String> getProductList() {
-        return productList;
+    public Map<String, String> getProductListallegro() {
+        return productListallegro;
     }
+    public Map<String, String> getProductListeBay() { return productListeBay;    }
 
     public void getNewProducts(@Observes ProductListEvent event) {
 
-        for (Products product : event.getAllProductsList()) {
-            productList.put(product.getUrl(),product.getProduct());
-            LOGGER.info("added " + productList.get(product.getUrl()));
+        for (Products product : event.getAllProductsListAllegro()) {
+            productListallegro.put(product.getUrl(), product.getProduct());
+            LOGGER.info("added allegro: " + productListallegro.get(product.getUrl()));
+        }
+        for (Products product : event.getAllProductsListEbay()) {
+            productListeBay.put(product.getUrl(), product.getProduct());
+            LOGGER.info("added ebay:" + productListeBay.get(product.getUrl()));
+
         }
     }
 }

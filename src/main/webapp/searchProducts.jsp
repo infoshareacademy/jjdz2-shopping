@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 
 <!DOCTYPE html>
@@ -10,7 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="Shortcut icon" href="http://1.bp.blogspot.com/_qxNvBPirDY4/S6SogyHzSYI/AAAAAAAAACI/1LaUy9AAilc/s320/shopping.jpg" />
+    <link rel="Shortcut icon"
+          href="http://1.bp.blogspot.com/_qxNvBPirDY4/S6SogyHzSYI/AAAAAAAAACI/1LaUy9AAilc/s320/shopping.jpg"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -20,15 +21,18 @@
             margin-bottom: 0;
             border-radius: 0;
         }
+
         footer {
             background-color: #f2f2f2;
             padding: 25px;
         }
+
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height:200px;
+            min-height: 200px;
         }
+
         @media (max-width: 600px) {
             .carousel-caption {
                 display: none;
@@ -59,30 +63,42 @@
                 <li><a href="/webForm"> Web Form</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
-                </form></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span>
+                    <form action="/adminPanel" method="post">
+                        <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container text-center">
-    <h3>Step 1/2 </h3><br>
+    <h3>Step 2/2 </h3><br>
 </div>
 
 <form method="post" action="/searchProducts">
     <table class="item-table">
         <div class="container-fluid bg-2 text-center">
-        <div class="col-sm-6">
-    <div>
-    <select id="serviceId" name="serviceId">
-        <option value="1">Ebay</option>
-        <option value="2">Allegro</option>
-    </select>
-    <input id="list" name="list" type="text"/>
+            <div class="col-sm-6">
+                <div>
+                    <select id="serviceId" name="serviceId">
+                        <option value="ebay">Ebay</option>
+                        <option value="allegro">Allegro</option>
+                    </select>
+                    <input id="list" name="list" type="text"/>
 
+                </div>
+            </div>
+        </div>
+    </table>
+</form>
+
+<div class="container-fluid bg-2 text-center">
+    <div id="link" class="col-sm-6">
+        AAAAAAAaaaaaaaaaaaaaaaa
     </div>
+</div>
 
 <script>
     $(function () {
@@ -102,26 +118,21 @@
             },
             select: function(e, ui) {
                 $.ajax({
-                    url: '/nowyServlet',
+                    url: '/UrlOutputServlet',
                     data: {
-                        key: ui.item.value,
+                        productName: ui.item.value,
                         serviceId: serviceSelect.val()
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $("#link").html("Item link: <a href=" + data + ">" + data + "</a>");
                     }
-
                 });
-                console.log(e);
-                console.log(ui.value);
             },
             minLength: 3
-
         });
     });
 </script>
-
-        </div>
-        </div>
-    </table>
-</form>
 
 </body>
 </html>
