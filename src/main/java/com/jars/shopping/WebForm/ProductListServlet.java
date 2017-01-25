@@ -42,13 +42,23 @@ public class ProductListServlet extends HttpServlet {
         String id = req.getParameter("serviceId");
         LOGGER.info(PARAMETERS, term + " " + id);
 
-        Map<String, String> productList= properProducts.getProductList();
+        Map<String, String> productListallegro= properProducts.getProductListallegro();
+        Map<String, String> productListeBay= properProducts.getProductListeBay();
+
         Map<String, String> productSubList = new HashMap<>();
 
-
-        for (Map.Entry<String, String> s:productList.entrySet()) {
-            if (s.getValue().startsWith(term)){
-                productSubList.put(s.getKey(), s.getValue());
+        if (id.equals("allegro")) {
+            for (Map.Entry<String, String> s : productListallegro.entrySet()) {
+                if (s.getValue().startsWith(term)) {
+                    productSubList.put(s.getKey(), s.getValue());
+                }
+            }
+        }
+            else {
+            for (Map.Entry<String, String> s : productListeBay.entrySet()) {
+                if (s.getValue().startsWith(term)) {
+                    productSubList.put(s.getKey(), s.getValue());
+                }
             }
         }
 
