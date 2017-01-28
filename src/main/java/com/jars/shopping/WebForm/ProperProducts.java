@@ -33,7 +33,6 @@ public class ProperProducts {
         for (Products product : event.getAllProductsListEbay()) {
             productListeBay.put(product.getUrl(), product.getProduct());
             LOGGER.info("added ebay:" + productListeBay.get(product.getUrl()));
-
         }
     }
 }

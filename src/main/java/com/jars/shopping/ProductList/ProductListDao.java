@@ -8,6 +8,7 @@ import org.slf4j.MarkerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,12 +51,22 @@ public class ProductListDao {
         return true;
     }
 
-    public void delProductByUrl(String url) {
-        entityManager.createNamedQuery(Products.DEL_PRODUCT_BY_URL).setParameter("urlToDel", url).executeUpdate();
+    public void delProductByUrl(String url, String user) {
+        LOGGER.info(PRODUCTLISTDAO, "Usuwam produkt z listy");
+        entityManager.createNamedQuery(Products.DEL_PRODUCT_BY_URL).setParameter("urlToDel", url).setParameter("userToDel", user).executeUpdate();
+    }
+
+    public List<Products> getProductsbyUser(String user) {
+        List<Products> productListFromDB  = new ArrayList<>();
+
+        LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów dla usera: " + user.toString());
+        productListFromDB = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST_BY_USER).setParameter("userToGet", user).getResultList();
+
+        return productListFromDB;
     }
 
     public List<Products> getProducts() {
-        List<Products> productListFromDB = null;
+        List<Products> productListFromDB  = new ArrayList<>();
 
         LOGGER.info(PRODUCTLISTDAO, "Sprawdzamy listę produktów");
         productListFromDB = entityManager.createNamedQuery(Products.GET_PRODUCTS_LIST, Products.class).getResultList();

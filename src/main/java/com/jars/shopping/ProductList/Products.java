@@ -11,21 +11,26 @@ import javax.persistence.*;
         @NamedQuery(name = Products.GET_PRODUCTS_LIST,
                 query = "select p " +
                         "from Products p"),
+        @NamedQuery(name = Products.GET_PRODUCTS_LIST_BY_USER,
+                query = "select p " +
+                        "from Products p " +
+                        "where p.user=:userToGet"),
         @NamedQuery(name = Products.DEL_PRODUCT_BY_URL,
                 query = "delete " +
                         "from Products AS p " +
-                        "where p.url=:urlToDel")
+                        "where p.url=:urlToDel and p.user=:userToDel")
 })
 
 public class Products {
     final public static String GET_PRODUCTS_LIST = "Products.GET_PRODUCTS_LIST";
     final public static String DEL_PRODUCT_BY_URL = "Products.DEL_PRODUCT_BY_URL";
+    final public static String GET_PRODUCTS_LIST_BY_USER = "Products.GET_PRODUCTS_LIST_BY_USER";
 
+    @Column(unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
     private String product;
     private String url;
     private String user;
