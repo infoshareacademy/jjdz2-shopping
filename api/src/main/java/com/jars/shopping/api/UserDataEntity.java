@@ -1,4 +1,4 @@
-package REST;
+package com.jars.shopping.api;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,7 @@ public class UserDataEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
     private String Username;
+    private long date;
 
     public long getDate() {
         return date;
@@ -40,8 +41,4 @@ public class UserDataEntity {
     public void setId(long id) {
         Id = id;
     }
-
-    private long date;
-
-
 }

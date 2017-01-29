@@ -1,4 +1,4 @@
-package REST;
+package com.jars.shopping.api;
 
 import javax.enterprise.context.RequestScoped;
 import javax.validation.Valid;
@@ -13,14 +13,22 @@ import javax.ws.rs.core.Response;
  */
 
 @RequestScoped
+@Path("/")
 public class DataStoreService {
+
 
 
     @POST
     @Path("/logins")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response.ResponseBuilder createNewMessage(@Valid UserData userData){
+    public Response createNewMessage(@Valid UserData userData){
+        UserDataEntity userDataEntity = new UserDataEntity();
 
-        return Response.serverError();
+        userDataEntity.setUsername(userData.username);
+        userDataEntity.setDate(userData.date);
+
+        DataStoreDAO.putIntoDatabase(userDataEntity);
+
+        return Response.ok().build();
     }
 }
