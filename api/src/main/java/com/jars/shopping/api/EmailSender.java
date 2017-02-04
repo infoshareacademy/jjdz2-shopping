@@ -1,6 +1,7 @@
 package com.jars.shopping.api;
 
 import javax.annotation.Resource;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -12,7 +13,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Stateless
+
 public class EmailSender {
+
+    public boolean isKeepSendingReports() {
+        return keepSendingReports;
+    }
+
+    public void setKeepSendingReports(boolean keepSendingReports) {
+        this.keepSendingReports = keepSendingReports;
+    }
+
+    private boolean keepSendingReports;
 
     @Resource(name = "java:jboss/mail/gmail")
     private Session session;
@@ -31,6 +43,13 @@ public class EmailSender {
 
         } catch (MessagingException e) {
             Logger.getLogger(EmailSender.class.getName()).log(Level.WARNING, "Cannot send mail", e);
+        }
+    }
+
+    @Schedule(minute = "*/1", hour = "*")
+    private void sendScheduled() {
+        if (keepSendingReports) {
+            send("kkubicki2@gmail.com", "Test email", "Message body tra la la la la la");
         }
     }
 }
