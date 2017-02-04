@@ -103,7 +103,7 @@
     </div>
     <!-- lista wygenerowanych produktów -->
     <div>
-        <div><fmt:message bundle="${msg}" key="favourite_products" /></div>
+        <div><fmt:message bundle="${msg}" key="fav_products" /></div>
         <div>
             <!-- Ebay -->
             <form  method="post" action="products">

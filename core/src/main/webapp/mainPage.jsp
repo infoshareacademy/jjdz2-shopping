@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="messages" var="msg" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +38,7 @@
 </head>
 <body>
 
+<%--Navbar--%>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -43,36 +47,42 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Logo</a>
+
+            <a class="navbar-brand" href="\">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/favourites">Favourites</a></li>
-                <li><a href="/searchProducts">Search Products</a></li>
-                <li><a href="/webForm"> Web Form</a></li>
+                <li class="active"><a href="/"><fmt:message bundle="${msg}" key="home" /></a></li>
+                <li><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
+                <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
+                <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
+                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
-                </form></li>  </ul>
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
+                </form></li>
+            </ul>
         </div>
     </div>
 </nav>
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h1>Hello web app :) </h1>
-        <p> JARS Inc. presents :)</p>
-        <p> Please log in to gain access to full power of this wonderful app. Only for limited time, this app is available absolutely for free,
-        don't let others take your spot on this extremely proffessionally written app</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1><fmt:message bundle="${msg}" key="hello" /></h1>
+        <p><fmt:message bundle="${msg}" key="jars_presents" /></p>
+        <p><fmt:message bundle="${msg}" key="main_page_info" /></p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button"><fmt:message bundle="${msg}" key="learn_more" /></a></p>
       </div>
     </div>
 
+<!--
+
     <div class="container">
-      <!-- Example row of columns -->
+
       <div class="row">
         <div class="col-md-4">
           <h2>Heading</h2>
@@ -96,9 +106,8 @@
       <footer>
         <p>&copy; 2016 JARS Inc.</p>
       </footer>
-    </div> <!-- /container -->
-
-</nav>
+    </div>
+-->
 
 </body>
 
