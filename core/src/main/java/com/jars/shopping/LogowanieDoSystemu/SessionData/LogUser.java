@@ -1,12 +1,12 @@
 package com.jars.shopping.LogowanieDoSystemu.SessionData;
 
-import com.jars.shopping.LogowanieDoSystemu.FacebookLogin;
-import com.jars.shopping.Users.User;
+import com.jars.shopping.REST.UserData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 
 @WebServlet(urlPatterns = "/logUser")
@@ -30,6 +31,9 @@ public class LogUser extends HttpServlet {
     @Inject
     UserDao userDao;
 
+    @Inject
+    Event<UserData> userDataEvent;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -42,6 +46,13 @@ public class LogUser extends HttpServlet {
             sessionData.setLogged(true);
             sessionData.setLoggedFrom(req.getRequestURI());
 
+            // fire event
+            LocalDate date = LocalDate.now();
+            ZoneId zoneId = ZoneId.systemDefault();
+            long epoch = date.atStartOfDay(zoneId).toEpochSecond();
+            userDataEvent.fire(new UserData(req.getParameter("username"), epoch));
+
+
             if (userDao.getSingleUser(req.getParameter("username")).isAdmin()) {
                 LOGGER.info(USERLOGIN, " User seems to be an ADMIN, redirecting to Admin Panel");
                 resp.sendRedirect("/adminPanel");
@@ -49,6 +60,7 @@ public class LogUser extends HttpServlet {
                 RequestDispatcher dispatcher = req.getRequestDispatcher("/inAppUserLoggedInCallback.jsp");
                 dispatcher.forward(req, resp);
             }
+
         } else {
             LOGGER.warn(USERLOGIN, " Login failed for user : " + req.getParameter("username"));
             sessionData.clearUserInfo();
