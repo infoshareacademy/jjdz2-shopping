@@ -1,5 +1,6 @@
 package com.jars.shopping.REST;
 
+import javax.ejb.Stateless;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
@@ -12,6 +13,7 @@ import java.time.ZoneId;
 /**
  * Created by marcinpankowski on 04.02.17.
  */
+@Stateless
 public class ClientForAPI {
 
         public void getDataFromAPI(LocalDate fromDate, LocalDate toDate) throws MalformedURLException, URISyntaxException {
