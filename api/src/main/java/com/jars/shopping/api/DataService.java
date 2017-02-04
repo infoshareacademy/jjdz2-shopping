@@ -21,8 +21,7 @@ public class DataService {
     @Path("/logins")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<UserDataEntity> readUserData(@QueryParam("fromdate") long fromDate, @QueryParam("todate") long toDate){
+    public List<UserDataEntity> readUserData(@QueryParam("fromdate") Long fromDate, @QueryParam("todate") Long toDate) {
         return dataStoreDAO.getUserDataFromDateToDate(fromDate, toDate);
     }
-
 }

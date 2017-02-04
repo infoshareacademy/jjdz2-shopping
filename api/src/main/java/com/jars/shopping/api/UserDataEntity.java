@@ -8,14 +8,28 @@ import javax.persistence.*;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = UserDataEntity.GET_USERS,
+        @NamedQuery(name = UserDataEntity.GET_USERS_FROM_DATE_TO_DATE,
                 query = "select u " +
                         "from UserDataEntity u " +
                         "where u.date >= :fromDate and " +
-                        "u.date <= :toDate")
+                        "u.date <= :toDate"),
+        @NamedQuery(name = UserDataEntity.GET_USERS_FROM_DATE,
+        query = "select u " +
+                "from UserDataEntity u " +
+                "where u.date >= :fromDate"),
+        @NamedQuery(name = UserDataEntity.GET_USERS_TO_DATE,
+                query = "select u " +
+                        "from UserDataEntity u " +
+                        "where u.date <= :toDate"),
+        @NamedQuery(name = UserDataEntity.GET_USERS,
+                query = "select u " +
+                        "from UserDataEntity u")
 })
 public class UserDataEntity {
 
+    public static final String GET_USERS_FROM_DATE_TO_DATE = "UserDataEntity.GET_USERS_FROM_DATE_TO_DATE";
+    public static final String GET_USERS_FROM_DATE = "UserDataEntity.GET_USERS_FROM_DATE";
+    public static final String GET_USERS_TO_DATE = "UserDataEntity.GET_USERS_TO_DATE";
     public static final String GET_USERS = "UserDataEntity.GET_USERS";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
