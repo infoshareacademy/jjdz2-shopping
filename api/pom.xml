@@ -37,6 +37,11 @@
                 <configuration>
                     <username>${wildfly.adminUsername}</username>
                     <password>${wildfly.adminPassword}</password>
+                    <javaOpts>
+                        <javaOpt>
+                            -Djboss.bind.address=0.0.0.0
+                        </javaOpt>
+                    </javaOpts>
                     <beforeDeployment>
                         <commands>
                             <command>

@@ -1,17 +1,22 @@
 package com.jars.shopping.api;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by pwieczorek on 29.01.17.
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = UserDataEntity.GET_USERS,
+                query = "select u " +
+                        "from UserDataEntity u " +
+                        "where u.date >= :fromDate and " +
+                        "u.date <= :toDate")
+})
 public class UserDataEntity {
 
+    public static final String GET_USERS = "UserDataEntity.GET_USERS";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;

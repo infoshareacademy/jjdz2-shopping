@@ -1,6 +1,7 @@
 package com.jars.shopping.api;
 
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,7 +17,8 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class DataStoreService {
 
-
+    @Inject
+    DataStoreDAO dataStoreDAO;
 
     @POST
     @Path("/logins")
@@ -27,7 +29,7 @@ public class DataStoreService {
         userDataEntity.setUsername(userData.username);
         userDataEntity.setDate(userData.date);
 
-        DataStoreDAO.putIntoDatabase(userDataEntity);
+        dataStoreDAO.putIntoDatabase(userDataEntity);
 
         return Response.ok().build();
     }
