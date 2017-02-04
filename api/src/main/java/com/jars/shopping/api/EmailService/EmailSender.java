@@ -1,4 +1,4 @@
-package com.jars.shopping.api;
+package com.jars.shopping.api.EmailService;
 
 import javax.annotation.Resource;
 import javax.ejb.Schedule;

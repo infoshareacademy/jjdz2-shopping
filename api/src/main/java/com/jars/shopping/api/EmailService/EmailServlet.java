@@ -1,7 +1,6 @@
-package com.jars.shopping.api;
+package com.jars.shopping.api.EmailService;
 
 import javax.ejb.EJB;
-import javax.ejb.Schedule;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +12,8 @@ import java.io.IOException;
 
 public class EmailServlet extends HttpServlet {
 
-   @EJB
-   private EmailSender sender;
+    @EJB
+    private EmailSender sender;
 
 
     @Override
