@@ -1,5 +1,7 @@
 package com.jars.shopping.api;
 
+import ProductREST.Product;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -11,7 +13,11 @@ public class DataStoreDAO {
     @PersistenceContext
     static EntityManager entityManager;
 
-    static public void putIntoDatabase(UserDataEntity userDataEntity){
+    static public void putIntoDatabase(UserDataEntity userDataEntity) {
         entityManager.persist(userDataEntity);
+    }
+
+    static public void putIntoDatabase(Product product) {
+        entityManager.persist(product);
     }
 }

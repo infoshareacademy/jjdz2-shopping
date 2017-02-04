@@ -1,5 +1,6 @@
 package ProductREST;
 
+import com.jars.shopping.api.DataStoreDAO;
 import com.jars.shopping.api.UserData;
 
 import javax.enterprise.context.RequestScoped;
@@ -18,8 +19,8 @@ public class ProductService {
     @POST
     @Path("/product")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createNewMessage(@Valid UserData userData){
-
+    public Response createNewMessage(@Valid Product product){
+        DataStoreDAO.putIntoDatabase(product);
         return Response.ok().build();
     }
 }
