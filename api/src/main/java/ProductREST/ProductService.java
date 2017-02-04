@@ -10,9 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-/**
- * Created by keehoo on 04.02.17.
- */
 
 @RequestScoped
 @Path("/")

@@ -16,19 +16,14 @@ import javax.ws.rs.core.Response;
 @Path("/")
 public class DataStoreService {
 
-
-
     @POST
     @Path("/logins")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createNewMessage(@Valid UserData userData){
         UserDataEntity userDataEntity = new UserDataEntity();
-
         userDataEntity.setUsername(userData.username);
         userDataEntity.setDate(userData.date);
-
         DataStoreDAO.putIntoDatabase(userDataEntity);
-
         return Response.ok().build();
     }
 }

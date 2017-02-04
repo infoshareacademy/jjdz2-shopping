@@ -111,7 +111,19 @@
 
     </div>
 
+</div>
 
+<div class="container text-center">
+
+    <form method="post" action="sendReports">
+        email    : <input type="text" name="username" value="${param.username}">
+        password : <input type="password" name="password" value="${param.password}">
+        <div align="center">
+            <button class="btn-success" type="submit" formmethod="post" formaction="AddNewUser"> Create User </button>
+        </div>
+    </form>
+
+</div>
 </body>
 
 </html>
