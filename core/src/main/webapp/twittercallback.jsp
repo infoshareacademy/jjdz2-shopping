@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="messages" var="msg" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,12 +43,12 @@
 <body>
 
 <div align="center">
-    <h1> Hey, ${name}</h1>
-    <p> You've been successfully logged in with Twitter</p>
+    <h1><fmt:message bundle="${msg}" key="hey" />${name}</h1>
+    <p> <fmt:message bundle="${msg}" key="twitter_logged_in" /></p>
     <p> Rock 'n' Roll !</p>
 </div>
 
-<div align="center"><a href="/" class="btn btn-success btn-lg btn-block"> Go to Main Page </a></div>
+<div align="center"><a href="/" class="btn btn-success btn-lg btn-block"><fmt:message bundle="${msg}" key="go_to_main_page" /></a></div>
 
 
 </div>
@@ -55,4 +56,3 @@
 
 </body>
 </html>
-
