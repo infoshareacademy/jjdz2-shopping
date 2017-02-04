@@ -13,13 +13,12 @@ import java.io.IOException;
 
 public class EmailServlet extends HttpServlet {
 
-//    @EJB
-//    private EmailSender sender;
-//
-//
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("\n\n\n\n\n\n\n\nDo Get w servlecie!!!!\n\n\n\n\n\n\n");
-//      //  sender.send("kkubicki2@gmail.com", "Test email", "Message body tra la la la la la");
-//    }
+   @EJB
+   private EmailSender sender;
+
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("Do get w servlecie");
+    }
 }
