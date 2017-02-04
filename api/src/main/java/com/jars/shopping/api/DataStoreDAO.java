@@ -18,19 +18,47 @@ public class DataStoreDAO {
         entityManager.persist(userDataEntity);
     }
 
-    public List<UserDataEntity> getUserDataFromDateToDate(Long fromDate, Long toDate){
+    public List<UserDataEntity> getUserDataFromDateToDate(Long fromDate, Long toDate, String username){
 
-        if(fromDate== null && toDate == null){
-            return entityManager.createNamedQuery(UserDataEntity.GET_USERS).getResultList();
-        }
-        else if(fromDate == null){
-            return entityManager.createNamedQuery(UserDataEntity.GET_USERS_TO_DATE).setParameter("toDate", toDate).getResultList();
-        }
-        else if(toDate == null){
-            return entityManager.createNamedQuery(UserDataEntity.GET_USERS_FROM_DATE).setParameter("fromDate", fromDate).getResultList();
+        if(username == null) {
+            if (fromDate == null && toDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS).getResultList();
+            } else if (fromDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_TO_DATE)
+                        .setParameter("toDate", toDate)
+                        .getResultList();
+            } else if (toDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_FROM_DATE)
+                        .setParameter("fromDate", fromDate)
+                        .getResultList();
+            } else {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_FROM_DATE_TO_DATE)
+                        .setParameter("fromDate", fromDate).setParameter("toDate", toDate)
+                        .getResultList();
+            }
         }
         else {
-            return entityManager.createNamedQuery(UserDataEntity.GET_USERS_FROM_DATE_TO_DATE).setParameter("fromDate", fromDate).setParameter("toDate", toDate).getResultList();
+            if (fromDate == null && toDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_BY_USERNAME)
+                        .setParameter("username", username)
+                        .getResultList();
+            } else if (fromDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_BY_USERNAME_TO_DATE)
+                        .setParameter("username", username)
+                        .setParameter("toDate", toDate)
+                        .getResultList();
+            } else if (toDate == null) {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_BY_USERNAME_FROM_DATE)
+                        .setParameter("username", username)
+                        .setParameter("fromDate", fromDate)
+                        .getResultList();
+            } else {
+                return entityManager.createNamedQuery(UserDataEntity.GET_USERS_BY_USERNAME_FROM_DATE_TO_DATE)
+                        .setParameter("username", username)
+                        .setParameter("fromDate", fromDate)
+                        .setParameter("toDate", toDate)
+                        .getResultList();
+            }
         }
     }
 }
