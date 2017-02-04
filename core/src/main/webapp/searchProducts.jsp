@@ -53,6 +53,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+
             <a class="navbar-brand" href="#">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -61,21 +62,21 @@
                 <li><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
                 <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
                 <li class="active"><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
-                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></li>
+                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
                 <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
                     <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
-                    </form></li>
+                </form></li>
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container text-center">
-    <h3><fmt:message bundle="${msg}" key="step" /></h3><br>
+    <h3><fmt:message bundle="${msg}" key="step_2" /></h3><br>
 </div>
 
 <form method="post" action="/searchProducts">

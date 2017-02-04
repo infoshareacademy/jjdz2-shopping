@@ -77,7 +77,7 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3><fmt:message bundle="${msg}" key="step" /></h3><br>
+    <h3><fmt:message bundle="${msg}" key="step_1" /></h3><br>
     <h3><fmt:message bundle="${msg}" key="pls" /></h3><br>
 
 </div>
