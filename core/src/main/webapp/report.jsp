@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Szukaj ulubione produkty</title>
+    <title>Raport z serwera API</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -62,80 +62,29 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Znajdź produkty: </h3><br>
-
-    <div>
-        <form method="post" action="products">
-            Kategorie dla Allegro: <input type="text" name="allegroauction"  value="">
-            <br />
-            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
-        </form>
-    </div>
-    </br> </br>
-    <div>
-        <form method="post" action="products">
-            Kategorie dla Ebay: <input type="text" name="ebayauction"  value="">
-            <br />
-            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
-        </form>
-    </div>
-    </br> </br> </br>
+    <h3>Ulubione produkty </h3><br>
 
     <!-- list z bazy danych -->
     </HR>
-    <div>
-        <c:forEach items="${fullListFromDB}" var="flfDB" varStatus="i">
-            <li>
-                <div>
-                    <label>
-                            ${flfDB.id} - ${flfDB.product} - ${flfDB.url} - ${flfDB.user}
-
-                    </label>
-                </div>
-            </li>
-        </c:forEach>
-
-    </div>
-    <!-- lista wygenerowanych produktów -->
-    <div>
-        <div>Ulubione produkty :</div>
-        <div>
-            <!-- Ebay -->
-            <form  method="post" action="products">
-                <ul class="list-group">
-                    <c:forEach items="${translatedWordsEbay}" var="eb">
+    <form method="post" action="favourites">
+        <ul class="list-group">
+            <div>
+                <c:forEach items="${usersToPrint}" var="usersToP" varStatus="i">
                     <li>
-                   <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="${eb.product}+${eb.url}" name="listofebayprod">${eb.product}
-                            </br>${eb.url} </input>
-                        </label>
-                    </div>
+
+                        <div class="checkbox">
+                            <label>
+                                ${usersToP.id} - ${usersToP.username} - ${usersToP.date}
+                            </label>
+                        </div>
+
                     </li>
-                    </c:forEach>
-                </ul>
+                </c:forEach>
 
-                    <!-- Allegro -->
-                    <ul class="list-group">
-                        <c:forEach items="${translatedWordsAllegro}" var="al">
-                        <li>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="${al.product}+${al.url}" name="listofallegroprod">${al.product}
-                                     </br>${al.url} </input>
-                                </label>
-                            </div>
-                        </li>
-                        </c:forEach>
-                    </ul>
-                <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
-            </form>
+            </div>
+        </ul>
 
-
-        </div>
-    </div>
-
-
+    </form>
 </div>
 
 

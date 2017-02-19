@@ -6,10 +6,30 @@ package com.jars.shopping.REST;
 public class UserData {
     private String username;
     private long date;
+    private int id;
+
 
     public UserData(String username, long date) {
         this.username = username;
         this.date = date;
+    }
+
+    public UserData(String username, long date, int id) {
+        this.username = username;
+        this.date = date;
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
+    }
+
+    public UserData() {
+
     }
 
     public String getUsername() {
@@ -21,4 +41,20 @@ public class UserData {
     }
 
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+                "username='" + username + '\'' +
+                ", date=" + date +
+                ", id=" + id +
+                '}';
+    }
 }

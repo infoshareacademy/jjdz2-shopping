@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by marcinpankowski on 04.02.17.
@@ -41,17 +43,19 @@ public class ReportServlet extends HttpServlet{
 
         LOGGER.info(REPORTSERVLET,"Pobierz dane do raportu o userach");
 
-        LocalDate fromDate = LocalDate.now();
-        LocalDate toDate = LocalDate.now();
+        LocalDate fromDate = LocalDate.now().minusYears(2);
+        LocalDate toDate = LocalDate.now().plusYears(2);
 
+        List<UserData> usersToPrint = new ArrayList<>();
 
         try {
-            clientForAPI.getDataFromAPI(fromDate,toDate);
+            usersToPrint = clientForAPI.getDataFromAPI(fromDate, toDate);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-
+        req.setAttribute("usersToPrint",usersToPrint);
+        
         RequestDispatcher dispatcher = req.getRequestDispatcher("/report.jsp");
         dispatcher.forward(req, resp);
     }
