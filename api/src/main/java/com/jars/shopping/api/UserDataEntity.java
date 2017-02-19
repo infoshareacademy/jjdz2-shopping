@@ -15,8 +15,8 @@ import javax.persistence.*;
                         "u.date <= :toDate"),
         @NamedQuery(name = UserDataEntity.GET_USERS_FROM_DATE,
                 query = "select u " +
-                "from UserDataEntity u " +
-                "where u.date >= :fromDate"),
+                        "from UserDataEntity u " +
+                        "where u.date >= :fromDate"),
         @NamedQuery(name = UserDataEntity.GET_USERS_TO_DATE,
                 query = "select u " +
                         "from UserDataEntity u " +
