@@ -8,8 +8,6 @@ import javax.ws.rs.core.MediaType;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 
 /**
@@ -18,14 +16,10 @@ import java.util.List;
 @Stateless
 public class ClientForAPI {
 
-    public List<UserData> getDataFromAPI(LocalDate fromDate, LocalDate toDate) throws MalformedURLException, URISyntaxException {
-        //LocalDate date = LocalDate.now();
-        ZoneId zoneId = ZoneId.systemDefault();
-        long epochFromDate = fromDate.atStartOfDay(zoneId).toEpochSecond();
-        long epochToDate = toDate.atStartOfDay(zoneId).toEpochSecond();
+    public List<UserData> getDataFromAPI(long epochFromDate, long epochToDate) throws MalformedURLException, URISyntaxException {
 
-        // URL url = new URL("localhost:8081");
-        URL url = new URL("http://10.58.78.70:8080");
+        URL url = new URL("localhost:8081");
+        //URL url = new URL("http://10.58.78.96:8081");
 
         Client client = ClientBuilder.newClient();
 

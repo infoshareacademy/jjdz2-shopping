@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +14,18 @@
             margin-bottom: 0;
             border-radius: 0;
         }
+
         footer {
             background-color: #f2f2f2;
             padding: 25px;
         }
+
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height:200px;
+            min-height: 200px;
         }
+
         @media (max-width: 600px) {
             .carousel-caption {
                 display: none;
@@ -52,9 +55,11 @@
                 <li class="active"><a href="/report"> Report</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
-                </form></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span>
+                    <form action="/adminPanel" method="post">
+                        <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -62,7 +67,32 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Ulubione produkty </h3><br>
+
+    <div>Get report from report server:</div>
+    <div>
+        <!-- Ebay -->
+        <form method="post" action="products">
+            <table>
+                <tr>
+                    <td><p>Set start Date (yyyy-mm-dd)</p>
+                        <input type="date" name="startDate"
+                               pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
+                    </td>
+
+
+                    <td><p>Set end Date (yyyy-mm-dd)</p>
+                        <input type="date" name="endDate"
+                               pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"/>
+                    </td>
+                </tr>
+            </table>
+
+            <input type="submit" class="btn btn-default btn-lg" value="Report >>">
+        </form>
+
+
+    </div>
+
 
     <!-- list z bazy danych -->
     </HR>
@@ -74,7 +104,7 @@
 
                         <div class="checkbox">
                             <label>
-                                ${usersToP.id} - ${usersToP.username} - ${usersToP.date}
+                                    ${usersToP.id} - ${usersToP.username} - ${usersToP.date}
                             </label>
                         </div>
 
@@ -85,6 +115,29 @@
         </ul>
 
     </form>
+
+    <!-- list z bazy danych -->
+    </HR>
+    <form method="post" action="favourites">
+        <ul class="list-group">
+            <div>
+                <c:forEach items="${userDataForGUIs}" var="userDataGUI" varStatus="i">
+                    <li>
+
+                        <div class="checkbox">
+                            <label>
+                                    ${userDataGUI.id} - ${userDataGUI.username} - ${userDataGUI.date}
+                            </label>
+                        </div>
+
+                    </li>
+                </c:forEach>
+
+            </div>
+        </ul>
+
+    </form>
+
 </div>
 
 

@@ -1,7 +1,5 @@
 package com.jars.shopping.REST;
 
-import org.junit.Test;
-
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.ws.rs.client.Client;
@@ -16,10 +14,10 @@ import java.net.URL;
  * Created by marcinpankowski on 04.02.17.
  */
 public class DataToApiSenderTest {
-    @Test
-    public void shouldPostDataUser() throws URISyntaxException, MalformedURLException {
-        URL url = new URL("http://10.58.78.70:8080");
 
+    public void shouldPostDataUser() throws URISyntaxException, MalformedURLException {
+        //URL url = new URL("http://10.58.78.70:8080");
+        URL url = new URL("localhost:8081");
         long number = 123;
         Client client = ClientBuilder.newClient();
 
