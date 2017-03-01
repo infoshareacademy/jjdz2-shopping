@@ -37,6 +37,11 @@
                 <configuration>
                     <username>${wildfly.adminUsername}</username>
                     <password>${wildfly.adminPassword}</password>
+                    <javaOpts>
+                        <javaOpt>
+                            -Djboss.bind.address=0.0.0.0
+                        </javaOpt>
+                    </javaOpts>
                     <beforeDeployment>
                         <commands>
                             <command>
@@ -151,11 +156,10 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-email</artifactId>
-            <version>1.2</version>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
         </dependency>
-
 
 
     </dependencies>
