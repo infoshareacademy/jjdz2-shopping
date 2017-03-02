@@ -3,6 +3,7 @@ package com.jars.shopping.api;
 import javax.annotation.Resource;
 import javax.ejb.*;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by k on 02.03.17.
@@ -28,7 +29,7 @@ public class EmailTimer {
         this.address = address;
         TimerConfig timerConfig = new TimerConfig();
         timerConfig.setInfo("Bla bla bla");
-        timer = timerService.createTimer(1000, hour * 60 * 60 * 1000, "Created New Programmatic timeout");
+        timer = timerService.createTimer(1000, TimeUnit.HOURS.toMillis(hour), "Created New Programmatic timeout");
 
     }
     @Timeout
