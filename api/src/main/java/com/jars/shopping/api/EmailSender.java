@@ -38,18 +38,15 @@ public class EmailSender {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(addresses));
             message.setSubject(topic);
             message.setText(textMessage);
-
             Transport.send(message);
-
         } catch (MessagingException e) {
             Logger.getLogger(EmailSender.class.getName()).log(Level.WARNING, "Cannot send mail", e);
         }
     }
 
-    @Schedule(minute = "*/1", hour = "*")
-    private void sendScheduled() {
-        if (keepSendingReports) {
-            send("kkubicki2@gmail.com", "Test email", "Message body tra la la la la la");
-        }
+//    @Schedule(minute = "*/1", hour = "*")
+//    private void sendScheduled() {
+//        if (keepSendingReports) {
+//            send("kkubicki2@gmail.com", "Test email", "Message body tra la la la la la");
+//        }
     }
-}

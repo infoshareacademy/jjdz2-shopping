@@ -14,7 +14,7 @@ public class EmailTimer {
 
     private int hour;
     private int minute;
-    private String address;
+    private String address = "";
 
     @EJB
     EmailSender emailSender;
@@ -24,6 +24,8 @@ public class EmailTimer {
     private Timer timer;
 
     public void start(int hour, int minute, String address) {
+        System.out.println("\n\n\n\n\n\n\n\n" +
+                "THIS SHOULD NOT BE INVOKED AT STARTUP\n\n\n\n\n\n\n\n\n\n\n\n\n");
         this.hour = hour;
         this.minute = minute;
         this.address = address;
