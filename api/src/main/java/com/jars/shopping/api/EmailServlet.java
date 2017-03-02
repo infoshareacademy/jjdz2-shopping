@@ -1,7 +1,6 @@
 package com.jars.shopping.api;
 
-import javax.ejb.EJB;
-import javax.ejb.Schedule;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +12,8 @@ import java.io.IOException;
 
 public class EmailServlet extends HttpServlet {
 
-   @EJB
-   private EmailSender sender;
-
-   @EJB
-   EmailTimer emailTimer;
+    @Inject
+    EmailTimer emailTimer;
 
 
     private String email;
@@ -28,7 +24,7 @@ public class EmailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("Do get w servlecie");
-        sender.send("kkubicki2@gmail.com", "Test mail", "To jest testowy mail z servera");
+        // sender.send("kkubicki2@gmail.com", "Test mail", "To jest testowy mail z servera");
     }
 
     @Override
