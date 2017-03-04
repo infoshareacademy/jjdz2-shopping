@@ -16,8 +16,8 @@ import java.net.URL;
 public class DataToApiSenderTest {
 
     public void shouldPostDataUser() throws URISyntaxException, MalformedURLException {
-        //URL url = new URL("http://10.58.78.70:8080");
-        URL url = new URL("localhost:8081");
+        URL url = new URL("http://10.58.78.70:8080");
+        //URL url = new URL("localhost:8081");
         long number = 123;
         Client client = ClientBuilder.newClient();
 

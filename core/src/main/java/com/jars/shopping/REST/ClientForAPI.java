@@ -18,8 +18,8 @@ public class ClientForAPI {
 
     public List<UserData> getDataFromAPI(long epochFromDate, long epochToDate) throws MalformedURLException, URISyntaxException {
 
-        URL url = new URL("localhost:8081");
-        //URL url = new URL("http://10.58.78.96:8081");
+        //URL url = new URL("localhost:8081");
+        URL url = new URL("http://10.58.78.70:8080");
 
         Client client = ClientBuilder.newClient();
 
@@ -33,7 +33,7 @@ public class ClientForAPI {
                 .get(new GenericType<List<UserData>>() {
                 });
 
-        System.out.println(">> " + userDatas);
+       System.out.println(">> " + userDatas);
 
         return userDatas;
     }

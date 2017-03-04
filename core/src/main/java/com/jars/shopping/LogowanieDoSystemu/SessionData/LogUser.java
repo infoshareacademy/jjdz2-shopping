@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Date;
 
 
 @WebServlet(urlPatterns = "/logUser")
@@ -46,12 +48,9 @@ public class LogUser extends HttpServlet {
             sessionData.setLoggedFrom(req.getRequestURI());
 
             // fire event
-            /*LocalDate date = LocalDate.now();
-            ZoneId zoneId = ZoneId.systemDefault();
-            long epoch = System.currentTimeMillis();//date.atStartOfDay(zoneId).toEpochSecond();
-            */
-            long epoch = Instant.now().getEpochSecond();
-            userDataEvent.fire(new UserData(req.getParameter("username"), epoch));
+            Instant instant = Instant.now();
+            long dateEpoch = Date.from(Instant.from(instant.atZone(ZoneId.systemDefault()))).getTime();
+            userDataEvent.fire(new UserData(req.getParameter("username"), dateEpoch));
 
 
             if (userDao.getSingleUser(req.getParameter("username")).isAdmin()) {

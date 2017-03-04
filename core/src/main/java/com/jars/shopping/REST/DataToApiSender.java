@@ -20,8 +20,9 @@ public class DataToApiSender {
 
     public void postNewUser(@Observes UserData event) throws MalformedURLException, URISyntaxException {
 
-        URL url = new URL("localhost:8081");
-         //URL url = new URL("http://10.58.78.96:8081");
+        //URL url = new URL("localhost:8081");
+         URL url = new URL("http://10.58.78.70:8080");
+        System.out.println(">>> " + event.toString());
 
         Client client = ClientBuilder.newClient();
 

@@ -69,9 +69,9 @@
 <div class="container text-center">
 
     <div>Get report from report server:</div>
-    <div>
+    <div align="center">
         <!-- Ebay -->
-        <form method="post" action="products">
+        <form method="post" action="report">
             <table>
                 <tr>
                     <td><p>Set start Date (yyyy-mm-dd)</p>
@@ -94,7 +94,7 @@
     </div>
 
 
-    <!-- list z bazy danych -->
+    <!-- list z bazy danych
     </HR>
     <form method="post" action="favourites">
         <ul class="list-group">
@@ -115,7 +115,7 @@
         </ul>
 
     </form>
-
+-->
     <!-- list z bazy danych -->
     </HR>
     <form method="post" action="favourites">

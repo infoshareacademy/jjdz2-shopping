@@ -16,8 +16,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -88,40 +89,51 @@ public class ReportServlet extends HttpServlet {
         }
 
         public DateToEpochConverter invoke() {
-            LOGGER.info(REPORTSERVLET, "Pobierz datę początkową");
             String startDate = req.getParameter("startDate");
+            LOGGER.info(REPORTSERVLET, "Pobierz datę początkową " + startDate);
 
-            LOGGER.info(REPORTSERVLET, "Pobierz datę końcową");
             String endDate = req.getParameter("endDate");
+            LOGGER.info(REPORTSERVLET, "Pobierz datę końcową " + endDate);
 
             SimpleDateFormat availDate = new SimpleDateFormat("yyyy-MM-dd");
             startDateEpoch = 0;
             endDateEpoch = 0;
-            ZoneId zoneId = ZoneId.systemDefault();
 
-            if ((startDate != null)) {
+            if ((startDate != null) && (!startDate.equals(""))) {
                 try {
-                    Date sDate = availDate.parse(startDate);
-                    startDateEpoch = sDate.getTime();
+                    long fromDateEpoch = getFromDateEpoch(startDate, availDate);
+                    startDateEpoch = fromDateEpoch;
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             } else {
-                LocalDate fromDate = LocalDate.now().minusYears(2);
-                startDateEpoch = fromDate.atStartOfDay(zoneId).toEpochSecond();
+                LocalDateTime fromDate = LocalDateTime.now().minusYears(2);
+                ZonedDateTime zDT = fromDate.atZone(ZoneId.systemDefault());
+                long fromDateEpoch = zDT.toInstant().toEpochMilli();
+                startDateEpoch = fromDateEpoch;
             }
-            if ((endDate != null)) {
+            if ((endDate != null) && (!startDate.equals(""))) {
                 try {
-                    Date eDate = availDate.parse(endDate);
-                    endDateEpoch = eDate.getTime();
+                    long toDateEpoch = getFromDateEpoch(endDate, availDate);
+                    endDateEpoch = toDateEpoch;
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             } else {
-                LocalDate toDate = LocalDate.now().plusYears(2);
-                endDateEpoch = toDate.atStartOfDay(zoneId).toEpochSecond();
+                LocalDateTime toDate = LocalDateTime.now().plusYears(2);
+                ZonedDateTime zDT = toDate.atZone(ZoneId.systemDefault());
+                long toDateEpoch = zDT.toInstant().toEpochMilli();
+                endDateEpoch = toDateEpoch;
             }
             return this;
+        }
+
+        private long getFromDateEpoch(String startDate, SimpleDateFormat availDate) throws ParseException {
+            Date sDate = availDate.parse(startDate);
+            LocalDateTime fromDate = LocalDateTime.ofInstant(sDate.toInstant(), ZoneId.systemDefault());
+            ZonedDateTime zDT = fromDate.atZone(ZoneId.systemDefault());
+            return zDT.toInstant().toEpochMilli();
         }
     }
 }
