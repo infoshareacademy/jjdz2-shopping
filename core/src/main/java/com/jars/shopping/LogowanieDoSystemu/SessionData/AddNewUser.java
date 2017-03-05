@@ -1,6 +1,7 @@
 package com.jars.shopping.LogowanieDoSystemu.SessionData;
 
 import com.jars.shopping.Users.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class AddNewUser extends HttpServlet {
         String cameFrom = "InAppCreated";
         boolean isAdmin = false;
 
-        userDao.saveUserInDataBase(new User(username, password, cameFrom, isAdmin));
+        userDao.saveUserInDataBase(new User(username, DigestUtils.sha1Hex(password), cameFrom, isAdmin));
 
         sessionData.clearUserInfo();
         resp.sendRedirect("/login");

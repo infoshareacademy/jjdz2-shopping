@@ -1,6 +1,7 @@
 package com.jars.shopping.LogowanieDoSystemu.SessionData;
 
 import com.jars.shopping.Users.User;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -85,7 +86,7 @@ public class UserDao {
                         .createNamedQuery(User.GET_USER_FROM_USERNAME, User.class)
                         .setParameter("username", username)
                         .getSingleResult();
-                if (password.equals(user.getPassword())) return true;
+                if (DigestUtils.sha1Hex(password).equals(user.getPassword())) return true;
             } catch (EJBException e) {
                 LOGGER.warn(USERDAO_MARKER, "No user found in database");
             }
