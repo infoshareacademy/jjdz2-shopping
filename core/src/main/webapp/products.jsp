@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <fmt:setBundle basename="messages" var="msg" />
@@ -21,10 +21,11 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
+
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height:200px;
+            min-height: 200px;
         }
         @media (max-width: 600px) {
             .carousel-caption {
@@ -53,6 +54,7 @@
                 <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
                 <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
                 <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+                <li><a href="/report"> Report</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
@@ -106,28 +108,30 @@
         <div><fmt:message bundle="${msg}" key="fav_products" /></div>
         <div>
             <!-- Ebay -->
-            <form  method="post" action="products">
+            <form method="post" action="products">
                 <ul class="list-group">
                     <c:forEach items="${translatedWordsEbay}" var="eb">
-                    <li>
-                   <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="${eb.product}+${eb.url}" name="listofebayprod">${eb.product}
-                            </br>${eb.url} </input>
-                        </label>
-                    </div>
-                    </li>
-                    </c:forEach>
-                </ul>
-
-                    <!-- Allegro -->
-                    <ul class="list-group">
-                        <c:forEach items="${translatedWordsAllegro}" var="al">
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="${al.product}+${al.url}" name="listofallegroprod">${al.product}
-                                     </br>${al.url} </input>
+                                    <input type="checkbox" value="${eb.product}+${eb.url}"
+                                           name="listofebayprod">${eb.product}
+                                    </br>${eb.url} </input>
+                                </label>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+
+                <!-- Allegro -->
+                <ul class="list-group">
+                    <c:forEach items="${translatedWordsAllegro}" var="al">
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="${al.product}+${al.url}"
+                                           name="listofallegroprod">${al.product}
+                                    </br>${al.url} </input>
                                 </label>
                             </div>
                         </li>

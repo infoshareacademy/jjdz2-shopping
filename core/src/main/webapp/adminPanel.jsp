@@ -63,6 +63,14 @@
                 <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
                 <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
                 <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+                <li><a href="/report"> Report</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span>
+                    <form action="/adminPanel" method="post">
+                        <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    </form>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
@@ -115,7 +123,23 @@
 
 
     </div>
+</div>
 
+
+    <div align="center">
+<p> Send reports to</p>
+        <form method="post" action="emailSending">
+            e-mail   : <input type="text" name="email" value="${param.email}">
+            topic    : <input type="text" name="topic" value="${param.topic}">
+            every    : <input type="text" name="every" value="${param.everyXhours}"> hours(s)
+            <div align="center">
+                <button class="btn-success" type="submit" formmethod="post" formaction="http://localhost:8081/EmailServlet"> Start sending report </button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
 
 </body>
 

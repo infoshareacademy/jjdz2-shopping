@@ -60,6 +60,7 @@
                 <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
                 <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
                 <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+                <li><a href="/report"> Report</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
