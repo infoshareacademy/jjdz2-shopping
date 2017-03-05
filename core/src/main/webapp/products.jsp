@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +14,18 @@
             margin-bottom: 0;
             border-radius: 0;
         }
+
         footer {
             background-color: #f2f2f2;
             padding: 25px;
         }
+
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height:200px;
+            min-height: 200px;
         }
+
         @media (max-width: 600px) {
             .carousel-caption {
                 display: none;
@@ -49,11 +52,14 @@
                 <li><a href="/favourites">Favourites</a></li>
                 <li><a href="/searchProducts">Search Products</a></li>
                 <li><a href="/webForm"> Web Form</a></li>
+                <li><a href="/report"> Report</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
-                </form></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span>
+                    <form action="/adminPanel" method="post">
+                        <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -65,16 +71,16 @@
 
     <div>
         <form method="post" action="products">
-            Kategorie dla Allegro: <input type="text" name="allegroauction"  value="">
-            <br />
+            Kategorie dla Allegro: <input type="text" name="allegroauction" value="">
+            <br/>
             <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
         </form>
     </div>
     </br> </br>
     <div>
         <form method="post" action="products">
-            Kategorie dla Ebay: <input type="text" name="ebayauction"  value="">
-            <br />
+            Kategorie dla Ebay: <input type="text" name="ebayauction" value="">
+            <br/>
             <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
         </form>
     </div>
@@ -100,33 +106,36 @@
         <div>Ulubione produkty :</div>
         <div>
             <!-- Ebay -->
-            <form  method="post" action="products">
+            <form method="post" action="products">
                 <ul class="list-group">
                     <c:forEach items="${translatedWordsEbay}" var="eb">
-                    <li>
-                   <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="${eb.product}+${eb.url}" name="listofebayprod">${eb.product}
-                            </br>${eb.url} </input>
-                        </label>
-                    </div>
-                    </li>
-                    </c:forEach>
-                </ul>
-
-                    <!-- Allegro -->
-                    <ul class="list-group">
-                        <c:forEach items="${translatedWordsAllegro}" var="al">
                         <li>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="${al.product}+${al.url}" name="listofallegroprod">${al.product}
-                                     </br>${al.url} </input>
+                                    <input type="checkbox" value="${eb.product}+${eb.url}"
+                                           name="listofebayprod">${eb.product}
+                                    </br>${eb.url} </input>
                                 </label>
                             </div>
                         </li>
-                        </c:forEach>
-                    </ul>
+                    </c:forEach>
+                </ul>
+
+                <!-- Allegro -->
+                <ul class="list-group">
+                    <c:forEach items="${translatedWordsAllegro}" var="al">
+                        <li>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="${al.product}+${al.url}"
+                                           name="listofallegroprod">${al.product}
+                                    </br>${al.url} </input>
+                                </label>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+
                 <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
             </form>
 
