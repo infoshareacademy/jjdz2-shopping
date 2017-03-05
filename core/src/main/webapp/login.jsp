@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="messages" var="msg" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +40,7 @@
     </style>
 </head>
 <body>
+
 <%--Navbar--%>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -46,21 +50,26 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="\">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/login">Login</a></li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/favourites">Favourites</a></li>
-                <li><a href="/searchProducts">Search Products</a></li>
-                <li><a href="/webForm"> Web Form</a></li>
+                <li><a href="/"><fmt:message bundle="${msg}" key="home" /></a></li>
+                <li><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
+                <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
+                <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
+                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+<<<<<<< .merge_file_nLHuw8
                 <li><a href="/report"> Report</a></li>
+=======
+>>>>>>> .merge_file_AZoVi8
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
                 </form></li>
             </ul>
         </div>
@@ -71,16 +80,16 @@
 <div class="container text-center">
 
     <div class="container" align="center">
-        <h1 class="lead"> Log in </h1>
+        <h1 class="lead"><fmt:message bundle="${msg}" key="log_in" /></h1>
     </div>
 
 
 
     <div class="container" align="center" >
         <form method="post" action="logUser">
-            login : <input type="text" name="username">
-            password: <input type="password" name="password"><br>
-            <input type="submit" value="logUser" class="btn btn-primary btn-lg">
+            login: <input type="text" name="username">
+            <fmt:message bundle="${msg}" key="password" /> <input type="password" name="password"><br>
+            <input type="submit" value=<fmt:message bundle="${msg}" key="log_in_button" /> class="btn btn-primary btn-lg">
         </form>
         <div class="container">
             <a href="/createUser"><img height="150" width="150" class="img-rounded"
