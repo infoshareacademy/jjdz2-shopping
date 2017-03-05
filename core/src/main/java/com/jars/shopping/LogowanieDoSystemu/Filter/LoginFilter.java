@@ -3,6 +3,7 @@ package com.jars.shopping.LogowanieDoSystemu.Filter;
 import com.jars.shopping.LogowanieDoSystemu.SessionData.SessionData;
 import com.jars.shopping.LogowanieDoSystemu.SessionData.UserDao;
 import com.jars.shopping.Users.User;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -23,10 +24,10 @@ public class LoginFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
-        userDao.saveUserInDataBase(new User("krzysiek", "password", "InAppCreate", true));
-        userDao.saveUserInDataBase(new User("niekrzysiek", "password", "InAppCreate", false));
-        userDao.saveUserInDataBase(new User("nie222krzysiek", "password", "InAppCreate", false));
-        userDao.saveUserInDataBase(new User("nie222kr333zysiek", "password", "InAppCreate", false));
+        userDao.saveUserInDataBase(new User("krzysiek", DigestUtils.sha1Hex("password"), "default_admin_account", true));
+        userDao.saveUserInDataBase(new User("marcin", DigestUtils.sha1Hex("password"), "Dummy Account", false));
+        userDao.saveUserInDataBase(new User("pawel", DigestUtils.sha1Hex("password"), "Dummy Account", false));
+        userDao.saveUserInDataBase(new User("natalia", DigestUtils.sha1Hex("password"), "Dummy Account", false));
 
     }
 
