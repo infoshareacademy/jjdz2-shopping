@@ -41,7 +41,7 @@ public class EmailTimer {
         this.minute = minute;
         this.address = address;
         if (address != "") {
-            timer = timerService.createTimer(TimeUnit.HOURS.toMillis(hour), 0, "Created New Programmatic timeout");
+            timer = timerService.createTimer(0,TimeUnit.HOURS.toMillis(hour), "Created New Programmatic timeout");
         } else
             Logger.getLogger(EmailSender.class.getName()).log(Level.FINEST, "\n\nAddress field is Empty, IGNORE THIS MEESSAGE IF THIS IS SYSTEM RESTART\n\n");
     }
