@@ -49,16 +49,15 @@ public class EmailTimer {
     @Timeout
     public void execute(Timer timer) {
 
-        //TODO: Investigate why is this method invoked at startup?
         System.out.println("Timer Service    : " + timer.getInfo());
         System.out.println("Execution Time   : " + new Date());
         System.out.println("____________________________________________");
         System.out.println("This method should be invoked every " + hour + " hour(s)");
         if (address != "") {
-            List<UserDataEntity> list = dataStoreDAO.getUserDataFromDateToDate(0L, System.currentTimeMillis(), "krzysiek");
+            List<UserDataEntity> list = dataStoreDAO.getUserDataFromDateToDate(null, System.currentTimeMillis(), null);
 
             for (UserDataEntity u: list) {
-                testMesssage.concat("\n "+u.toString());
+                testMesssage.concat(u.getUsername()+" "+u.getDate()+"\n");
             }
             emailSender.send(address, "Report from API system", testMesssage);
         }
