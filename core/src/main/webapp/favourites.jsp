@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setBundle basename="messages" var="msg" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,20 +46,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="\">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li class="active"><a href="/favourites">Favourites</a></li>
-                <li><a href="/searchProducts">Search Products</a></li>
-                <li><a href="/webForm"> Web Form</a></li>
+                <li><a href="/"><fmt:message bundle="${msg}" key="home" /></a></li>
+                <li><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
+                <li class="active"><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
+                <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
+                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+<<<<<<< .merge_file_DAsFq4
                 <li><a href="/report"> Report</a></li>
+=======
+>>>>>>> .merge_file_HqsLv4
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
                 </form></li>
             </ul>
         </div>
@@ -65,7 +73,7 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Ulubione produkty </h3><br>
+    <h3><fmt:message bundle="${msg}" key="fav_products" /></h3><br>
 
     <!-- list z bazy danych -->
     </HR>
@@ -87,7 +95,7 @@
 
             </div>
         </ul>
-        <input type="submit" class="btn btn-default btn-lg" value="Usun >>">
+        <input type="submit" class="btn btn-default btn-lg" value=<fmt:message bundle="${msg}" key="rmv" />>
     </form>
 </div>
 

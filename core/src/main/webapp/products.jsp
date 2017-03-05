@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="messages" var="msg" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,18 +17,15 @@
             margin-bottom: 0;
             border-radius: 0;
         }
-
         footer {
             background-color: #f2f2f2;
             padding: 25px;
         }
-
         .carousel-inner img {
             width: 100%; /* Set width to 100% */
             margin: auto;
-            min-height: 200px;
+            min-height:200px;
         }
-
         @media (max-width: 600px) {
             .carousel-caption {
                 display: none;
@@ -43,23 +43,39 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+
+            <a class="navbar-brand" href="\">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li class="active"><a href="/products">Products</a></li>
-                <li><a href="/favourites">Favourites</a></li>
-                <li><a href="/searchProducts">Search Products</a></li>
-                <li><a href="/webForm"> Web Form</a></li>
+                <li><a href="/"><fmt:message bundle="${msg}" key="home" /></a></li>
+                <li class="active"><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
+                <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
+                <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
+                <li><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
+<<<<<<< .merge_file_Z2KMha
                 <li><a href="/report"> Report</a></li>
+=======
+>>>>>>> .merge_file_Wz7Rla
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
+                </form></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span>
                     <form action="/adminPanel" method="post">
                         <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
                     </form>
                 </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
+                <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
+                </form></li>
             </ul>
         </div>
     </div>
@@ -67,21 +83,21 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Znajdź produkty: </h3><br>
+    <h3><fmt:message bundle="${msg}" key="find_products" /></h3><br>
 
     <div>
         <form method="post" action="products">
-            Kategorie dla Allegro: <input type="text" name="allegroauction" value="">
-            <br/>
-            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
+            <fmt:message bundle="${msg}" key="allegro_categories" /> <input type="text" name="allegroauction"  value="">
+            <br />
+            <input type="submit" class="btn btn-default btn-lg" value=<fmt:message bundle="${msg}" key="search_button" />>
         </form>
     </div>
     </br> </br>
     <div>
         <form method="post" action="products">
-            Kategorie dla Ebay: <input type="text" name="ebayauction" value="">
-            <br/>
-            <input type="submit" class="btn btn-default btn-lg" value="Szukaj">
+            <fmt:message bundle="${msg}" key="ebay_categories" /> <input type="text" name="ebayauction"  value="">
+            <br />
+            <input type="submit" class="btn btn-default btn-lg" value=<fmt:message bundle="${msg}" key="search_button" />>
         </form>
     </div>
     </br> </br> </br>
@@ -103,7 +119,7 @@
     </div>
     <!-- lista wygenerowanych produktów -->
     <div>
-        <div>Ulubione produkty :</div>
+        <div><fmt:message bundle="${msg}" key="fav_products" /></div>
         <div>
             <!-- Ebay -->
             <form method="post" action="products">
@@ -133,10 +149,9 @@
                                 </label>
                             </div>
                         </li>
-                    </c:forEach>
-                </ul>
-
-                <input type="submit" class="btn btn-default btn-lg" value="Zapisz >>">
+                        </c:forEach>
+                    </ul>
+                <input type="submit" class="btn btn-default btn-lg" value=<fmt:message bundle="${msg}" key="save" />>
             </form>
 
 

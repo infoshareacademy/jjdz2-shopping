@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<fmt:setBundle basename="messages" var="msg" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,20 +53,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+
+            <a class="navbar-brand" href="\">Logo</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/favourites">Favourites</a></li>
-                <li><a href="/searchProducts">Search Products</a></li>
-                <li class="active"><a href="/webForm"> Web Form</a></li>
-                <li><a href="/report"> Report</a></li>
+                <li><a href="/"><fmt:message bundle="${msg}" key="home" /></a></li>
+                <li><a href="/products"><fmt:message bundle="${msg}" key="products" /></a></li>
+                <li><a href="/favourites"><fmt:message bundle="${msg}" key="fav" /></a></li>
+                <li><a href="/searchProducts"><fmt:message bundle="${msg}" key="search" /></a></li>
+                <li class="active"><a href="/webForm"><fmt:message bundle="${msg}" key="webform" /></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="?locale=pl"><fmt:message bundle="${msg}" key="PL" /></a></li>
+                <li><a href="?locale=en"><fmt:message bundle="${msg}" key="EN" /></a></li>
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
-                    <button type="submit" name="logout" value="logout" class="btn-link">Log out</button>
+                    <button type="submit" name="logout" value="logout" class="btn-link"><fmt:message bundle="${msg}" key="logout" /></button>
                 </form></li>
             </ul>
         </div>
@@ -74,8 +77,9 @@
 
 <%--Just text container--%>
 <div class="container text-center">
-    <h3>Step 1/2 </h3><br>
-    <h3>Please answer following questions</h3><br>
+    <h3><fmt:message bundle="${msg}" key="step_1" /></h3><br>
+    <h3><fmt:message bundle="${msg}" key="pls" /></h3><br>
+
 </div>
 </div><br>
 
@@ -103,11 +107,10 @@
             </tr>
         </c:forEach>
         <div class="col-sm-6">
-            <input type="submit" value="Submit"/>
+            <input type="submit" value=<fmt:message bundle="${msg}" key="sub" /> />
         </div>
     </table>
 </form>
-
 
 </body>
 </html>

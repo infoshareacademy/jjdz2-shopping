@@ -7,6 +7,7 @@ import org.slf4j.MarkerFactory;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Locale;
 
 
 
@@ -19,6 +20,7 @@ public class SessionData implements Serializable {
     private boolean isLogged = false;
     private String name;
     private String loggedFrom;
+    private Locale locale;
 
     public String getName() {
         return name;
@@ -51,6 +53,14 @@ public class SessionData implements Serializable {
         setLogged(false);
         setName(null);
 
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    public Locale getLocale() {
+        return locale;
     }
 }
 

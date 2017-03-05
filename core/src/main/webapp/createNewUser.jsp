@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle basename="messages" var="msg" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,15 +37,15 @@
     </style>
 </head>
 <body>
-<div> <h1> Create New User </h1></div>
+<div> <h1><fmt:message bundle="${msg}" key="create_user" /></h1></div>
 
 <div align="center">
 
 <form method="post" action="AddNewUser">
-    login   : <input type="text" name="username" value="${param.username}">
-    password: <input type="password" name="password" value="${param.password}">
+    login: <input type="text" name="username" value="${param.username}">
+    <fmt:message bundle="${msg}" key="password" /> <input type="password" name="password" value="${param.password}">
     <div align="center">
-        <button class="btn-success" type="submit" formmethod="post" formaction="AddNewUser"> Create User </button>
+        <button class="btn-success" type="submit" formmethod="post" formaction="AddNewUser"><fmt:message bundle="${msg}" key="create_user_button" /></button>
     </div>
 </form>
 </div>
