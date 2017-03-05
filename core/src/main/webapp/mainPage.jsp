@@ -52,6 +52,7 @@
                 <li><a href="/favourites">Favourites</a></li>
                 <li><a href="/searchProducts">Search Products</a></li>
                 <li><a href="/webForm"> Web Form</a></li>
+                <li><a href="/report"> Report</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li role="presentation"><span class="glyphicon glyphicon-log-in"></span><form action="/adminPanel" method="post">
