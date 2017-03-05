@@ -28,7 +28,7 @@
     </properties>
 
     <build>
-        <finalName>ROOT</finalName>
+        <finalName>API</finalName>
         <plugins>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>

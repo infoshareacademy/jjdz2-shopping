@@ -113,6 +113,21 @@
     </div>
 
 
+    <div align="center">
+<p> Send reports to</p>
+        <form method="post" action="emailSending">
+            e-mail   : <input type="text" name="email" value="${param.email}">
+            topic    : <input type="text" name="topic" value="${param.topic}">
+            every    : <input type="text" name="every" value="${param.everyXhours}"> hours(s)
+            <div align="center">
+                <button class="btn-success" type="submit" formmethod="post" formaction="http://localhost:8081/EmailServlet"> Start sending report </button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
 </body>
 
 </html>
