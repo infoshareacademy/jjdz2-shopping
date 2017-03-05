@@ -7,6 +7,7 @@ import javax.ejb.Timer;
 import javax.ejb.TimerService;
 import javax.inject.Inject;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +26,13 @@ public class EmailTimer {
     @Inject
     EmailSender emailSender;
 
+    @Inject
+    DataStoreDAO dataStoreDAO;
+
     @Resource
     private TimerService timerService;
     private Timer timer;
+    private String testMesssage;
 
     public void start(int hour, int minute, String address) {
         System.out.println("\n\n\n\n\n\n\n\n" +
@@ -50,7 +55,12 @@ public class EmailTimer {
         System.out.println("____________________________________________");
         System.out.println("This method should be invoked every " + hour + " hour(s)");
         if (address != "") {
-            emailSender.send(address, "Report from API system", "Report String to be put here!!!!");
+            List<UserDataEntity> list = dataStoreDAO.getUserDataFromDateToDate(0L, System.currentTimeMillis(), "krzysiek");
+
+            for (UserDataEntity u: list) {
+                testMesssage.concat("\n "+u.toString());
+            }
+            emailSender.send(address, "Report from API system", testMesssage);
         }
     }
 }

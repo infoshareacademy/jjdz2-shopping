@@ -1,7 +1,6 @@
 package com.jars.shopping.api;
 
 import javax.annotation.Resource;
-import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,6 +18,7 @@ public class EmailSender {
     @Resource(name = "java:jboss/mail/gmail")
     private Session session;
 
+
     public void send(String addresses, String topic, String textMessage) {
 
         System.out.println("send!!!");
@@ -34,4 +34,4 @@ public class EmailSender {
         }
     }
 
-    }
+}
