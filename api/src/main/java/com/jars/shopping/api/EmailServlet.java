@@ -40,4 +40,7 @@ public class EmailServlet extends HttpServlet {
 
         emailTimer.start(everyXhours, 0, email);
         System.out.println("Email Timer should start");
-        resp.sendRedirect("http://127.0.0.1:8080/adminPane
+        resp.sendRedirect("http://127.0.0.1:8080/adminPanel");
+
+    }
+}
